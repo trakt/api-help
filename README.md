@@ -10,3 +10,21 @@ API questions and bugs should be posted in the [**GitHub Issues**](https://githu
 
 ## Stay Connected
 Make sure to follow our [**API Blog**](https://apiblog.trakt.tv) and [**@traktapi on Twitter**](https://twitter.com/traktapi) for real time updates.
+
+## Third Party Libraries
+| Language     | Name           | Repository                                     |
+|--------------|----------------|------------------------------------------------|
+| C#           | Trakt.NET      | https://github.com/henrikfroehling/Trakt.NET   |
+|              | TraktSharp     | https://github.com/wwarby/TraktSharp           |
+| C++          | libtraqt       | https://github.com/RobertMe/libtraqt           |
+| Clojure      | clj-trakt      | https://github.com/niamu/clj-trakt             |
+| Node.js      | Trakt.tv       | https://github.com/vankasteelj/trakt.tv        |
+|              | TraktApi2      | https://github.com/PatrickE94/traktapi2        |
+| Python       | trakt.py       | https://github.com/fuzeman/trakt.py            |
+|              | pyTrakt        | https://github.com/moogar0880/PyTrakt          |
+| R            | tRakt          | https://github.com/jemus42/tRakt               |
+| React Native | nodeless-trakt | https://github.com/kdemoya/nodeless-trakt      |
+| Ruby         | omniauth-trakt | https://github.com/wafcio/omniauth-trakt       |
+|              | omniauth-trakt | https://github.com/alextakitani/omniauth-trakt |
+| Swift        | TraktKit       | https://github.com/MaxHasADHD/TraktKit         |
+|              | AKTrakt        | https://github.com/arsonik/AKTrakt             |

@@ -12,6 +12,8 @@ API questions and bugs should be posted in the [**GitHub Issues**](https://githu
 Make sure to follow our [**API Blog**](https://apiblog.trakt.tv) and [**@traktapi on Twitter**](https://twitter.com/traktapi) for real time updates.
 
 ## Third Party Libraries
+All of the libraries listed below are user contributed. If you find a bug or missing feature, please contact the developer directly. These might help give your project a head start, but we can't provide direct support for any of these libraries. Please help us keep this list up to date.
+
 | Language     | Name           | Repository                                     |
 |--------------|----------------|------------------------------------------------|
 | C#           | Trakt.NET      | https://github.com/henrikfroehling/Trakt.NET   |

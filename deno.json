@@ -1,0 +1,8 @@
+{
+    "workspace": [
+        "./projects/api"
+    ],
+    "fmt": {
+        "singleQuote": true
+    }
+}

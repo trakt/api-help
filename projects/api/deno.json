@@ -1,4 +1,6 @@
 {
+  "name": "@trakt/api",
+  "exports": "./src/traktApiBuilder.ts",
   "tasks": {
     "dev": "deno run --watch main.ts"
   },

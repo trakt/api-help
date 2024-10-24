@@ -3,7 +3,9 @@
     "dev": "deno run --watch main.ts"
   },
   "imports": {
-    "@std/assert": "jsr:@std/assert@1"
+    "@std/assert": "jsr:@std/assert@1",
+    "@ts-rest/core": "npm:@ts-rest/core@^3.51.0",
+    "zod": "npm:zod@^3.23.8"
   },
   "fmt": {
     "singleQuote": true

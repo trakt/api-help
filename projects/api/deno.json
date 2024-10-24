@@ -2,7 +2,7 @@
   "name": "@trakt/api",
   "exports": "./src/traktApiBuilder.ts",
   "tasks": {
-    "dev": "deno run --watch main.ts"
+    "dev": "deno run --allow-all --watch main.ts"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",

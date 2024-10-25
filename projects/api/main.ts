@@ -77,3 +77,16 @@ async function authDevice() {
 
 const result = await authDevice();
 console.log('Authenticated successfully', result);
+
+const calendar = await api.calendars.shows({
+  params: {
+    target: 'my',
+    start_date: '2024-10-25',
+    days: 7,
+  },
+  extraHeaders: {
+    Authorization: `Bearer ${result?.access_token}`,
+  },
+});
+
+console.log('Calendar:', calendar);

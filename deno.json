@@ -3,6 +3,21 @@
         "./projects/api"
     ],
     "fmt": {
-        "singleQuote": true
+        "singleQuote": true,
+        "indentWidth": 2
+    },
+    "compilerOptions": {
+      "noUnusedParameters": true,
+      "noUnusedLocals": true,
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noUncheckedIndexedAccess": true,
+      "noFallthroughCasesInSwitch": true,
+      "noImplicitThis": true,
+      "strictNullChecks": true,
+      "strictFunctionTypes": true,
+      "strictPropertyInitialization": true,
+      "strictBindCallApply": true,
+      "strict": true
     }
 }

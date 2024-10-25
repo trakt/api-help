@@ -3,7 +3,7 @@ import { initClient } from '@ts-rest/core';
 import { TRAKT_CLIENT_ID } from './env/TRAKT_CLIENT_ID.ts';
 import { builder } from './contracts/_internal/builder.ts';
 import { oauth } from './contracts/oauth/index.ts';
-import { calendars } from './contracts/calendars.ts';
+import { calendars } from './contracts/calendars/index.ts';
 
 export type TraktApiOptions = {
   environment: Environment;

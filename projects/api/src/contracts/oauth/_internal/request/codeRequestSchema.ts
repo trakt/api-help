@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from '../../../_internal/z.ts';
 
 export const codeRequestSchema = z.object({
   client_id: z.string({

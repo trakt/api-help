@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from '../../../_internal/z.ts';
 
 export const tokenRequestSchema = z.object({
   code: z.string({

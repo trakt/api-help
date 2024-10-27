@@ -1,0 +1,11 @@
+{
+  "tasks": {
+    "start": "deno serve main.ts",
+    "dev": "deno serve --watch main.ts"
+  },
+  "imports": {
+    "@hono/swagger-ui": "npm:@hono/swagger-ui@^0.4.1",
+    "@ts-rest/open-api": "npm:@ts-rest/open-api@^3.51.0",
+    "hono": "npm:hono@^4.6.7"
+  }
+}

@@ -1,7 +1,8 @@
 {
   "workspace": [
     "./projects/api",
-    "./projects/playground"
+    "./projects/playground",
+    "./projects/swagger"
   ],
   "fmt": {
     "singleQuote": true,

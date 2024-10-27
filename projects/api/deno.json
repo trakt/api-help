@@ -1,6 +1,6 @@
 {
   "name": "@trakt/api",
-  "exports": "./src/traktApiBuilder.ts",
+  "exports": "./src/index.ts",
   "tasks": {
     "dev": "deno run --allow-all --watch main.ts"
   },
@@ -11,5 +11,10 @@
   },
   "fmt": {
     "singleQuote": true
+  },
+  "lint": {
+    "rules": {
+      "exclude": ["no-slow-types"]
+    }
   }
 }

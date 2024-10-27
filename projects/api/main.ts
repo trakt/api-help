@@ -1,11 +1,12 @@
 import { TRAKT_CLIENT_ID } from './src/env/TRAKT_CLIENT_ID.ts';
 import { TRAKT_CLIENT_SECRET } from './src/env/TRAKT_CLIENT_SECRET.ts';
 import { Environment } from './src/Environment.ts';
-import { type TraktApi, traktApiBuilder } from './src/traktApiBuilder.ts';
+import { type TraktApi, traktApi } from './src/index.ts';
 import type { OAuthDeviceTokenResponse } from './src/contracts/oauth/index.ts';
 
-const api = traktApiBuilder({
+const api = traktApi({
   environment: Environment.production,
+  apiKey: TRAKT_CLIENT_ID,
 });
 
 function createDeviceTokenPoller(api: TraktApi) {
@@ -51,7 +52,12 @@ function createDeviceTokenPoller(api: TraktApi) {
             .catch(() => {
               // Trakt API does not return a correct body for 400 responses
               // throws error when trying to parse JSON
-              return Promise.resolve({ status: 400, body: undefined });
+              return Promise.resolve(
+                { status: 400, body: undefined } as {
+                  status: 400;
+                  body: undefined;
+                },
+              );
             });
 
           if (tokenResponse.status === 200) {

@@ -1,0 +1,5 @@
+# playground local storage
+.store
+
+# macOS
+.DS_Store

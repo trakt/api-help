@@ -1,15 +1,6 @@
-import { TRAKT_CLIENT_ID } from './src/env/TRAKT_CLIENT_ID.ts';
-import { TRAKT_CLIENT_SECRET } from './src/env/TRAKT_CLIENT_SECRET.ts';
-import { Environment } from './src/Environment.ts';
-import { type TraktApi, traktApi } from './src/index.ts';
-import type { OAuthDeviceTokenResponse } from './src/contracts/oauth/index.ts';
+import type { OAuthDeviceTokenResponse, TraktApi } from '@trakt/api';
 
-const api = traktApi({
-  environment: Environment.production,
-  apiKey: TRAKT_CLIENT_ID,
-});
-
-function createDeviceTokenPoller(api: TraktApi) {
+export function createDeviceTokenPoller(api: TraktApi) {
   return async function ({
     client_id,
     client_secret,
@@ -33,7 +24,8 @@ function createDeviceTokenPoller(api: TraktApi) {
 
     return new Promise(
       (resolve, reject) => {
-        const codeExpiresAt = Date.now() + codeResponse.body.expires_in * 1000;
+        const codeExpiresAt = Date.now() +
+          codeResponse.body.expires_in * 1000;
 
         const tokenInterval = setInterval(async () => {
           if (Date.now() > codeExpiresAt) {
@@ -69,30 +61,3 @@ function createDeviceTokenPoller(api: TraktApi) {
     );
   };
 }
-
-async function authDevice() {
-  console.log('Requesting device token...');
-
-  const result = await createDeviceTokenPoller(api)({
-    client_id: TRAKT_CLIENT_ID,
-    client_secret: TRAKT_CLIENT_SECRET,
-  });
-
-  return result;
-}
-
-const result = await authDevice();
-console.log('Authenticated successfully', result);
-
-const calendar = await api.calendars.shows({
-  params: {
-    target: 'my',
-    start_date: '2024-10-25',
-    days: 7,
-  },
-  extraHeaders: {
-    Authorization: `Bearer ${result?.access_token}`,
-  },
-});
-
-console.log('Calendar:', calendar);

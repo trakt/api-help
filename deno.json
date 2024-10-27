@@ -1,23 +1,24 @@
 {
-    "workspace": [
-        "./projects/api"
-    ],
-    "fmt": {
-        "singleQuote": true,
-        "indentWidth": 2
-    },
-    "compilerOptions": {
-      "noUnusedParameters": true,
-      "noUnusedLocals": true,
-      "noImplicitAny": true,
-      "noImplicitReturns": true,
-      "noUncheckedIndexedAccess": true,
-      "noFallthroughCasesInSwitch": true,
-      "noImplicitThis": true,
-      "strictNullChecks": true,
-      "strictFunctionTypes": true,
-      "strictPropertyInitialization": true,
-      "strictBindCallApply": true,
-      "strict": true
-    }
+  "workspace": [
+    "./projects/api",
+    "./projects/playground"
+  ],
+  "fmt": {
+    "singleQuote": true,
+    "indentWidth": 2
+  },
+  "compilerOptions": {
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "strictBindCallApply": true,
+    "strict": true
+  }
 }

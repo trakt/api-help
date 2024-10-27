@@ -2,6 +2,12 @@ import { Environment } from './Environment.ts';
 import { initClient } from '@ts-rest/core';
 import { traktContract } from './contracts/traktContract.ts';
 
+export type * from './contracts/oauth/index.ts';
+export type * from './contracts/calendars/index.ts';
+
+export { traktContract };
+export { Environment };
+
 export type TraktApiOptions = {
   /**
    * Trakt API environment target (production, staging, development)
@@ -14,8 +20,6 @@ export type TraktApiOptions = {
 };
 
 export type TraktApi = ReturnType<typeof traktApiFactory>;
-
-export { traktContract };
 
 export function traktApiFactory({
   environment,

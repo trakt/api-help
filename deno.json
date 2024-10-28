@@ -4,6 +4,12 @@
     "./projects/playground",
     "./projects/swagger"
   ],
+  "tasks": {
+    "format": "deno fmt && deno lint --fix",
+    "swagger": "cd projects/swagger && deno task start",
+    "swagger:dev": "cd projects/swagger && deno task dev",
+    "playground:dev": "cd projects/playground && deno run dev"
+  },
   "fmt": {
     "singleQuote": true,
     "indentWidth": 2

@@ -15,11 +15,15 @@ export const showListResponseSchema = z.array(
       }),
     }),
     show: z.object({
-      trakt: z.number(),
-      slug: z.string(),
-      tvdb: z.number(),
-      imdb: z.string(),
-      tmdb: z.number(),
+      title: z.string(),
+      year: z.number(),
+      ids: z.object({
+        trakt: z.number(),
+        slug: z.string(),
+        tvdb: z.number(),
+        imdb: z.string(),
+        tmdb: z.number(),
+      }),
     }),
   }),
 );

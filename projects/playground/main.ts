@@ -24,6 +24,9 @@ const result = store.get(StoreKey.Auth) ?? await authDevice();
 store.set(StoreKey.Auth, result);
 
 const calendar = await api.calendars.shows({
+  query: {
+    extended: 'cloud9',
+  },
   params: {
     target: 'my',
     start_date: '2024-10-25',

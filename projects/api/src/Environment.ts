@@ -1,5 +1,5 @@
 export enum Environment {
-  production = 'https://api.trakt.tv',
+  production = 'https://apiz.trakt.tv',
   staging = 'https://api.staging.trakt.tv',
   development = 'https://api.trakt.test',
 }

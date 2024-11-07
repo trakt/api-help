@@ -1,6 +1,6 @@
 import { builder } from '../_internal/builder.ts';
 import { movieListResponseSchema } from './_internal/response/movieListResponseSchema.ts';
-import { showListResponseSchemaPublic } from './_internal/response/showListResponseSchema.ts';
+import { showListResponseSchema } from './_internal/response/showListResponseSchema.ts';
 import { calendarRequestParamsSchema } from './_internal/request/calendarParamsSchema.ts';
 import { z } from '../_internal/z.ts';
 import { extendedQuerySchema } from './_internal/request/extendedQuerySchema.ts';
@@ -12,7 +12,7 @@ export const calendars = builder.router({
     query: extendedQuerySchema,
     pathParams: calendarRequestParamsSchema,
     responses: {
-      200: showListResponseSchemaPublic,
+      200: showListResponseSchema,
     },
   },
   newShows: {
@@ -21,7 +21,7 @@ export const calendars = builder.router({
     query: extendedQuerySchema,
     pathParams: calendarRequestParamsSchema,
     responses: {
-      200: showListResponseSchemaPublic,
+      200: showListResponseSchema,
     },
   },
   seasonPremieres: {
@@ -30,7 +30,7 @@ export const calendars = builder.router({
     query: extendedQuerySchema,
     pathParams: calendarRequestParamsSchema,
     responses: {
-      200: showListResponseSchemaPublic,
+      200: showListResponseSchema,
     },
   },
   finales: {
@@ -39,7 +39,7 @@ export const calendars = builder.router({
     query: extendedQuerySchema,
     pathParams: calendarRequestParamsSchema,
     responses: {
-      200: showListResponseSchemaPublic,
+      200: showListResponseSchema,
     },
   },
   movies: {
@@ -63,5 +63,5 @@ export const calendars = builder.router({
 }, { pathPrefix: '/calendars' });
 
 export type CalendarParams = z.infer<typeof calendarRequestParamsSchema>;
-export type ShowsResponse = z.infer<typeof showListResponseSchemaPublic>;
+export type ShowsResponse = z.infer<typeof showListResponseSchema>;
 export type MoviesResponse = z.infer<typeof movieListResponseSchema>;

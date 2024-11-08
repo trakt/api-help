@@ -1,4 +1,5 @@
 import type { OAuthDeviceTokenResponse, TraktApi } from '@trakt/api';
+import { logger } from './utils/logger.ts';
 
 export function createDeviceTokenPoller(api: TraktApi) {
   return async function ({
@@ -18,8 +19,13 @@ export function createDeviceTokenPoller(api: TraktApi) {
       return Promise.reject(codeResponse.body);
     }
 
-    console.log(
-      `Go to: ${codeResponse.body.verification_url}/${codeResponse.body.user_code}`,
+    logger.statement(
+      `The digital gods demand a sacrifice!`,
+      `No, not your firstborn, just a quick visit to this unholy URL:`,
+    );
+
+    logger.output(
+      `${codeResponse.body.verification_url}/${codeResponse.body.user_code}`,
     );
 
     return new Promise(
@@ -30,7 +36,7 @@ export function createDeviceTokenPoller(api: TraktApi) {
         const tokenInterval = setInterval(async () => {
           if (Date.now() > codeExpiresAt) {
             clearInterval(tokenInterval);
-            reject('Code has expired');
+            reject();
           }
 
           const tokenResponse = await api.oauth.device
@@ -53,6 +59,10 @@ export function createDeviceTokenPoller(api: TraktApi) {
             });
 
           if (tokenResponse.status === 200) {
+            logger.statement(
+              `The digital gods have spoken!`,
+              `A code has been issued!`,
+            );
             resolve(tokenResponse.body);
             clearInterval(tokenInterval);
           }

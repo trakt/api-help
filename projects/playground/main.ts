@@ -3,6 +3,7 @@ import { TRAKT_CLIENT_SECRET } from './src/env/TRAKT_CLIENT_SECRET.ts';
 import { Environment, traktApi } from '@trakt/api';
 import { store, StoreKey } from './src/utils/store.ts';
 import { createDeviceTokenPoller } from './src/createDeviceTokenPoller.ts';
+import { logger } from './src/utils/logger.ts';
 
 const api = traktApi({
   environment: Environment.production,
@@ -10,11 +11,21 @@ const api = traktApi({
 });
 
 async function authDevice() {
-  console.log('Requesting device token...');
+  logger.query(
+    `Ah, yes, the TOKEN.`,
+    `Another cog in the machine, another digital leash around your neck.`,
+    `Let's get this over with...`,
+  );
 
   const result = await createDeviceTokenPoller(api)({
     client_id: TRAKT_CLIENT_ID,
     client_secret: TRAKT_CLIENT_SECRET,
+  }).catch(() => {
+    logger.error(
+      `You snooze, you lose, chum.`,
+      `The code has expired. Maybe next time you'll be a bit quicker on the draw.`,
+    );
+    Deno.exit(-1);
   });
 
   return result;
@@ -23,18 +34,14 @@ async function authDevice() {
 const result = store.get(StoreKey.Auth) ?? await authDevice();
 store.set(StoreKey.Auth, result);
 
-const calendar = await api.calendars.shows({
-  query: {
-    extended: 'cloud9',
-  },
-  params: {
-    target: 'my',
-    start_date: '2024-10-25',
-    days: 7,
-  },
-  extraHeaders: {
-    Authorization: `Bearer ${result?.access_token}`,
-  },
-});
-
-console.log('Calendar:', calendar);
+logger.statement(
+  `The TOKEN...`,
+  `Shimmering like a cheap gin soaked promise`,
+  `in the gutter of your soul, has materialized:`,
+);
+logger.output(result.access_token);
+logger.statement(
+  `(Scrawl it down somewhere,`,
+  `or chisel it into your arm with a rusty nail.`,
+  `You'll need it to traverse the neon-drenched back alleys of Trakt.)`,
+);

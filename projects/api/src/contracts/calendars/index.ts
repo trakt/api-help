@@ -2,8 +2,8 @@ import { builder } from '../_internal/builder.ts';
 import { movieListResponseSchema } from './_internal/response/movieListResponseSchema.ts';
 import { showListResponseSchema } from './_internal/response/showListResponseSchema.ts';
 import { calendarRequestParamsSchema } from './_internal/request/calendarParamsSchema.ts';
-import { z } from '../_internal/z.ts';
-import { extendedQuerySchema } from './_internal/request/extendedQuerySchema.ts';
+import type { z } from '../_internal/z.ts';
+import { extendedQuerySchema } from '../_internal/request/extendedQuerySchema.ts';
 
 export const calendars = builder.router({
   shows: {

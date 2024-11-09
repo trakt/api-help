@@ -1,4 +1,4 @@
-import { z } from '../../../_internal/z.ts';
+import { z } from '../z.ts';
 
 export const extendedQuerySchema = z.object({
   extended: z

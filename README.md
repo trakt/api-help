@@ -23,7 +23,7 @@ please refer to the
 [Deno installation guide](https://docs.deno.com/runtime/getting_started/installation/).
 
 1. **Clone the repository**
-1. **Install dependencies:** `deno install`
+1. **Install dependencies:** `deno task install`
 1. **Run tasks:**
 
 - Workspace:

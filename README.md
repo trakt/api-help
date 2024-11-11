@@ -1,5 +1,7 @@
 <img src="https://walter.trakt.tv/hotlink-ok/api/github.png" width="300">
 
+![CI](https://github.com/trakt/trakt-webapp/actions/workflows/ci.yml/badge.svg)
+
 ## Project Structure
 
 This [workspace](https://docs.deno.com/runtime/fundamentals/workspaces/)

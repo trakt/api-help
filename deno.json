@@ -5,6 +5,8 @@
     "./projects/swagger"
   ],
   "tasks": {
+    "reinstall": "deno install --allow-scripts --reload",
+    "install": "deno install --allow-scripts",
     "format": "deno fmt && deno lint --fix",
     "swagger": "cd projects/swagger && deno task start",
     "swagger:dev": "cd projects/swagger && deno task dev",

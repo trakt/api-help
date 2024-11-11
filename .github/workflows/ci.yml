@@ -28,3 +28,31 @@ jobs:
       - name: Probe the Client's Mind aka Run Tests
         working-directory: projects/client
         run: 'deno run test:unit'
+
+  build:
+    name: The Forge (Build)
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Secure the Evidence aka Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Summon the Digital Oracle aka Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Gather the Tools aka Install Dependencies
+        run: 'deno task install'
+
+      - name: Weaving the Digital Tapestry aka Build
+        working-directory: projects/client
+        run: 'deno run build'
+
+      - name: The Sacred Archive aka Upload Definition
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          outputArtifact: pandoras-archive
+          cloudflareArtifact: the-edge-awakened

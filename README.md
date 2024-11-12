@@ -25,9 +25,22 @@ contains multiple projects:
 The following environment variables are required for the workspace to function
 properly:
 
+### Development
+
 - **`TRAKT_CLIENT_ID`:** The client ID for the Trakt API.
 - **`TRAKT_CLIENT_SECRET`:** The client secret for the Trakt API.
   - Required for the `playground` project.
+
+### Deployment
+
+- **`CLOUDFLARE_API_TOKEN`:** Cloudflare API token.
+  - Go to [Cloudflare](https://dash.cloudflare.com/profile/api-tokens) and
+    create a new token with the following permissions:
+    - `Account:CloudflarePages:Edit`
+- **`CLOUDFLARE_ACCOUNT_ID`:** Cloudflare account ID.
+  - Go to [Cloudflare](https://dash.cloudflare.com/)
+  - Choose the `Trakt` account
+  - Copy the account ID from the URL
 
 **NOTE:** Use the `trakt-ios` or `trakt-android` client ID and secret, as they
 are the only ones that work with the private API.

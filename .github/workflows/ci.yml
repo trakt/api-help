@@ -23,15 +23,15 @@ jobs:
           deno-version: v2.x
 
       - name: Gather the Tools aka Install Dependencies
-        run: 'deno task install'
+        run: "deno task install"
 
       - name: Probe the Client's Mind aka Run Tests
         working-directory: projects/client
-        run: 'deno run test:unit'
+        run: "deno task test:unit"
 
       - name: Consulting the Oracles of Type aka Type Check
         working-directory: projects/client
-        run: 'deno run check'
+        run: "deno task check"
 
   build:
     name: The Forge (Build)
@@ -48,11 +48,11 @@ jobs:
           deno-version: v2.x
 
       - name: Gather the Tools aka Install Dependencies
-        run: 'deno task install'
+        run: "deno task install"
 
       - name: Weaving the Digital Tapestry aka Build
         working-directory: projects/client
-        run: 'deno run build'
+        run: "deno task build"
 
       - name: The Sacred Archive aka Upload Definition
         if: github.ref == 'refs/heads/main'
@@ -60,3 +60,4 @@ jobs:
         with:
           buildArtifact: pandoras-archive
           cloudflareArtifact: the-edge-awakened
+          wranglerArtifact: the-edge-config

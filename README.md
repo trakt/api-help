@@ -1,6 +1,8 @@
 <img src="https://walter.trakt.tv/hotlink-ok/api/github.png" width="300">
 
-![CI](https://github.com/trakt/trakt-webapp/actions/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/trakt/trakt-webapp/actions/workflows/ci.yml/badge.svg)](https://github.com/trakt/trakt-webapp/actions/workflows/ci.yml)
+
+[![CD](https://github.com/trakt/trakt-webapp/actions/workflows/cd.yml/badge.svg)](https://github.com/trakt/trakt-webapp/actions/workflows/cd.yml)
 
 ## Project Structure
 

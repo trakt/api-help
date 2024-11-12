@@ -9,7 +9,45 @@ on:
       - master
 
 jobs:
+  files-changed:
+    if: github.event.pull_request.draft == false
+    name: The Watchful Eye (Files Changed)
+    runs-on: ubuntu-latest
+    outputs:
+      api_source: ${{ steps.changes.outputs.api_source }}
+      client_source: ${{ steps.changes.outputs.client_source }}
+      workflows: ${{ steps.changes.outputs.workflows }}
+    steps:
+      - name: The Oracle's Gaze aka Checkout Code
+        uses: actions/checkout@v4
+
+      - name: The Seer's Vision aka Filter Paths
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            api_source:
+              - 'projects/api/src/**'
+              - 'projects/api/deno.json'
+            client_source:
+              - 'projects/client/src/**'
+              - 'projects/client/i18n/**'
+              - 'projects/client/static/**'
+              - 'projects/client/package.json'
+              - 'projects/client/deno.json'
+              - 'projects/client/svelte.config.js'
+              - 'projects/client/vite.config.ts'
+              - 'projects/client/wrangler.toml'
+            workflows:
+              - '.github/workflows/**'
+
   test:
+    needs: files-changed
+    if: ${{
+      needs.files-changed.outputs.api_source == 'true' ||
+      needs.files-changed.outputs.client_source == 'true' ||
+      needs.files-changed.outputs.workflows == 'true'
+      }}
     name: The Interrogation Room (Test)
     runs-on: ubuntu-latest
 

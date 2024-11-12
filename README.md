@@ -26,8 +26,6 @@ properly:
 - **`TRAKT_CLIENT_ID`:** The client ID for the Trakt API.
 - **`TRAKT_CLIENT_SECRET`:** The client secret for the Trakt API.
   - Required for the `playground` project.
-- **`TRAKT_BEARER_TOKEN`:** The bearer token for the Trakt API.
-  - Can be generated using the `playground` project.
 
 **NOTE:** Use the `trakt-ios` or `trakt-android` client ID and secret, as they
 are the only ones that work with the private API.

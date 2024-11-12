@@ -29,6 +29,10 @@ jobs:
         working-directory: projects/client
         run: 'deno run test:unit'
 
+      - name: Consulting the Oracles of Type aka Type Check
+        working-directory: projects/client
+        run: 'deno run check'
+
   build:
     name: The Forge (Build)
     runs-on: ubuntu-latest

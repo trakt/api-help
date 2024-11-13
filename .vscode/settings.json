@@ -3,6 +3,9 @@
   "deno.enable": true,
   "deno.lint": true,
   "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
   "editor.defaultFormatter": "denoland.vscode-deno",
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"

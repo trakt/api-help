@@ -1,4 +1,5 @@
 import {
+  episodeIdsRequestSchema,
   movieIdsRequestSchema,
   seasonIdsRequestSchema,
   showIdsRequestSchema,
@@ -8,12 +9,6 @@ import { z } from '../../../_internal/z.ts';
 const watchedAtSchema = z.object({
   watched_at: z.string().optional(),
 });
-
-const episodeWatchSchema = z.array(
-  z.object({
-    number: z.number(),
-  }).merge(watchedAtSchema),
-);
 
 const watchWithTileAndYearSchema = z.object({
   title: z.string(),

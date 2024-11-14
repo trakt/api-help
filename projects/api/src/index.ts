@@ -1,13 +1,12 @@
-import { Environment } from './Environment.ts';
 import { initClient } from '@ts-rest/core';
 import { traktContract } from './contracts/traktContract.ts';
+import { Environment } from './Environment.ts';
 
-export type * from './contracts/oauth/index.ts';
 export type * from './contracts/calendars/index.ts';
+export type * from './contracts/oauth/index.ts';
 export type * from './contracts/users/index.ts';
 
-export { traktContract };
-export { Environment };
+export { Environment, traktContract };
 
 export type TraktApiOptions = {
   /**

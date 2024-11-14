@@ -1,7 +1,7 @@
-import { generateOpenApi } from '@ts-rest/open-api';
-import { traktContract } from '@trakt/api';
-import { Hono } from 'hono';
 import { swaggerUI } from '@hono/swagger-ui';
+import { traktContract } from '@trakt/api';
+import { generateOpenApi } from '@ts-rest/open-api';
+import { Hono } from 'hono';
 
 const swaggerJson = generateOpenApi(traktContract, {
   info: {

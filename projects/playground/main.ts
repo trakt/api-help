@@ -1,9 +1,9 @@
+import { Environment, traktApi } from '@trakt/api';
+import { createDeviceTokenPoller } from './src/createDeviceTokenPoller.ts';
 import { TRAKT_CLIENT_ID } from './src/env/TRAKT_CLIENT_ID.ts';
 import { TRAKT_CLIENT_SECRET } from './src/env/TRAKT_CLIENT_SECRET.ts';
-import { Environment, traktApi } from '@trakt/api';
-import { store, StoreKey } from './src/utils/store.ts';
-import { createDeviceTokenPoller } from './src/createDeviceTokenPoller.ts';
 import { logger } from './src/utils/logger.ts';
+import { store, StoreKey } from './src/utils/store.ts';
 
 const api = traktApi({
   environment: Environment.production,

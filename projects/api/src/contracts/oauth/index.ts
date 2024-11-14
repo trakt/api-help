@@ -1,9 +1,9 @@
 import { builder } from '../_internal/builder.ts';
-import { codeResponseSchema } from './_internal/response/codeResponseSchema.ts';
-import { codeRequestSchema } from './_internal/request/codeRequestSchema.ts';
-import { tokenResponseSchema } from './_internal/response/tokenResponseSchema.ts';
-import { tokenRequestSchema } from './_internal/request/tokenRequestSchema.ts';
 import { z } from '../_internal/z.ts';
+import { codeRequestSchema } from './_internal/request/codeRequestSchema.ts';
+import { tokenRequestSchema } from './_internal/request/tokenRequestSchema.ts';
+import { codeResponseSchema } from './_internal/response/codeResponseSchema.ts';
+import { tokenResponseSchema } from './_internal/response/tokenResponseSchema.ts';
 
 const device = builder.router({
   code: {

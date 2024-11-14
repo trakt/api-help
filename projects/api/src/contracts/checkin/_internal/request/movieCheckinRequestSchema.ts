@@ -1,12 +1,14 @@
+import {
+  movieIdsRequestSchema,
+} from '../../../_internal/request/idsRequestSchema.ts';
 import { z } from '../../../_internal/z.ts';
-import { mediaIdsRequestSchema } from './mediaIdsRequestSchema.ts';
 import { sharingRequestSchema } from './sharingRequestSchema.ts';
 
 export const movieCheckinRequestSchema = z.object({
   movie: z.object({
     title: z.string().optional(),
     year: z.number().optional(),
-    ids: mediaIdsRequestSchema,
+    ids: movieIdsRequestSchema,
   }),
   sharing: sharingRequestSchema,
   message: z.string().optional(),

@@ -71,6 +71,10 @@ jobs:
         working-directory: projects/client
         run: "deno task check"
 
+      - name: Probing the API's Mind aka Run Tests
+        working-directory: projects/api
+        run: "deno task test"
+
   build:
     name: The Forge (Build)
     runs-on: ubuntu-latest

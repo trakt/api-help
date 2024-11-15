@@ -1,0 +1,52 @@
+import { z } from 'zod';
+
+export const settingsResponseSchema = z.object({
+  user: z.object({
+    username: z.string(),
+    private: z.boolean(),
+    name: z.string(),
+    vip: z.boolean(),
+    vip_ep: z.boolean(),
+    ids: z.object({ slug: z.string(), trakt: z.number(), uuid: z.string() }),
+    joined_at: z.string(),
+    location: z.string(),
+    about: z.string().optional(),
+    gender: z.string(),
+    age: z.string().optional(),
+    images: z.object({ avatar: z.object({ full: z.string() }) }),
+    vip_og: z.boolean(),
+    vip_years: z.number(),
+    vip_cover_image: z.string().optional(),
+    dob: z.string().optional(),
+  }),
+  account: z.object({
+    timezone: z.string(),
+    date_format: z.string(),
+    time_24hr: z.boolean(),
+    cover_image: z.string(),
+    token: z.string().optional(),
+    display_ads: z.boolean().optional(),
+  }),
+  connections: z.object({
+    facebook: z.boolean(),
+    twitter: z.boolean(),
+    mastodon: z.boolean(),
+    google: z.boolean(),
+    tumblr: z.boolean(),
+    medium: z.boolean(),
+    slack: z.boolean(),
+    apple: z.boolean(),
+    dropbox: z.boolean(),
+    microsoft: z.boolean(),
+  }),
+  sharing_text: z.object({
+    watching: z.string(),
+    watched: z.string(),
+    rated: z.string().optional(),
+  }),
+  limits: z.object({
+    list: z.object({ count: z.number(), item_count: z.number() }),
+    watchlist: z.object({ item_count: z.number() }),
+    favorites: z.object({ item_count: z.number() }),
+  }),
+});

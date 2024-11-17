@@ -14,7 +14,8 @@
     "deno",
     "inlang",
     "outdir",
-    "paraglide"
+    "paraglide",
+    "Watchlist"
   ],
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": [

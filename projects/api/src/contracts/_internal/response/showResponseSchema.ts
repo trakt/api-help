@@ -1,4 +1,5 @@
 import { z } from '../z.ts';
+import { imagesResponseSchema } from './imagesResponseSchema.ts';
 import { showIdsResponseSchema } from './showIdsResponseSchema.ts';
 
 export const showResponseSchema = z.object({
@@ -12,14 +13,5 @@ export const showResponseSchema = z.object({
   /***
    * Available if requesting extended `cloud9`.
    */
-  images: z
-    .object({
-      fanart: z.array(z.string()),
-      poster: z.array(z.string()),
-      logo: z.array(z.string()),
-      clearart: z.array(z.string()),
-      banner: z.array(z.string()),
-      thumb: z.array(z.string()),
-    })
-    .optional(),
+  images: imagesResponseSchema.optional(),
 });

@@ -1,8 +1,8 @@
 import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchema } from '../_internal/request/extendedQuerySchema.ts';
+import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
 import { profileParamsSchema } from './_internal/request/profileParamsSchema.ts';
-import { profileResponseSchema } from './_internal/response/profileResponseSchema.ts';
 import { settingsResponseSchema } from './_internal/response/settingsResponseSchema.ts';
 
 export const users = builder.router({

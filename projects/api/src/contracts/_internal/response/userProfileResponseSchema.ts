@@ -1,4 +1,4 @@
-import { z } from '../../../_internal/z.ts';
+import { z } from '../z.ts';
 
 export const profileResponseSchema = z.object({
   username: z.string(),

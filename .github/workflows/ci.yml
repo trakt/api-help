@@ -58,7 +58,8 @@ jobs:
       - name: Summon the Digital Oracle aka Install Deno
         uses: denoland/setup-deno@v2
         with:
-          deno-version: v2.x
+          # FIXME: switch to v2.x once https://github.com/denoland/deno/issues/26960 is resolved
+          deno-version: v2.0.x
 
       - name: Gather the Tools aka Install Dependencies
         run: "deno task install"
@@ -87,7 +88,8 @@ jobs:
       - name: Summon the Digital Oracle aka Install Deno
         uses: denoland/setup-deno@v2
         with:
-          deno-version: v2.x
+          # FIXME: switch to v2.x once https://github.com/denoland/deno/issues/26960 is resolved
+          deno-version: v2.0.x
 
       - name: Gather the Tools aka Install Dependencies
         run: "deno task install"

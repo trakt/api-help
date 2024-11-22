@@ -19,6 +19,10 @@ export type TraktApiOptions = {
    * Trakt API key (client id from trakt.tv API application)
    */
   apiKey: string;
+  /**
+   * Fetch implementation
+   */
+  fetch?: typeof fetch;
 };
 
 export type TraktApi = ReturnType<typeof traktApiFactory>;
@@ -26,6 +30,7 @@ export type TraktApi = ReturnType<typeof traktApiFactory>;
 export function traktApiFactory({
   environment,
   apiKey,
+  fetch = globalThis.fetch,
 }: TraktApiOptions) {
   return initClient(traktContract, {
     baseUrl: environment,
@@ -34,15 +39,51 @@ export function traktApiFactory({
       'trakt-api-version': '2',
       'trakt-api-key': apiKey,
     },
+    api: async ({ path, method, body, headers }) => {
+      const result = await fetch(path, {
+        method,
+        headers,
+        body,
+      });
+      const contentType = result.headers.get('content-type');
+
+      if (
+        contentType?.includes('application/') && contentType?.includes('json')
+      ) {
+        const response = {
+          status: result.status,
+          body: await result.json(),
+          headers: result.headers,
+        };
+
+        return response;
+      }
+
+      if (contentType?.includes('text/')) {
+        return {
+          status: result.status,
+          body: await result.text(),
+          headers: result.headers,
+        };
+      }
+
+      return {
+        status: result.status,
+        body: await result.blob(),
+        headers: result.headers,
+      };
+    },
   });
 }
 
 export function traktApi({
   environment = Environment.production,
   apiKey,
+  fetch,
 }: TraktApiOptions): TraktApi {
   return traktApiFactory({
     environment,
     apiKey,
+    fetch,
   });
 }

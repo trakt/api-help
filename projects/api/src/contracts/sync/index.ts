@@ -37,7 +37,7 @@ const watchlist = builder.router({
     path: '',
     body: watchlistRequestSchema,
     responses: {
-      200: watchlistResponseSchema,
+      201: watchlistResponseSchema,
     },
   },
 }, {

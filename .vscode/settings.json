@@ -15,7 +15,8 @@
     "inlang",
     "outdir",
     "paraglide",
-    "Watchlist"
+    "Watchlist",
+    "Watchlisted"
   ],
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": [

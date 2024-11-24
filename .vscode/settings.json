@@ -14,6 +14,7 @@
     "deno",
     "inlang",
     "outdir",
+    "Paginatable",
     "paraglide",
     "Watchlist",
     "Watchlisted"

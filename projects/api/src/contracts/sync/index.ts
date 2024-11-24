@@ -1,5 +1,6 @@
 import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchema } from '../_internal/request/extendedQuerySchema.ts';
+import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import type { z } from '../_internal/z.ts';
 import { historyRequestSchema } from './_internal/request/historyRequestSchema.ts';
 import { watchlistRequestSchema } from './_internal/request/watchlistRequestSchema.ts';
@@ -11,7 +12,7 @@ const progress = builder.router({
   upNext: {
     method: 'GET',
     path: '/up_next',
-    query: extendedQuerySchema,
+    query: extendedQuerySchema.merge(pageQuerySchema),
     responses: {
       200: upNextResponseSchema,
     },

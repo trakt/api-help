@@ -29,5 +29,6 @@ export const users = builder.router({
 
 export type ProfileParams = z.infer<typeof profileParamsSchema>;
 export type ProfileResponse = z.infer<typeof profileResponseSchema>;
+export type SortDirection = z.infer<typeof sortDirectionSchema>;
 
 export type SettingsResponse = z.infer<typeof settingsResponseSchema>;

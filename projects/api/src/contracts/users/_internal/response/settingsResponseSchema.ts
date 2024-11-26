@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { sortDirectionSchema } from '../../../_internal/response/sortDirectionSchema.ts';
 
 export const settingsResponseSchema = z.object({
   user: z.object({

@@ -1,5 +1,5 @@
 import { builder } from '../_internal/builder.ts';
-import { extendedQuerySchema } from '../_internal/request/extendedQuerySchema.ts';
+import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { z } from '../_internal/z.ts';
 import { hideParamsSchema } from './request/hideParamsSchema.ts';
 import { recommendationsQuerySchema } from './request/recommendationsQuerySchema.ts';
@@ -10,7 +10,7 @@ const movies = builder.router({
   recommend: {
     path: '/',
     method: 'GET',
-    query: extendedQuerySchema
+    query: extendedQuerySchemaFactory<['full', 'cloud9']>()
       .merge(recommendationsQuerySchema),
     responses: {
       200: recommendedMovieResponse,
@@ -30,7 +30,7 @@ const shows = builder.router({
   recommend: {
     path: '/',
     method: 'GET',
-    query: extendedQuerySchema
+    query: extendedQuerySchemaFactory<['full', 'cloud9']>()
       .merge(recommendationsQuerySchema),
     responses: {
       200: recommendedShowResponse,

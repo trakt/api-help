@@ -1,5 +1,6 @@
 import { builder } from '../_internal/builder.ts';
-import { extendedQuerySchema } from '../_internal/request/extendedQuerySchema.ts';
+import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
+import { sortDirectionSchema } from '../_internal/response/sortDirectionSchema.ts';
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
 import { profileParamsSchema } from './_internal/request/profileParamsSchema.ts';
@@ -10,7 +11,6 @@ export const users = builder.router({
     path: '/:id',
     method: 'GET',
     pathParams: profileParamsSchema,
-    query: extendedQuerySchema,
     responses: {
       200: profileResponseSchema,
     },
@@ -18,6 +18,7 @@ export const users = builder.router({
   settings: {
     path: '/settings',
     method: 'GET',
+    query: extendedQuerySchemaFactory<['browsing']>(),
     responses: {
       200: settingsResponseSchema,
     },

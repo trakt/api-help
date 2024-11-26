@@ -5,6 +5,7 @@ import { profileResponseSchema } from '../_internal/response/userProfileResponse
 import type { z } from '../_internal/z.ts';
 import { profileParamsSchema } from './_internal/request/profileParamsSchema.ts';
 import { settingsResponseSchema } from './_internal/response/settingsResponseSchema.ts';
+import { watchActionSchema } from './_internal/response/watchActionSchema.ts';
 
 export const users = builder.router({
   profile: {
@@ -30,5 +31,6 @@ export const users = builder.router({
 export type ProfileParams = z.infer<typeof profileParamsSchema>;
 export type ProfileResponse = z.infer<typeof profileResponseSchema>;
 export type SortDirection = z.infer<typeof sortDirectionSchema>;
+export type WatchAction = z.infer<typeof watchActionSchema>;
 
 export type SettingsResponse = z.infer<typeof settingsResponseSchema>;

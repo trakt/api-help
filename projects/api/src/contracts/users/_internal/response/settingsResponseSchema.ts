@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { sortDirectionSchema } from '../../../_internal/response/sortDirectionSchema.ts';
+import { watchActionSchema } from './watchActionSchema.ts';
 
 export const settingsResponseSchema = z.object({
   user: z.object({
@@ -24,7 +25,7 @@ export const settingsResponseSchema = z.object({
    * Available if requesting extended `browsing`.
    */
   browsing: z.object({
-    watch_popup_action: z.enum(['now', 'ask', 'released']),
+    watch_popup_action: watchActionSchema,
     hide_watching_now: z.boolean(),
     list_popup_action: z.string(),
     week_start_day: z.string(),

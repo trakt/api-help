@@ -4,8 +4,8 @@
     "dev": "deno serve --watch main.ts"
   },
   "imports": {
-    "@hono/swagger-ui": "npm:@hono/swagger-ui@^0.4.1",
+    "@hono/swagger-ui": "npm:@hono/swagger-ui@^0.5.0",
     "@ts-rest/open-api": "npm:@ts-rest/open-api@^3.51.0",
-    "hono": "npm:hono@^4.6.7"
+    "hono": "npm:hono@^4.6.12"
   }
 }

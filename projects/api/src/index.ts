@@ -3,6 +3,7 @@ import { traktContract } from './contracts/traktContract.ts';
 import { Environment } from './Environment.ts';
 
 export type * from './contracts/calendars/index.ts';
+export type * from './contracts/movies/index.ts';
 export type * from './contracts/oauth/index.ts';
 export type * from './contracts/recommendations/index.ts';
 export type * from './contracts/sync/index.ts';

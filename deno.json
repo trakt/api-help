@@ -6,7 +6,7 @@
   ],
   "tasks": {
     "reinstall": "deno install --allow-scripts --reload",
-    "install": "deno install --allow-scripts",
+    "install": "deno install --allow-scripts --frozen",
     "format": "deno fmt && deno lint --fix",
     "swagger": "cd projects/swagger && deno task start",
     "swagger:dev": "cd projects/swagger && deno task dev",

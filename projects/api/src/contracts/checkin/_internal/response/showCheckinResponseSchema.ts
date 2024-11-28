@@ -1,3 +1,5 @@
+import { episodeIdsResponseSchema } from '../../../_internal/response/episodeIdsResponseSchema.ts';
+import { showIdsResponseSchema } from '../../../_internal/response/showIdsResponseSchema.ts';
 import { z } from '../../../_internal/z.ts';
 
 export const showCheckinResponseSchema = z.object({
@@ -12,22 +14,11 @@ export const showCheckinResponseSchema = z.object({
     season: z.number(),
     number: z.number(),
     title: z.string(),
-    ids: z.object({
-      trakt: z.number(),
-      tvdb: z.number(),
-      imdb: z.string(),
-      tmdb: z.number(),
-    }),
+    ids: episodeIdsResponseSchema,
   }),
   show: z.object({
     title: z.string(),
     year: z.number(),
-    ids: z.object({
-      trakt: z.number(),
-      slug: z.string(),
-      tvdb: z.number(),
-      imdb: z.string(),
-      tmdb: z.number(),
-    }),
+    ids: showIdsResponseSchema,
   }),
 });

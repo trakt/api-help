@@ -4,6 +4,7 @@ import { checkin } from './checkin/index.ts';
 import { movies } from './movies/index.ts';
 import { oauth } from './oauth/index.ts';
 import { recommendations } from './recommendations/index.ts';
+import { shows } from './shows/index.ts';
 import { sync } from './sync/index.ts';
 import { users } from './users/index.ts';
 
@@ -16,4 +17,5 @@ export const traktContract = builder
     sync,
     recommendations,
     movies,
+    shows,
   });

@@ -1,4 +1,5 @@
 import { z } from '../z.ts';
+import { genreResponseSchema } from './genreResponseSchema.ts';
 import { imagesResponseSchema } from './imagesResponseSchema.ts';
 import { showIdsResponseSchema } from './showIdsResponseSchema.ts';
 
@@ -93,5 +94,5 @@ export const showResponseSchema = z.object({
   /**
    * Available if requesting extended `full`.
    */
-  genres: z.array(z.string()).optional(),
+  genres: z.array(genreResponseSchema).optional(),
 });

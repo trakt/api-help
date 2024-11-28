@@ -1,19 +1,18 @@
 import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
-import type { genreResponseSchema } from '../_internal/response/genreResponseSchema.ts';
-import { movieResponseSchema } from '../_internal/response/movieResponseSchema.ts';
+import { showResponseSchema } from '../_internal/response/showResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
-import { ratingsResponseSchema } from './response/ratingsResponseSchema.ts';
+import { ratingsResponseSchema } from '../movies/response/ratingsResponseSchema.ts';
 
-export const movies = builder.router({
+export const shows = builder.router({
   summary: {
     path: '/:id',
     method: 'GET',
     query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
     pathParams: idParamsSchema,
     responses: {
-      200: movieResponseSchema,
+      200: showResponseSchema,
     },
   },
   ratings: {
@@ -26,10 +25,9 @@ export const movies = builder.router({
     },
   },
 }, {
-  pathPrefix: '/movies',
+  pathPrefix: '/shows',
 });
 
-export type MovieIdParams = z.infer<typeof idParamsSchema>;
-export type MovieResponse = z.infer<typeof movieResponseSchema>;
-export type MovieRatingsResponse = z.infer<typeof ratingsResponseSchema>;
-export type Genre = z.infer<typeof genreResponseSchema>;
+export type ShowIdParams = z.infer<typeof idParamsSchema>;
+export type ShowRatingsResponse = z.infer<typeof ratingsResponseSchema>;
+export type ShowResponse = z.infer<typeof showResponseSchema>;

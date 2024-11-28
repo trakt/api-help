@@ -1,4 +1,5 @@
 import { z } from '../z.ts';
+import { genreResponseSchema } from './genreResponseSchema.ts';
 import { imagesResponseSchema } from './imagesResponseSchema.ts';
 import { movieIdsResponseSchema } from './movieIdsResponseSchema.ts';
 
@@ -74,7 +75,7 @@ export const movieResponseSchema = z.object({
   /***
    * Available if requesting extended `full`.
    */
-  genres: z.array(z.string()).optional(),
+  genres: z.array(genreResponseSchema).optional(),
   /***
    * Available if requesting extended `full`.
    */

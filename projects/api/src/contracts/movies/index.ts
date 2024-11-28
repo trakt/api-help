@@ -1,5 +1,6 @@
 import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
+import { genreResponseSchema } from '../_internal/response/genreResponseSchema.ts';
 import { movieResponseSchema } from '../_internal/response/movieResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
 import { idParamsSchema } from './request/idParamsSchema.ts';
@@ -31,3 +32,4 @@ export const movies = builder.router({
 export type MovieIdParams = z.infer<typeof idParamsSchema>;
 export type MovieResponse = z.infer<typeof movieResponseSchema>;
 export type MovieRatingsResponse = z.infer<typeof ratingsResponseSchema>;
+export type Genre = z.infer<typeof genreResponseSchema>;

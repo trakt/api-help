@@ -44,6 +44,14 @@ const watchlist = builder.router({
       201: watchlistResponseSchema,
     },
   },
+  remove: {
+    method: 'POST',
+    path: '/remove',
+    body: watchlistRequestSchema,
+    responses: {
+      200: watchlistResponseSchema,
+    },
+  },
 }, {
   pathPrefix: '/watchlist',
 });

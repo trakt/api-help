@@ -4,10 +4,13 @@ import type { sortDirectionSchema } from '../_internal/response/sortDirectionSch
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
 import { profileParamsSchema } from './_internal/request/profileParamsSchema.ts';
+import { sortParamsSchema } from './_internal/request/sortParamsSchema.ts';
 import { settingsResponseSchema } from './_internal/response/settingsResponseSchema.ts';
 import type { watchActionSchema } from './_internal/response/watchActionSchema.ts';
 import { watchedMoviesResponseSchema } from './_internal/response/watchedMoviesResponseSchema.ts';
 import { watchedShowsResponseSchema } from './_internal/response/watchedShowsResponseSchema.ts';
+import { watchlistedMoviesResponseSchema } from './_internal/response/watchlistedMoviesResponseSchema.ts';
+import { watchlistedShowsResponseSchema } from './_internal/response/watchlistedShowsResponseSchema.ts';
 
 export const users = builder.router({
   profile: {
@@ -28,7 +31,7 @@ export const users = builder.router({
   },
   watched: builder.router({
     movies: {
-      path: '/:id/watched/movies',
+      path: '/movies',
       method: 'GET',
       pathParams: profileParamsSchema,
       responses: {
@@ -36,13 +39,35 @@ export const users = builder.router({
       },
     },
     shows: {
-      path: '/:id/watched/shows',
+      path: '/shows',
       method: 'GET',
       query: extendedQuerySchemaFactory<['noseasons']>(),
       responses: {
         200: watchedShowsResponseSchema,
       },
     },
+  }, {
+    pathPrefix: '/:id/watched',
+  }),
+  watchlist: builder.router({
+    movies: {
+      pathParams: profileParamsSchema.merge(sortParamsSchema),
+      path: '/movies/:sort',
+      method: 'GET',
+      responses: {
+        200: watchlistedMoviesResponseSchema,
+      },
+    },
+    shows: {
+      path: '/shows/:sort',
+      pathParams: profileParamsSchema.merge(sortParamsSchema),
+      method: 'GET',
+      responses: {
+        200: watchlistedShowsResponseSchema,
+      },
+    },
+  }, {
+    pathPrefix: '/:id/watchlist',
   }),
 }, {
   pathPrefix: '/users',
@@ -57,3 +82,10 @@ export type SettingsResponse = z.infer<typeof settingsResponseSchema>;
 
 export type WatchedMoviesResponse = z.infer<typeof watchedMoviesResponseSchema>;
 export type WatchedShowsResponse = z.infer<typeof watchedShowsResponseSchema>;
+
+export type WatchlistedMoviesResponse = z.infer<
+  typeof watchlistedMoviesResponseSchema
+>;
+export type WatchlistedShowsResponse = z.infer<
+  typeof watchlistedShowsResponseSchema
+>;

@@ -1,10 +1,10 @@
 import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { z } from '../_internal/z.ts';
-import { hideParamsSchema } from './request/hideParamsSchema.ts';
-import { recommendationsQuerySchema } from './request/recommendationsQuerySchema.ts';
-import { recommendedMovieResponse } from './response/recommendedMovieResponse.ts';
-import { recommendedShowResponse } from './response/recommendedShowResponse.ts';
+import { hideParamsSchema } from './_internal/request/hideParamsSchema.ts';
+import { recommendationsQuerySchema } from './_internal/request/recommendationsQuerySchema.ts';
+import { recommendedMovieResponse } from './_internal/response/recommendedMovieResponse.ts';
+import { recommendedShowResponse } from './_internal/response/recommendedShowResponse.ts';
 
 const movies = builder.router({
   recommend: {

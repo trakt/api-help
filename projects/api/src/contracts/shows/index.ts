@@ -3,7 +3,7 @@ import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySc
 import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { showResponseSchema } from '../_internal/response/showResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
-import { ratingsResponseSchema } from '../movies/response/ratingsResponseSchema.ts';
+import { ratingsResponseSchema } from '../movies/_internal/response/ratingsResponseSchema.ts';
 
 export const shows = builder.router({
   summary: {

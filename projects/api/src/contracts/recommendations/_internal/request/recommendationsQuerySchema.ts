@@ -1,4 +1,4 @@
-import { z } from '../../_internal/z.ts';
+import { z } from '../../../_internal/z.ts';
 
 export const recommendationsQuerySchema = z.object({
   ignore_collected: z.boolean().optional(),

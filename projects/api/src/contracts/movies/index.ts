@@ -4,7 +4,7 @@ import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import type { genreResponseSchema } from '../_internal/response/genreResponseSchema.ts';
 import { movieResponseSchema } from '../_internal/response/movieResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
-import { ratingsResponseSchema } from './response/ratingsResponseSchema.ts';
+import { ratingsResponseSchema } from './_internal/response/ratingsResponseSchema.ts';
 
 export const movies = builder.router({
   summary: {

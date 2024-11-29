@@ -1,4 +1,4 @@
-import { z } from '../../_internal/z.ts';
+import { z } from '../../../_internal/z.ts';
 
 export const ratingsResponseSchema = z.object({
   rating: z.number(),

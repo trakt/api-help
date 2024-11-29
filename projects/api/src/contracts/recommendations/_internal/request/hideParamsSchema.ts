@@ -1,4 +1,4 @@
-import { z } from '../../_internal/z.ts';
+import { z } from '../../../_internal/z.ts';
 
 export const hideParamsSchema = z.object({
   id: z.number().or(z.string()).describe(

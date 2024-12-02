@@ -36,6 +36,45 @@ export type TraktApi = ReturnType<typeof traktApiFactory>;
 
 const controllers = new Map<string, AbortController>();
 
+class AbortError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'AbortError';
+  }
+}
+
+const emptyPromiseFactory = () => new Promise<Response>((_) => void 0);
+
+function createCancellationHandler(cancellable: boolean, id: string) {
+  if (!cancellable) {
+    return {
+      signal: () => void 0,
+      abort: () => void 0,
+      finalize: () => void 0,
+    };
+  }
+
+  function abort() {
+    if (controllers.has(id)) {
+      controllers.get(id)?.abort?.(new AbortError('Request cancelled.'));
+    }
+  }
+
+  function finalize() {
+    controllers.delete(id);
+  }
+
+  return {
+    signal: () => {
+      const controller = new AbortController();
+      controllers.set(id, controller);
+      return controller.signal;
+    },
+    abort,
+    finalize,
+  };
+}
+
 export function traktApiFactory({
   environment,
   apiKey,
@@ -50,23 +89,28 @@ export function traktApiFactory({
       'trakt-api-key': apiKey,
     },
     api: async ({ path, method, body, headers }) => {
-      const [pathWithoutQuery = ''] = path.split('?');
+      const [queryKey = ''] = path.split('?');
 
-      if (controllers.has(pathWithoutQuery) && cancellable) {
-        controllers.get(pathWithoutQuery)?.abort();
-      }
-
-      const abortController = new AbortController();
-      controllers.set(pathWithoutQuery, abortController);
+      const handler = createCancellationHandler(
+        !!cancellable,
+        queryKey,
+      );
+      handler.abort();
 
       const result = await fetch(path, {
         method,
         headers,
         body,
-        signal: abortController.signal,
+        signal: handler.signal(),
+      }).catch((error) => {
+        if (error instanceof AbortError) {
+          return emptyPromiseFactory();
+        }
+
+        return Promise.reject(error);
       });
 
-      controllers.delete(pathWithoutQuery);
+      handler.finalize();
 
       const contentType = result.headers.get('content-type');
 
@@ -103,10 +147,12 @@ export function traktApi({
   environment = Environment.production,
   apiKey,
   fetch,
+  cancellable,
 }: TraktApiOptions): TraktApi {
   return traktApiFactory({
     environment,
     apiKey,
     fetch,
+    cancellable,
   });
 }

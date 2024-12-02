@@ -26,14 +26,21 @@ export type TraktApiOptions = {
    * Fetch implementation
    */
   fetch?: typeof fetch;
+  /**
+   * If the request can be cancelled.
+   */
+  cancellable?: boolean;
 };
 
 export type TraktApi = ReturnType<typeof traktApiFactory>;
+
+const controllers = new Map<string, AbortController>();
 
 export function traktApiFactory({
   environment,
   apiKey,
   fetch = globalThis.fetch,
+  cancellable,
 }: TraktApiOptions) {
   return initClient(traktContract, {
     baseUrl: environment,
@@ -43,11 +50,24 @@ export function traktApiFactory({
       'trakt-api-key': apiKey,
     },
     api: async ({ path, method, body, headers }) => {
+      const [pathWithoutQuery = ''] = path.split('?');
+
+      if (controllers.has(pathWithoutQuery) && cancellable) {
+        controllers.get(pathWithoutQuery)?.abort();
+      }
+
+      const abortController = new AbortController();
+      controllers.set(pathWithoutQuery, abortController);
+
       const result = await fetch(path, {
         method,
         headers,
         body,
+        signal: abortController.signal,
       });
+
+      controllers.delete(pathWithoutQuery);
+
       const contentType = result.headers.get('content-type');
 
       if (

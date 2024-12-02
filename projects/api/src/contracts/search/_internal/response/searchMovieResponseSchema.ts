@@ -1,5 +1,6 @@
 import { movieIdsResponseSchema } from '../../../_internal/response/movieIdsResponseSchema.ts';
 import { z } from '../../../_internal/z.ts';
+import { searchResultImagesSchema } from './searchResultImagesSchema.ts';
 
 export const searchMovieResponseSchema = z.object({
   type: z.literal('movie'),
@@ -8,5 +9,5 @@ export const searchMovieResponseSchema = z.object({
     title: z.string(),
     year: z.number(),
     ids: movieIdsResponseSchema,
-  }),
+  }).merge(searchResultImagesSchema),
 });

@@ -1,4 +1,5 @@
 import { builder } from '../_internal/builder.ts';
+import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import type { z } from '../_internal/z.ts';
 import { searchQuerySchema } from './_internal/request/searchQuerySchema.ts';
 import { searchTypeParamFactory } from './_internal/request/searchTypeParamFactory.ts';
@@ -15,7 +16,7 @@ export const search = builder.router({
     pathParams: searchTypeParamFactory<
       ['movie', 'show']
     >(),
-    query: searchQuerySchema,
+    query: searchQuerySchema.merge(extendedQuerySchemaFactory<['cloud9']>()),
     responses: {
       200: searchResultResponseSchema,
     },

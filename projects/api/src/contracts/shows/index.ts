@@ -1,9 +1,11 @@
 import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
+import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
+import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import { showResponseSchema } from '../_internal/response/showResponseSchema.ts';
+import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
-import { ratingsResponseSchema } from '../movies/_internal/response/ratingsResponseSchema.ts';
 import { showQueryParamsSchema } from './_internal/request/showQueryParamsSchema.ts';
 import { showProgressResponseSchema } from './_internal/response/showProgressResponseSchema.ts';
 
@@ -41,6 +43,14 @@ export const shows = builder.router({
   }, {
     pathPrefix: '/:id/progress',
   }),
+  translations: {
+    path: '/:id/translations/:language',
+    method: 'GET',
+    pathParams: idParamsSchema.merge(languageParamsSchema),
+    responses: {
+      200: translationResponseSchema,
+    },
+  },
 }, {
   pathPrefix: '/shows',
 });
@@ -50,3 +60,6 @@ export type ShowRatingsResponse = z.infer<typeof ratingsResponseSchema>;
 export type ShowResponse = z.infer<typeof showResponseSchema>;
 export type ShowProgressResponse = z.infer<typeof showProgressResponseSchema>;
 export type ShowQueryParams = z.infer<typeof showQueryParamsSchema>;
+export type ShowTranslationResponse = z.infer<
+  typeof translationResponseSchema
+>;

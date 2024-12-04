@@ -17,7 +17,10 @@ export type TraktApiOptions = {
   /**
    * Trakt API environment target (production, staging, development)
    */
-  environment: Environment;
+  environment:
+    | Environment
+    | `https://${string}`
+    | `http://localhost:${string}`;
   /**
    * Trakt API key (client id from trakt.tv API application)
    */
@@ -144,7 +147,7 @@ export function traktApiFactory({
 }
 
 export function traktApi({
-  environment = Environment.production,
+  environment = Environment.production_private,
   apiKey,
   fetch,
   cancellable,

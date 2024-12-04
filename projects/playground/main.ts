@@ -6,7 +6,7 @@ import { logger } from './src/utils/logger.ts';
 import { store, StoreKey } from './src/utils/store.ts';
 
 const api = traktApi({
-  environment: Environment.production,
+  environment: Environment.production_private,
   apiKey: TRAKT_CLIENT_ID,
 });
 

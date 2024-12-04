@@ -1,5 +1,5 @@
 import { ensureDir, ensureFile } from '@std/fs';
-import type { OAuthDeviceTokenResponse } from '@trakt/api';
+import type { OAuthTokenResponse } from '@trakt/api';
 
 const STORE_DIR = '.store';
 const STORE_FILE = 'db.json';
@@ -9,7 +9,7 @@ export enum StoreKey {
 }
 
 type StoreKeyToValue = {
-  [StoreKey.Auth]: OAuthDeviceTokenResponse;
+  [StoreKey.Auth]: OAuthTokenResponse;
 };
 
 export const store = await (async () => {

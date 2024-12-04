@@ -1,4 +1,4 @@
-import type { OAuthDeviceTokenResponse, TraktApi } from '@trakt/api';
+import type { OAuthTokenResponse, TraktApi } from '@trakt/api';
 import { logger } from './utils/logger.ts';
 
 export function createDeviceTokenPoller(api: TraktApi) {
@@ -8,7 +8,7 @@ export function createDeviceTokenPoller(api: TraktApi) {
   }: {
     client_id: string;
     client_secret: string;
-  }): Promise<OAuthDeviceTokenResponse> {
+  }): Promise<OAuthTokenResponse> {
     const codeResponse = await api.oauth.device.code({
       body: {
         client_id,

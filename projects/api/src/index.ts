@@ -30,23 +30,26 @@ export type TraktApiOptions = {
    */
   fetch?: typeof fetch;
   /**
-   * If the request can be cancelled.
+   * If the request can be cancelled
    */
   cancellable?: boolean;
+
+  /**
+   * Cancellation id for the request
+   */
+  cancellationId?: string;
 };
 
 export type TraktApi = ReturnType<typeof traktApiFactory>;
 
 const controllers = new Map<string, AbortController>();
 
-class AbortError extends Error {
+export class AbortError extends Error {
   constructor(message: string) {
     super(message);
     this.name = 'AbortError';
   }
 }
-
-const emptyPromiseFactory = () => new Promise<Response>((_) => void 0);
 
 function createCancellationHandler(cancellable: boolean, id: string) {
   if (!cancellable) {
@@ -59,7 +62,11 @@ function createCancellationHandler(cancellable: boolean, id: string) {
 
   function abort() {
     if (controllers.has(id)) {
-      controllers.get(id)?.abort?.(new AbortError('Request cancelled.'));
+      controllers.get(id)?.abort?.(
+        new AbortError(
+          `New request with id ${id} has been made, in-flight request aborted.`,
+        ),
+      );
     }
   }
 
@@ -78,11 +85,22 @@ function createCancellationHandler(cancellable: boolean, id: string) {
   };
 }
 
+export function abortRequest(matcher: (id: string) => boolean, reason: Error) {
+  for (const [id, controller] of controllers) {
+    if (!matcher(id)) {
+      continue;
+    }
+
+    controller.abort(reason);
+  }
+}
+
 export function traktApiFactory({
   environment,
   apiKey,
   fetch = globalThis.fetch,
   cancellable,
+  cancellationId,
 }: TraktApiOptions) {
   return initClient(traktContract, {
     baseUrl: environment,
@@ -92,11 +110,11 @@ export function traktApiFactory({
       'trakt-api-key': apiKey,
     },
     api: async ({ path, method, body, headers }) => {
-      const [queryKey = ''] = path.split('?');
+      cancellationId = cancellationId ?? path.split('?').at(0) ?? '';
 
       const handler = createCancellationHandler(
         !!cancellable,
-        queryKey,
+        cancellationId,
       );
       handler.abort();
 
@@ -105,12 +123,6 @@ export function traktApiFactory({
         headers,
         body,
         signal: handler.signal(),
-      }).catch((error) => {
-        if (error instanceof AbortError) {
-          return emptyPromiseFactory();
-        }
-
-        return Promise.reject(error);
       });
 
       handler.finalize();
@@ -151,11 +163,13 @@ export function traktApi({
   apiKey,
   fetch,
   cancellable,
+  cancellationId,
 }: TraktApiOptions): TraktApi {
   return traktApiFactory({
     environment,
     apiKey,
     fetch,
     cancellable,
+    cancellationId,
   });
 }

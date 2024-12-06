@@ -5,6 +5,7 @@ import { languageParamsSchema } from '../_internal/request/languageParamsSchema.
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import { showResponseSchema } from '../_internal/response/showResponseSchema.ts';
+import { showTrendingResponseSchema } from '../_internal/response/showTrendingResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
 import { showQueryParamsSchema } from './_internal/request/showQueryParamsSchema.ts';
@@ -52,6 +53,14 @@ export const shows = builder.router({
       200: translationResponseSchema,
     },
   },
+  trending: {
+    path: '/trending',
+    method: 'GET',
+    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    responses: {
+      200: showTrendingResponseSchema,
+    },
+  },
 }, {
   pathPrefix: '/shows',
 });
@@ -61,6 +70,7 @@ export type ShowRatingsResponse = z.infer<typeof ratingsResponseSchema>;
 export type ShowResponse = z.infer<typeof showResponseSchema>;
 export type ShowProgressResponse = z.infer<typeof showProgressResponseSchema>;
 export type ShowQueryParams = z.infer<typeof showQueryParamsSchema>;
+export type ShowTrendingResponse = z.infer<typeof showTrendingResponseSchema>;
 export type ShowTranslationResponse = z.infer<
   typeof translationResponseSchema
 >;

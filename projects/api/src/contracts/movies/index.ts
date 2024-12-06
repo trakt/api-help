@@ -4,6 +4,7 @@ import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
 import type { genreResponseSchema } from '../_internal/response/genreResponseSchema.ts';
 import { movieResponseSchema } from '../_internal/response/movieResponseSchema.ts';
+import { movieTrendingResponseSchema } from '../_internal/response/movieTrendingResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
 import { z } from '../_internal/z.ts';
@@ -35,6 +36,14 @@ export const movies = builder.router({
       200: translationResponseSchema,
     },
   },
+  trending: {
+    path: '/trending',
+    method: 'GET',
+    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    responses: {
+      200: movieTrendingResponseSchema,
+    },
+  },
 }, {
   pathPrefix: '/movies',
 });
@@ -45,4 +54,7 @@ export type MovieRatingsResponse = z.infer<typeof ratingsResponseSchema>;
 export type Genre = z.infer<typeof genreResponseSchema>;
 export type MovieTranslationResponse = z.infer<
   typeof translationResponseSchema
+>;
+export type MovieTrendingResponse = z.infer<
+  typeof movieTrendingResponseSchema
 >;

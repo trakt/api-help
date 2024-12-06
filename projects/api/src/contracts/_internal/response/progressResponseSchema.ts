@@ -1,5 +1,6 @@
 import { z } from '../z.ts';
 import { episodeResponseSchema } from './episodeResponseSchema.ts';
+import { statsResponseSchema } from './statsResponseSchema.ts';
 
 export const progressResponseSchema = z.object({
   aired: z.number(),
@@ -8,4 +9,8 @@ export const progressResponseSchema = z.object({
   reset_at: z.null(),
   next_episode: episodeResponseSchema,
   last_episode: episodeResponseSchema.or(z.null()),
+  /***
+   * Available if requesting include_stats `true`.
+   */
+  stats: statsResponseSchema.optional(),
 });

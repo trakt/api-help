@@ -2,6 +2,7 @@ import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
+import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import { showResponseSchema } from '../_internal/response/showResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
@@ -33,9 +34,9 @@ export const shows = builder.router({
       path: '/watched',
       method: 'GET',
       pathParams: idParamsSchema,
-      query: extendedQuerySchemaFactory<['full', 'cloud9']>().merge(
-        showQueryParamsSchema,
-      ),
+      query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+        .merge(showQueryParamsSchema)
+        .merge(statsQuerySchema),
       responses: {
         200: showProgressResponseSchema,
       },

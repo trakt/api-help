@@ -1,5 +1,6 @@
 import { progressResponseSchema } from '../../../_internal/response/progressResponseSchema.ts';
 import { seasonIdsResponseSchema } from '../../../_internal/response/seasonIdsResponseSchema.ts';
+import { statsResponseSchema } from '../../../_internal/response/statsResponseSchema.ts';
 import { z } from '../../../_internal/z.ts';
 
 export const showProgressResponseSchema = progressResponseSchema.extend({
@@ -24,4 +25,8 @@ export const showProgressResponseSchema = progressResponseSchema.extend({
       ids: seasonIdsResponseSchema,
     }),
   ),
+  /***
+   * Available if requesting include_stats `true`.
+   */
+  stats: statsResponseSchema.optional(),
 });

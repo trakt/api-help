@@ -1,6 +1,7 @@
 import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
+import { sortQuerySchema } from '../_internal/request/sortQuerySchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import type { z } from '../_internal/z.ts';
 import { historyRequestSchema } from './_internal/request/historyRequestSchema.ts';
@@ -15,6 +16,7 @@ const progress = builder.router({
     path: '/up_next',
     query: extendedQuerySchemaFactory<['full', 'cloud9']>()
       .merge(pageQuerySchema)
+      .merge(sortQuerySchema)
       .merge(statsQuerySchema),
     responses: {
       200: upNextResponseSchema,

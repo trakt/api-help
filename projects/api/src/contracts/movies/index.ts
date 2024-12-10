@@ -2,6 +2,7 @@ import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
+import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import type { genreResponseSchema } from '../_internal/response/genreResponseSchema.ts';
 import { movieResponseSchema } from '../_internal/response/movieResponseSchema.ts';
 import { movieTrendingResponseSchema } from '../_internal/response/movieTrendingResponseSchema.ts';
@@ -39,7 +40,8 @@ export const movies = builder.router({
   trending: {
     path: '/trending',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+      .merge(pageQuerySchema),
     responses: {
       200: movieTrendingResponseSchema,
     },

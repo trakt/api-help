@@ -6,6 +6,7 @@ import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import { showAnticipatedResponseSchema } from '../_internal/response/showAnticipatedResponseSchema.ts';
+import { showPopularResponseSchema } from '../_internal/response/showPopularResponseSchema.ts';
 import { showResponseSchema } from '../_internal/response/showResponseSchema.ts';
 import { showTrendingResponseSchema } from '../_internal/response/showTrendingResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
@@ -73,6 +74,15 @@ export const shows = builder.router({
       200: showAnticipatedResponseSchema,
     },
   },
+  popular: {
+    path: '/popular',
+    method: 'GET',
+    query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+      .merge(pageQuerySchema),
+    responses: {
+      200: showPopularResponseSchema,
+    },
+  },
 }, {
   pathPrefix: '/shows',
 });
@@ -83,6 +93,7 @@ export type ShowResponse = z.infer<typeof showResponseSchema>;
 export type ShowProgressResponse = z.infer<typeof showProgressResponseSchema>;
 export type ShowQueryParams = z.infer<typeof showQueryParamsSchema>;
 export type ShowTrendingResponse = z.infer<typeof showTrendingResponseSchema>;
+export type ShowPopularResponse = z.infer<typeof showPopularResponseSchema>;
 export type ShowAnticipatedResponse = z.infer<
   typeof showAnticipatedResponseSchema
 >;

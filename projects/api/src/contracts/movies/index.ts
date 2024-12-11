@@ -10,7 +10,7 @@ import { movieResponseSchema } from '../_internal/response/movieResponseSchema.t
 import { movieTrendingResponseSchema } from '../_internal/response/movieTrendingResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
-import { z } from '../_internal/z.ts';
+import type { z } from '../_internal/z.ts';
 
 export const movies = builder.router({
   summary: {

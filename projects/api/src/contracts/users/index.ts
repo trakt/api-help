@@ -51,9 +51,10 @@ export const users = builder.router({
   }),
   watchlist: builder.router({
     movies: {
-      pathParams: profileParamsSchema.merge(sortParamsSchema),
       path: '/movies/:sort',
+      pathParams: profileParamsSchema.merge(sortParamsSchema),
       method: 'GET',
+      query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
       responses: {
         200: watchlistedMoviesResponseSchema,
       },
@@ -62,6 +63,7 @@ export const users = builder.router({
       path: '/shows/:sort',
       pathParams: profileParamsSchema.merge(sortParamsSchema),
       method: 'GET',
+      query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
       responses: {
         200: watchlistedShowsResponseSchema,
       },

@@ -4,6 +4,7 @@ import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import type { genreResponseSchema } from '../_internal/response/genreResponseSchema.ts';
+import { mediaStatsResponseSchema } from '../_internal/response/mediaStatsResponseSchema.ts';
 import { movieAnticipatedResponseSchema } from '../_internal/response/movieAnticipatedResponseSchema.ts';
 import { moviePopularResponseSchema } from '../_internal/response/moviePopularResponseSchema.ts';
 import { movieResponseSchema } from '../_internal/response/movieResponseSchema.ts';
@@ -29,6 +30,14 @@ export const movies = builder.router({
     pathParams: idParamsSchema,
     responses: {
       200: ratingsResponseSchema,
+    },
+  },
+  stats: {
+    path: '/:id/stats',
+    method: 'GET',
+    pathParams: idParamsSchema,
+    responses: {
+      200: mediaStatsResponseSchema,
     },
   },
   translations: {
@@ -75,6 +84,7 @@ export type MovieResponse = z.infer<typeof movieResponseSchema>;
 export type MovieRatingsResponse = z.infer<typeof ratingsResponseSchema>;
 export type Genre = z.infer<typeof genreResponseSchema>;
 export type MoviePopularResponse = z.infer<typeof moviePopularResponseSchema>;
+export type MovieStatsResponse = z.infer<typeof mediaStatsResponseSchema>;
 export type MovieTranslationResponse = z.infer<
   typeof translationResponseSchema
 >;

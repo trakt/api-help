@@ -4,6 +4,7 @@ import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
+import { mediaStatsResponseSchema } from '../_internal/response/mediaStatsResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import { showAnticipatedResponseSchema } from '../_internal/response/showAnticipatedResponseSchema.ts';
 import { showPopularResponseSchema } from '../_internal/response/showPopularResponseSchema.ts';
@@ -31,6 +32,14 @@ export const shows = builder.router({
     pathParams: idParamsSchema,
     responses: {
       200: ratingsResponseSchema,
+    },
+  },
+  stats: {
+    path: '/:id/stats',
+    method: 'GET',
+    pathParams: idParamsSchema,
+    responses: {
+      200: mediaStatsResponseSchema,
     },
   },
   progress: builder.router({
@@ -94,6 +103,7 @@ export type ShowProgressResponse = z.infer<typeof showProgressResponseSchema>;
 export type ShowQueryParams = z.infer<typeof showQueryParamsSchema>;
 export type ShowTrendingResponse = z.infer<typeof showTrendingResponseSchema>;
 export type ShowPopularResponse = z.infer<typeof showPopularResponseSchema>;
+export type ShowStatsResponse = z.infer<typeof mediaStatsResponseSchema>;
 export type ShowAnticipatedResponse = z.infer<
   typeof showAnticipatedResponseSchema
 >;

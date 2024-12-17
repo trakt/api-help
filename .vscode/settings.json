@@ -24,7 +24,8 @@
     "tmdb",
     "Watchlist",
     "Watchlisted",
-    "watchnow"
+    "watchnow",
+    "favorited",
   ],
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": [

@@ -4,7 +4,10 @@ import type { sortDirectionSchema } from '../_internal/response/sortDirectionSch
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
 import { profileParamsSchema } from './_internal/request/profileParamsSchema.ts';
-import { sortParamsSchema } from './_internal/request/sortParamsSchema.ts';
+import {
+  sortEnumSchema,
+  sortParamsSchema,
+} from './_internal/request/sortParamsSchema.ts';
 import { settingsResponseSchema } from './_internal/response/settingsResponseSchema.ts';
 import type { watchActionSchema } from './_internal/response/watchActionSchema.ts';
 import { watchedMoviesResponseSchema } from './_internal/response/watchedMoviesResponseSchema.ts';
@@ -79,6 +82,7 @@ export type ProfileParams = z.infer<typeof profileParamsSchema>;
 export type ProfileResponse = z.infer<typeof profileResponseSchema>;
 export type SortDirection = z.infer<typeof sortDirectionSchema>;
 export type WatchAction = z.infer<typeof watchActionSchema>;
+export type SortType = z.infer<typeof sortEnumSchema>;
 
 export type SettingsResponse = z.infer<typeof settingsResponseSchema>;
 

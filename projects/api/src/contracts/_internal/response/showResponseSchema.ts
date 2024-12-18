@@ -5,7 +5,7 @@ import { showIdsResponseSchema } from './showIdsResponseSchema.ts';
 
 export const showResponseSchema = z.object({
   title: z.string(),
-  year: z.number(),
+  year: z.number().optional(),
   ids: showIdsResponseSchema,
   /***
    * Available if requesting extended `cloud9`.

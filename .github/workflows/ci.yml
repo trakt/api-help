@@ -23,6 +23,11 @@ jobs:
       - name: Lint commits
         uses: wagoid/commitlint-github-action@v3
 
+      - name: Check for 'amend!', 'fixup!', or 'squash!' commits
+        uses: matijs/no-fixups-action@v1.0.2
+        with:
+          skip-checkout: true
+
   files-changed:
     if: github.event.pull_request.draft == false
     name: The Watchful Eye (Files Changed)

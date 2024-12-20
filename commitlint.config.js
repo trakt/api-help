@@ -50,6 +50,7 @@ module.exports = {
         'show',
         'summary',
         'up-next',
+        'upcoming',
         'user',
         'watchlist'
       ],

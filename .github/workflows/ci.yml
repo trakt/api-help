@@ -19,11 +19,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
+
       - name: Lint commits
+        if: github.ref != 'refs/heads/main'
         uses: wagoid/commitlint-github-action@v3
 
       - name: Check for 'amend!', 'fixup!', or 'squash!' commits
+        if: github.ref != 'refs/heads/main'
         uses: matijs/no-fixups-action@v1.0.2
         with:
           skip-checkout: true

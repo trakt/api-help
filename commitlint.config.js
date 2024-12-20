@@ -27,7 +27,7 @@ module.exports = {
     'subject-empty': [RuleConfigSeverity.Error, 'never'],
     'subject-full-stop': [RuleConfigSeverity.Error, 'never', '.'],
     'scope-enum': [
-      RuleConfigSeverity.Warning,
+      RuleConfigSeverity.Error,
       'always',
       [
         'api',

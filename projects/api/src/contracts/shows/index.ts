@@ -62,6 +62,15 @@ const ENTITY_LEVEL = builder.router({
       200: translationResponseSchema,
     },
   },
+  related: {
+    path: '/related',
+    method: 'GET',
+    pathParams: idParamsSchema,
+    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    responses: {
+      200: showResponseSchema.array(),
+    },
+  },
 }, {
   pathPrefix: '/:id',
 });

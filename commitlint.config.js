@@ -41,6 +41,7 @@ module.exports = {
         'landing',
         'layout',
         'link',
+        'list',
         'movie',
         'navbar',
         'profile',

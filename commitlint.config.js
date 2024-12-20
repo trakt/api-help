@@ -44,6 +44,7 @@ module.exports = {
         'list',
         'movie',
         'navbar',
+        'out-now',
         'profile',
         'recommendations',
         'search',

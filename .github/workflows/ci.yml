@@ -10,26 +10,6 @@ on:
       - master
 
 jobs:
-  commitlint:
-    if: github.event.pull_request.draft == false
-    name: The Gate Keeper
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Lint commits
-        if: github.ref != 'refs/heads/main'
-        uses: wagoid/commitlint-github-action@v3
-
-      - name: Check for 'amend!', 'fixup!', or 'squash!' commits
-        if: github.ref != 'refs/heads/main'
-        uses: matijs/no-fixups-action@v1.0.2
-        with:
-          skip-checkout: true
-
   files-changed:
     if: github.event.pull_request.draft == false
     name: The Watchful Eye (Files Changed)

@@ -47,6 +47,7 @@ module.exports = {
         'navbar',
         'out-now',
         'profile',
+        'pr_gate',
         'recommendations',
         'search',
         'show',

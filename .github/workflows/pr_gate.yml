@@ -1,0 +1,23 @@
+name: The Gatekeeper's Grimoire aka PR Gate
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+jobs:
+  commitlint:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Unveiling the Code Codex
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Scrutinizing the Commit Chronicle
+        uses: wagoid/commitlint-github-action@v3
+
+      - name: Exterminating the Fixup Fiends
+        uses: matijs/no-fixups-action@v1.0.2
+        with:
+          skip-checkout: true

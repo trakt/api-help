@@ -34,6 +34,7 @@ module.exports = {
         'auth',
         'button',
         'card',
+        'coming-soon',
         'ds',
         'episode',
         'footer',

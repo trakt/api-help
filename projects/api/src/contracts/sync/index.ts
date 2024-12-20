@@ -6,6 +6,7 @@ import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import type { z } from '../_internal/z.ts';
 import { historyRequestSchema } from './_internal/request/historyRequestSchema.ts';
 import { watchlistRequestSchema } from './_internal/request/watchlistRequestSchema.ts';
+import { historyRemoveResponseSchema } from './_internal/response/historyRemoveResponseSchema.ts';
 import { historyResponseSchema } from './_internal/response/historyResponseSchema.ts';
 import { upNextResponseSchema } from './_internal/response/upNextResponseSchema.ts';
 import { watchlistResponseSchema } from './_internal/response/watchlistResponseSchema.ts';
@@ -31,6 +32,14 @@ const history = builder.router({
     body: historyRequestSchema,
     responses: {
       200: historyResponseSchema,
+    },
+  },
+  remove: {
+    method: 'POST',
+    path: '/remove',
+    body: historyRequestSchema,
+    responses: {
+      200: historyRemoveResponseSchema,
     },
   },
 }, {

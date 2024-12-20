@@ -13,9 +13,9 @@ import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSche
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
 
-export const movies = builder.router({
+const ENTITY_LEVEL = builder.router({
   summary: {
-    path: '/:id',
+    path: '',
     method: 'GET',
     query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
     pathParams: idParamsSchema,
@@ -24,7 +24,7 @@ export const movies = builder.router({
     },
   },
   ratings: {
-    path: '/:id/ratings',
+    path: '/ratings',
     method: 'GET',
     query: extendedQuerySchemaFactory<['all']>(),
     pathParams: idParamsSchema,
@@ -33,7 +33,7 @@ export const movies = builder.router({
     },
   },
   stats: {
-    path: '/:id/stats',
+    path: '/stats',
     method: 'GET',
     pathParams: idParamsSchema,
     responses: {
@@ -41,13 +41,18 @@ export const movies = builder.router({
     },
   },
   translations: {
-    path: '/:id/translations/:language',
+    path: '/translations/:language',
     method: 'GET',
     pathParams: idParamsSchema.merge(languageParamsSchema),
     responses: {
       200: translationResponseSchema,
     },
   },
+}, {
+  pathPrefix: '/:id',
+});
+
+const GLOBAL_LEVEL = builder.router({
   trending: {
     path: '/trending',
     method: 'GET',
@@ -75,6 +80,11 @@ export const movies = builder.router({
       200: moviePopularResponseSchema,
     },
   },
+});
+
+export const movies = builder.router({
+  ...ENTITY_LEVEL,
+  ...GLOBAL_LEVEL,
 }, {
   pathPrefix: '/movies',
 });

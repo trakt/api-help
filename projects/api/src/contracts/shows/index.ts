@@ -15,9 +15,9 @@ import type { z } from '../_internal/z.ts';
 import { showQueryParamsSchema } from './_internal/request/showQueryParamsSchema.ts';
 import { showProgressResponseSchema } from './_internal/response/showProgressResponseSchema.ts';
 
-export const shows = builder.router({
+const ENTITY_LEVEL = builder.router({
   summary: {
-    path: '/:id',
+    path: '',
     method: 'GET',
     query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
     pathParams: idParamsSchema,
@@ -26,7 +26,7 @@ export const shows = builder.router({
     },
   },
   ratings: {
-    path: '/:id/ratings',
+    path: '/ratings',
     method: 'GET',
     query: extendedQuerySchemaFactory<['all']>(),
     pathParams: idParamsSchema,
@@ -35,16 +35,16 @@ export const shows = builder.router({
     },
   },
   stats: {
-    path: '/:id/stats',
+    path: '/stats',
     method: 'GET',
     pathParams: idParamsSchema,
     responses: {
       200: mediaStatsResponseSchema,
     },
   },
-  progress: builder.router({
+  progress: {
     watched: {
-      path: '/watched',
+      path: '/progress/watched',
       method: 'GET',
       pathParams: idParamsSchema,
       query: extendedQuerySchemaFactory<['full', 'cloud9']>()
@@ -54,17 +54,20 @@ export const shows = builder.router({
         200: showProgressResponseSchema,
       },
     },
-  }, {
-    pathPrefix: '/:id/progress',
-  }),
+  },
   translations: {
-    path: '/:id/translations/:language',
+    path: '/translations/:language',
     method: 'GET',
     pathParams: idParamsSchema.merge(languageParamsSchema),
     responses: {
       200: translationResponseSchema,
     },
   },
+}, {
+  pathPrefix: '/:id',
+});
+
+const GLOBAL_LEVEL = builder.router({
   trending: {
     path: '/trending',
     method: 'GET',
@@ -92,6 +95,11 @@ export const shows = builder.router({
       200: showPopularResponseSchema,
     },
   },
+});
+
+export const shows = builder.router({
+  ...ENTITY_LEVEL,
+  ...GLOBAL_LEVEL,
 }, {
   pathPrefix: '/shows',
 });

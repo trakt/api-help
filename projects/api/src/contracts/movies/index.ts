@@ -6,7 +6,6 @@ import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import type { genreResponseSchema } from '../_internal/response/genreResponseSchema.ts';
 import { mediaStatsResponseSchema } from '../_internal/response/mediaStatsResponseSchema.ts';
 import { movieAnticipatedResponseSchema } from '../_internal/response/movieAnticipatedResponseSchema.ts';
-import { moviePopularResponseSchema } from '../_internal/response/moviePopularResponseSchema.ts';
 import { movieResponseSchema } from '../_internal/response/movieResponseSchema.ts';
 import { movieTrendingResponseSchema } from '../_internal/response/movieTrendingResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
@@ -77,7 +76,7 @@ const GLOBAL_LEVEL = builder.router({
     query: extendedQuerySchemaFactory<['full', 'cloud9']>()
       .merge(pageQuerySchema),
     responses: {
-      200: moviePopularResponseSchema,
+      200: movieResponseSchema.array(),
     },
   },
 });
@@ -93,7 +92,6 @@ export type MovieIdParams = z.infer<typeof idParamsSchema>;
 export type MovieResponse = z.infer<typeof movieResponseSchema>;
 export type MovieRatingsResponse = z.infer<typeof ratingsResponseSchema>;
 export type Genre = z.infer<typeof genreResponseSchema>;
-export type MoviePopularResponse = z.infer<typeof moviePopularResponseSchema>;
 export type MovieStatsResponse = z.infer<typeof mediaStatsResponseSchema>;
 export type MovieTranslationResponse = z.infer<
   typeof translationResponseSchema

@@ -1,9 +1,9 @@
 import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
+import { movieResponseSchema } from '../_internal/response/movieResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
 import { calendarRequestParamsSchema } from './_internal/request/calendarParamsSchema.ts';
-import { movieListResponseSchema } from './_internal/response/movieListResponseSchema.ts';
-import { showListResponseSchema } from './_internal/response/showListResponseSchema.ts';
+import { calendarShowListResponseSchema } from './_internal/response/calendarShowListResponseSchema.ts';
 
 export const calendars = builder.router({
   shows: {
@@ -12,7 +12,7 @@ export const calendars = builder.router({
     query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
     pathParams: calendarRequestParamsSchema,
     responses: {
-      200: showListResponseSchema,
+      200: calendarShowListResponseSchema,
     },
   },
   newShows: {
@@ -21,7 +21,7 @@ export const calendars = builder.router({
     query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
     pathParams: calendarRequestParamsSchema,
     responses: {
-      200: showListResponseSchema,
+      200: calendarShowListResponseSchema,
     },
   },
   seasonPremieres: {
@@ -30,7 +30,7 @@ export const calendars = builder.router({
     query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
     pathParams: calendarRequestParamsSchema,
     responses: {
-      200: showListResponseSchema,
+      200: calendarShowListResponseSchema,
     },
   },
   finales: {
@@ -39,7 +39,7 @@ export const calendars = builder.router({
     query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
     pathParams: calendarRequestParamsSchema,
     responses: {
-      200: showListResponseSchema,
+      200: calendarShowListResponseSchema,
     },
   },
   movies: {
@@ -48,7 +48,7 @@ export const calendars = builder.router({
     query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
     pathParams: calendarRequestParamsSchema,
     responses: {
-      200: movieListResponseSchema,
+      200: movieResponseSchema.array(),
     },
   },
   dvdReleases: {
@@ -57,11 +57,13 @@ export const calendars = builder.router({
     query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
     pathParams: calendarRequestParamsSchema,
     responses: {
-      200: movieListResponseSchema,
+      200: movieResponseSchema.array(),
     },
   },
 }, { pathPrefix: '/calendars' });
 
 export type CalendarParams = z.infer<typeof calendarRequestParamsSchema>;
-export type ShowsResponse = z.infer<typeof showListResponseSchema>;
-export type MoviesResponse = z.infer<typeof movieListResponseSchema>;
+export type CalendarShowListResponse = z.infer<
+  typeof calendarShowListResponseSchema
+>;
+export type CalendarMovieListResponse = z.infer<typeof movieResponseSchema>[];

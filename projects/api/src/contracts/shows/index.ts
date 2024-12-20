@@ -7,7 +7,6 @@ import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import { mediaStatsResponseSchema } from '../_internal/response/mediaStatsResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import { showAnticipatedResponseSchema } from '../_internal/response/showAnticipatedResponseSchema.ts';
-import { showPopularResponseSchema } from '../_internal/response/showPopularResponseSchema.ts';
 import { showResponseSchema } from '../_internal/response/showResponseSchema.ts';
 import { showTrendingResponseSchema } from '../_internal/response/showTrendingResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
@@ -92,7 +91,7 @@ const GLOBAL_LEVEL = builder.router({
     query: extendedQuerySchemaFactory<['full', 'cloud9']>()
       .merge(pageQuerySchema),
     responses: {
-      200: showPopularResponseSchema,
+      200: showResponseSchema.array(),
     },
   },
 });
@@ -110,7 +109,6 @@ export type ShowResponse = z.infer<typeof showResponseSchema>;
 export type ShowProgressResponse = z.infer<typeof showProgressResponseSchema>;
 export type ShowQueryParams = z.infer<typeof showQueryParamsSchema>;
 export type ShowTrendingResponse = z.infer<typeof showTrendingResponseSchema>;
-export type ShowPopularResponse = z.infer<typeof showPopularResponseSchema>;
 export type ShowStatsResponse = z.infer<typeof mediaStatsResponseSchema>;
 export type ShowAnticipatedResponse = z.infer<
   typeof showAnticipatedResponseSchema

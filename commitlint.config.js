@@ -55,7 +55,9 @@ module.exports = {
         'up-next',
         'upcoming',
         'user',
-        'watchlist'
+        'watchlist',
+        'tags',
+        'requests',
       ],
     ],
     'type-case': [RuleConfigSeverity.Error, 'always', 'lower-case'],

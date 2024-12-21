@@ -1,6 +1,7 @@
 import { z } from '../z.ts';
 import { genreResponseSchema } from './genreResponseSchema.ts';
 import { imagesResponseSchema } from './imagesResponseSchema.ts';
+import { movieCertificationResponseSchema } from './movieCertificationResponseSchema.ts';
 import { movieIdsResponseSchema } from './movieIdsResponseSchema.ts';
 
 export const movieResponseSchema = z.object({
@@ -79,5 +80,5 @@ export const movieResponseSchema = z.object({
   /***
    * Available if requesting extended `full`.
    */
-  certification: z.string().optional(),
+  certification: movieCertificationResponseSchema.optional(),
 });

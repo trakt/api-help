@@ -7,6 +7,7 @@ import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import { mediaStatsResponseSchema } from '../_internal/response/mediaStatsResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import { showAnticipatedResponseSchema } from '../_internal/response/showAnticipatedResponseSchema.ts';
+import { showCertificationResponseSchema } from '../_internal/response/showCertificationResponseSchema.ts';
 import { showResponseSchema } from '../_internal/response/showResponseSchema.ts';
 import { showTrendingResponseSchema } from '../_internal/response/showTrendingResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
@@ -124,4 +125,7 @@ export type ShowAnticipatedResponse = z.infer<
 >;
 export type ShowTranslationResponse = z.infer<
   typeof translationResponseSchema
+>;
+export type ShowCertificationResponse = z.infer<
+  typeof showCertificationResponseSchema
 >;

@@ -1,6 +1,7 @@
 import { z } from '../z.ts';
 import { genreResponseSchema } from './genreResponseSchema.ts';
 import { imagesResponseSchema } from './imagesResponseSchema.ts';
+import { showCertificationResponseSchema } from './showCertificationResponseSchema.ts';
 import { showIdsResponseSchema } from './showIdsResponseSchema.ts';
 
 export const showResponseSchema = z.object({
@@ -42,7 +43,7 @@ export const showResponseSchema = z.object({
   /**
    * Available if requesting extended `full`.
    */
-  certification: z.string().optional(),
+  certification: showCertificationResponseSchema.optional(),
   /**
    * Available if requesting extended `full`.
    */

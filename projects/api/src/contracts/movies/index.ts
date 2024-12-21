@@ -6,6 +6,7 @@ import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import type { genreResponseSchema } from '../_internal/response/genreResponseSchema.ts';
 import { mediaStatsResponseSchema } from '../_internal/response/mediaStatsResponseSchema.ts';
 import { movieAnticipatedResponseSchema } from '../_internal/response/movieAnticipatedResponseSchema.ts';
+import type { movieCertificationResponseSchema } from '../_internal/response/movieCertificationResponseSchema.ts';
 import { movieResponseSchema } from '../_internal/response/movieResponseSchema.ts';
 import { movieTrendingResponseSchema } from '../_internal/response/movieTrendingResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
@@ -110,4 +111,7 @@ export type MovieTrendingResponse = z.infer<
 >;
 export type MovieAnticipatedResponse = z.infer<
   typeof movieAnticipatedResponseSchema
+>;
+export type MovieCertificationResponse = z.infer<
+  typeof movieCertificationResponseSchema
 >;

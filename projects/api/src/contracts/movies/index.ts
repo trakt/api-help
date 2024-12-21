@@ -11,6 +11,7 @@ import { movieResponseSchema } from '../_internal/response/movieResponseSchema.t
 import { movieTrendingResponseSchema } from '../_internal/response/movieTrendingResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
+import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
 
 const ENTITY_LEVEL = builder.router({
@@ -55,6 +56,14 @@ const ENTITY_LEVEL = builder.router({
     pathParams: idParamsSchema,
     responses: {
       200: movieResponseSchema.array(),
+    },
+  },
+  watching: {
+    path: '/watching',
+    method: 'GET',
+    pathParams: idParamsSchema,
+    responses: {
+      200: profileResponseSchema.array(),
     },
   },
 }, {

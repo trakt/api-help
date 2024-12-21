@@ -11,6 +11,7 @@ import { showCertificationResponseSchema } from '../_internal/response/showCerti
 import { showResponseSchema } from '../_internal/response/showResponseSchema.ts';
 import { showTrendingResponseSchema } from '../_internal/response/showTrendingResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
+import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
 import { showQueryParamsSchema } from './_internal/request/showQueryParamsSchema.ts';
 import { showProgressResponseSchema } from './_internal/response/showProgressResponseSchema.ts';
@@ -70,6 +71,14 @@ const ENTITY_LEVEL = builder.router({
     query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
     responses: {
       200: showResponseSchema.array(),
+    },
+  },
+  watching: {
+    path: '/watching',
+    method: 'GET',
+    pathParams: idParamsSchema,
+    responses: {
+      200: profileResponseSchema.array(),
     },
   },
 }, {

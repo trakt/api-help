@@ -1,13 +1,17 @@
 import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
+import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import type { sortDirectionSchema } from '../_internal/response/sortDirectionSchema.ts';
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
+import { dateRangeParamsSchema } from './_internal/request/dateRangeParamsSchema.ts';
 import { profileParamsSchema } from './_internal/request/profileParamsSchema.ts';
 import {
   sortEnumSchema,
   sortParamsSchema,
 } from './_internal/request/sortParamsSchema.ts';
+import { historyMoviesResponseSchema } from './_internal/response/historyMoviesResponseSchema.ts';
+import { historyShowsResponseSchema } from './_internal/response/historyShowsResponseSchema.ts';
 import { settingsResponseSchema } from './_internal/response/settingsResponseSchema.ts';
 import type { watchActionSchema } from './_internal/response/watchActionSchema.ts';
 import { watchedMoviesResponseSchema } from './_internal/response/watchedMoviesResponseSchema.ts';
@@ -52,6 +56,31 @@ export const users = builder.router({
   }, {
     pathPrefix: '/:id/watched',
   }),
+  history: builder.router({
+    movies: {
+      path: '/movies',
+      method: 'GET',
+      pathParams: profileParamsSchema,
+      query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+        .merge(dateRangeParamsSchema)
+        .merge(pageQuerySchema),
+      responses: {
+        200: historyMoviesResponseSchema,
+      },
+    },
+    shows: {
+      path: '/shows',
+      method: 'GET',
+      query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+        .merge(dateRangeParamsSchema)
+        .merge(pageQuerySchema),
+      responses: {
+        200: historyShowsResponseSchema,
+      },
+    },
+  }, {
+    pathPrefix: '/:id/history',
+  }),
   watchlist: builder.router({
     movies: {
       path: '/movies/:sort',
@@ -88,6 +117,9 @@ export type SettingsResponse = z.infer<typeof settingsResponseSchema>;
 
 export type WatchedMoviesResponse = z.infer<typeof watchedMoviesResponseSchema>;
 export type WatchedShowsResponse = z.infer<typeof watchedShowsResponseSchema>;
+
+export type HistoryMoviesResponse = z.infer<typeof historyMoviesResponseSchema>;
+export type HistoryShowsResponse = z.infer<typeof historyShowsResponseSchema>;
 
 export type WatchlistedMoviesResponse = z.infer<
   typeof watchlistedMoviesResponseSchema

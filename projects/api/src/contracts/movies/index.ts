@@ -10,6 +10,7 @@ import type { movieCertificationResponseSchema } from '../_internal/response/mov
 import { movieResponseSchema } from '../_internal/response/movieResponseSchema.ts';
 import { movieTrendingResponseSchema } from '../_internal/response/movieTrendingResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
+import { studiosResponseSchema } from '../_internal/response/studiosResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
@@ -66,6 +67,14 @@ const ENTITY_LEVEL = builder.router({
       200: profileResponseSchema.array(),
     },
   },
+  studios: {
+    path: '/studios',
+    method: 'GET',
+    pathParams: idParamsSchema,
+    responses: {
+      200: studiosResponseSchema,
+    },
+  },
 }, {
   pathPrefix: '/:id',
 });
@@ -111,6 +120,7 @@ export type MovieIdParams = z.infer<typeof idParamsSchema>;
 export type MovieResponse = z.infer<typeof movieResponseSchema>;
 export type MovieRatingsResponse = z.infer<typeof ratingsResponseSchema>;
 export type Genre = z.infer<typeof genreResponseSchema>;
+export type StudiosResponse = z.infer<typeof studiosResponseSchema>;
 export type MovieStatsResponse = z.infer<typeof mediaStatsResponseSchema>;
 export type MovieTranslationResponse = z.infer<
   typeof translationResponseSchema

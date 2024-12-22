@@ -10,6 +10,7 @@ import { showAnticipatedResponseSchema } from '../_internal/response/showAnticip
 import { showCertificationResponseSchema } from '../_internal/response/showCertificationResponseSchema.ts';
 import { showResponseSchema } from '../_internal/response/showResponseSchema.ts';
 import { showTrendingResponseSchema } from '../_internal/response/showTrendingResponseSchema.ts';
+import { studiosResponseSchema } from '../_internal/response/studiosResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
@@ -79,6 +80,14 @@ const ENTITY_LEVEL = builder.router({
     pathParams: idParamsSchema,
     responses: {
       200: profileResponseSchema.array(),
+    },
+  },
+  studios: {
+    path: '/studios',
+    method: 'GET',
+    pathParams: idParamsSchema,
+    responses: {
+      200: studiosResponseSchema,
     },
   },
 }, {

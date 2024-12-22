@@ -12,20 +12,20 @@
   },
   "cSpell.words": [
     "deno",
+    "favorited",
     "imdb",
     "inlang",
     "metacritic",
-    "metascore",
-    "onclickoutside",
+    "watchlist",
+    "watchlisted",
     "outdir",
     "Paginatable",
     "paraglide",
     "rewatching",
     "tmdb",
-    "Watchlist",
-    "Watchlisted",
-    "watchnow",
-    "favorited",
+    "watchlist",
+    "watchlisted",
+    "watchnow"
   ],
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": [

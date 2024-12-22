@@ -38,6 +38,7 @@ module.exports = {
         'ds',
         'episode',
         'footer',
+        'guards',
         'i18n',
         'landing',
         'layout',

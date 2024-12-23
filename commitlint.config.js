@@ -36,6 +36,7 @@ module.exports = {
         'card',
         'coming-soon',
         'ds',
+        'dropdown',
         'episode',
         'footer',
         'guards',

@@ -1,4 +1,5 @@
 import { builder } from '../_internal/builder.ts';
+import { countryParamsSchema } from '../_internal/request/countryParamsSchema.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
@@ -13,6 +14,7 @@ import { showTrendingResponseSchema } from '../_internal/response/showTrendingRe
 import { studiosResponseSchema } from '../_internal/response/studiosResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
+import { watchNowResponseSchema } from '../_internal/response/watchNowResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
 import { showQueryParamsSchema } from './_internal/request/showQueryParamsSchema.ts';
 import { showProgressResponseSchema } from './_internal/response/showProgressResponseSchema.ts';
@@ -88,6 +90,14 @@ const ENTITY_LEVEL = builder.router({
     pathParams: idParamsSchema,
     responses: {
       200: studiosResponseSchema,
+    },
+  },
+  watchnow: {
+    path: '/watchnow/:country',
+    method: 'GET',
+    pathParams: idParamsSchema.merge(countryParamsSchema),
+    responses: {
+      200: watchNowResponseSchema,
     },
   },
 }, {

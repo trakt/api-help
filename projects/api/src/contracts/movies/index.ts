@@ -1,4 +1,5 @@
 import { builder } from '../_internal/builder.ts';
+import { countryParamsSchema } from '../_internal/request/countryParamsSchema.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
@@ -13,6 +14,7 @@ import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSche
 import { studiosResponseSchema } from '../_internal/response/studiosResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
+import { watchNowResponseSchema } from '../_internal/response/watchNowResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
 
 const ENTITY_LEVEL = builder.router({
@@ -75,6 +77,14 @@ const ENTITY_LEVEL = builder.router({
       200: studiosResponseSchema,
     },
   },
+  watchnow: {
+    path: '/watchnow/:country',
+    method: 'GET',
+    pathParams: idParamsSchema.merge(countryParamsSchema),
+    responses: {
+      200: watchNowResponseSchema,
+    },
+  },
 }, {
   pathPrefix: '/:id',
 });
@@ -121,6 +131,7 @@ export type MovieResponse = z.infer<typeof movieResponseSchema>;
 export type MovieRatingsResponse = z.infer<typeof ratingsResponseSchema>;
 export type Genre = z.infer<typeof genreResponseSchema>;
 export type StudiosResponse = z.infer<typeof studiosResponseSchema>;
+export type WatchNowResponse = z.infer<typeof watchNowResponseSchema>;
 export type MovieStatsResponse = z.infer<typeof mediaStatsResponseSchema>;
 export type MovieTranslationResponse = z.infer<
   typeof translationResponseSchema

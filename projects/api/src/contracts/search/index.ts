@@ -16,7 +16,9 @@ export const search = builder.router({
     pathParams: searchTypeParamFactory<
       ['movie', 'show']
     >(),
-    query: searchQuerySchema.merge(extendedQuerySchemaFactory<['cloud9']>()),
+    query: searchQuerySchema.merge(
+      extendedQuerySchemaFactory<['full,cloud9']>(),
+    ),
     responses: {
       200: searchResultResponseSchema,
     },

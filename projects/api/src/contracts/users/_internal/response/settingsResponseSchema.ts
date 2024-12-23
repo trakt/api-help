@@ -85,7 +85,7 @@ export const settingsResponseSchema = z.object({
     }),
     watchnow: z.object({
       country: z.string(),
-      favorites: z.array(z.unknown()),
+      favorites: z.array(z.string()),
       only_favorites: z.boolean(),
     }),
     dark_knight: z.string(),

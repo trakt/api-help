@@ -58,6 +58,7 @@ module.exports = {
         'upcoming',
         'user',
         'watchlist',
+        'watched',
         'tags',
         'requests',
       ],

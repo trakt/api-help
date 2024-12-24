@@ -5,11 +5,16 @@ import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import type { genreResponseSchema } from '../_internal/response/genreResponseSchema.ts';
+import type { jobResponseSchema } from '../_internal/response/jobResponseSchema.ts';
 import { mediaStatsResponseSchema } from '../_internal/response/mediaStatsResponseSchema.ts';
 import { movieAnticipatedResponseSchema } from '../_internal/response/movieAnticipatedResponseSchema.ts';
 import type { movieCertificationResponseSchema } from '../_internal/response/movieCertificationResponseSchema.ts';
 import { movieResponseSchema } from '../_internal/response/movieResponseSchema.ts';
 import { movieTrendingResponseSchema } from '../_internal/response/movieTrendingResponseSchema.ts';
+import {
+  type crewSchema,
+  peopleResponseSchema,
+} from '../_internal/response/peopleResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import { studiosResponseSchema } from '../_internal/response/studiosResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
@@ -85,6 +90,14 @@ const ENTITY_LEVEL = builder.router({
       200: watchNowResponseSchema,
     },
   },
+  people: {
+    path: '/people',
+    method: 'GET',
+    pathParams: idParamsSchema,
+    responses: {
+      200: peopleResponseSchema,
+    },
+  },
 }, {
   pathPrefix: '/:id',
 });
@@ -130,9 +143,13 @@ export type MovieIdParams = z.infer<typeof idParamsSchema>;
 export type MovieResponse = z.infer<typeof movieResponseSchema>;
 export type MovieRatingsResponse = z.infer<typeof ratingsResponseSchema>;
 export type Genre = z.infer<typeof genreResponseSchema>;
+export type Job = z.infer<typeof jobResponseSchema>;
 export type StudiosResponse = z.infer<typeof studiosResponseSchema>;
 export type WatchNowResponse = z.infer<typeof watchNowResponseSchema>;
 export type MovieStatsResponse = z.infer<typeof mediaStatsResponseSchema>;
+export type PeopleResponse = z.infer<typeof peopleResponseSchema>;
+export type CrewResponse = z.infer<typeof crewSchema>;
+
 export type MovieTranslationResponse = z.infer<
   typeof translationResponseSchema
 >;

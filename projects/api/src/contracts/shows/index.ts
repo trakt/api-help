@@ -6,9 +6,10 @@ import { languageParamsSchema } from '../_internal/request/languageParamsSchema.
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import { mediaStatsResponseSchema } from '../_internal/response/mediaStatsResponseSchema.ts';
+import { peopleResponseSchema } from '../_internal/response/peopleResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import { showAnticipatedResponseSchema } from '../_internal/response/showAnticipatedResponseSchema.ts';
-import { showCertificationResponseSchema } from '../_internal/response/showCertificationResponseSchema.ts';
+import type { showCertificationResponseSchema } from '../_internal/response/showCertificationResponseSchema.ts';
 import { showResponseSchema } from '../_internal/response/showResponseSchema.ts';
 import { showTrendingResponseSchema } from '../_internal/response/showTrendingResponseSchema.ts';
 import { studiosResponseSchema } from '../_internal/response/studiosResponseSchema.ts';
@@ -98,6 +99,14 @@ const ENTITY_LEVEL = builder.router({
     pathParams: idParamsSchema.merge(countryParamsSchema),
     responses: {
       200: watchNowResponseSchema,
+    },
+  },
+  people: {
+    path: '/people',
+    method: 'GET',
+    pathParams: idParamsSchema,
+    responses: {
+      200: peopleResponseSchema,
     },
   },
 }, {

@@ -14,6 +14,9 @@ jobs:
     if: github.event.pull_request.draft == false
     name: The Watchful Eye (Files Changed)
     runs-on: ubuntu-latest
+    concurrency:
+      group: ci-${{ github.ref }}
+      cancel-in-progress: true
     outputs:
       api_source: ${{ steps.changes.outputs.api_source }}
       client_source: ${{ steps.changes.outputs.client_source }}
@@ -51,6 +54,9 @@ jobs:
       }}
     name: The Interrogation Room (Test)
     runs-on: ubuntu-latest
+    concurrency:
+      group: ci-${{ github.ref }}
+      cancel-in-progress: true
 
     steps:
       - name: Secure the Evidence aka Checkout Code
@@ -79,6 +85,9 @@ jobs:
   build:
     name: The Forge (Build)
     runs-on: ubuntu-latest
+    concurrency:
+      group: ci-${{ github.ref }}
+      cancel-in-progress: true
     needs: test
 
     steps:

@@ -5,6 +5,7 @@ import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
+import { episodeResponseSchema } from '../_internal/response/episodeResponseSchema.ts';
 import { mediaStatsResponseSchema } from '../_internal/response/mediaStatsResponseSchema.ts';
 import { peopleResponseSchema } from '../_internal/response/peopleResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
@@ -16,8 +17,10 @@ import { studiosResponseSchema } from '../_internal/response/studiosResponseSche
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import { watchNowResponseSchema } from '../_internal/response/watchNowResponseSchema.ts';
-import type { z } from '../_internal/z.ts';
+import { z } from '../_internal/z.ts';
+import { seasonParamsSchema } from './_internal/request/seasonParamsSchema.ts';
 import { showQueryParamsSchema } from './_internal/request/showQueryParamsSchema.ts';
+import { seasonsResponseSchema } from './_internal/response/seasonsResponseSchema.ts';
 import { showProgressResponseSchema } from './_internal/response/showProgressResponseSchema.ts';
 
 const ENTITY_LEVEL = builder.router({
@@ -109,6 +112,25 @@ const ENTITY_LEVEL = builder.router({
       200: peopleResponseSchema,
     },
   },
+  seasons: {
+    path: '/seasons',
+    method: 'GET',
+    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    pathParams: idParamsSchema,
+    responses: {
+      200: seasonsResponseSchema,
+    },
+  },
+  episodes: {
+    path: '/seasons/:season',
+    method: 'GET',
+    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    pathParams: idParamsSchema
+      .merge(seasonParamsSchema),
+    responses: {
+      200: episodeResponseSchema.array(),
+    },
+  },
 }, {
   pathPrefix: '/:id',
 });
@@ -166,3 +188,5 @@ export type ShowTranslationResponse = z.infer<
 export type ShowCertificationResponse = z.infer<
   typeof showCertificationResponseSchema
 >;
+export type SeasonsResponse = z.infer<typeof seasonsResponseSchema>;
+export type SeasonResponse = z.infer<typeof episodeResponseSchema>[];

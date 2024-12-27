@@ -21,7 +21,7 @@ export type TraktApiOptions = {
     | Environment
     | `https://${string}`
     | `http://localhost:${string}`
-    | '';
+    | 'http://localhost';
   /**
    * Trakt API key (client id from trakt.tv API application)
    */

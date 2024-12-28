@@ -46,6 +46,7 @@ module.exports = {
         'link',
         'list',
         'movie',
+        'msw',
         'navbar',
         'out-now',
         'profile',

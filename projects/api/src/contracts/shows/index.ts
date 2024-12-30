@@ -18,7 +18,7 @@ import { studiosResponseSchema } from '../_internal/response/studiosResponseSche
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import { watchNowResponseSchema } from '../_internal/response/watchNowResponseSchema.ts';
-import { z } from '../_internal/z.ts';
+import type { z } from '../_internal/z.ts';
 import { episodeParamsSchema } from './_internal/request/episodeParamsSchema.ts';
 import { seasonParamsSchema } from './_internal/request/seasonParamsSchema.ts';
 import { showQueryParamsSchema } from './_internal/request/showQueryParamsSchema.ts';

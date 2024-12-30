@@ -7,7 +7,7 @@ import type { z } from '../_internal/z.ts';
 import { dateRangeParamsSchema } from './_internal/request/dateRangeParamsSchema.ts';
 import { profileParamsSchema } from './_internal/request/profileParamsSchema.ts';
 import {
-  sortEnumSchema,
+  type sortEnumSchema,
   sortParamsSchema,
 } from './_internal/request/sortParamsSchema.ts';
 import { historyMoviesResponseSchema } from './_internal/response/historyMoviesResponseSchema.ts';

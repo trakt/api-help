@@ -6,6 +6,7 @@ import { languageParamsSchema } from '../_internal/request/languageParamsSchema.
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import { episodeResponseSchema } from '../_internal/response/episodeResponseSchema.ts';
+import { episodeTranslationResponseSchema } from '../_internal/response/episodeTranslationResponseSchema.ts';
 import { mediaStatsResponseSchema } from '../_internal/response/mediaStatsResponseSchema.ts';
 import { peopleResponseSchema } from '../_internal/response/peopleResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
@@ -18,6 +19,7 @@ import { translationResponseSchema } from '../_internal/response/translationResp
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import { watchNowResponseSchema } from '../_internal/response/watchNowResponseSchema.ts';
 import { z } from '../_internal/z.ts';
+import { episodeParamsSchema } from './_internal/request/episodeParamsSchema.ts';
 import { seasonParamsSchema } from './_internal/request/seasonParamsSchema.ts';
 import { showQueryParamsSchema } from './_internal/request/showQueryParamsSchema.ts';
 import { seasonsResponseSchema } from './_internal/response/seasonsResponseSchema.ts';
@@ -131,6 +133,61 @@ const ENTITY_LEVEL = builder.router({
       200: episodeResponseSchema.array(),
     },
   },
+  episode: builder.router({
+    summary: {
+      path: '/seasons/:season/episodes/:episode',
+      method: 'GET',
+      query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+      pathParams: idParamsSchema
+        .merge(seasonParamsSchema)
+        .merge(episodeParamsSchema),
+      responses: {
+        200: episodeResponseSchema,
+      },
+    },
+    translations: {
+      path: '/seasons/:season/episodes/:episode/translations/:language',
+      method: 'GET',
+      pathParams: idParamsSchema
+        .merge(seasonParamsSchema)
+        .merge(episodeParamsSchema)
+        .merge(languageParamsSchema),
+      responses: {
+        200: episodeTranslationResponseSchema,
+      },
+    },
+    stats: {
+      path: '/seasons/:season/episodes/:episode/stats',
+      method: 'GET',
+      pathParams: idParamsSchema
+        .merge(seasonParamsSchema)
+        .merge(episodeParamsSchema),
+      responses: {
+        200: mediaStatsResponseSchema,
+      },
+    },
+    ratings: {
+      path: '/seasons/:season/episodes/:episode/ratings',
+      method: 'GET',
+      query: extendedQuerySchemaFactory<['all']>(),
+      pathParams: idParamsSchema
+        .merge(seasonParamsSchema)
+        .merge(episodeParamsSchema),
+      responses: {
+        200: ratingsResponseSchema,
+      },
+    },
+    watching: {
+      path: '/seasons/:season/episodes/:episode/watching',
+      method: 'GET',
+      pathParams: idParamsSchema
+        .merge(seasonParamsSchema)
+        .merge(episodeParamsSchema),
+      responses: {
+        200: profileResponseSchema.array(),
+      },
+    },
+  }),
 }, {
   pathPrefix: '/:id',
 });
@@ -184,6 +241,9 @@ export type ShowAnticipatedResponse = z.infer<
 >;
 export type ShowTranslationResponse = z.infer<
   typeof translationResponseSchema
+>;
+export type EpisodeTranslationResponse = z.infer<
+  typeof episodeTranslationResponseSchema
 >;
 export type ShowCertificationResponse = z.infer<
   typeof showCertificationResponseSchema

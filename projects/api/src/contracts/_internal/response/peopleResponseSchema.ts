@@ -39,9 +39,9 @@ export const crewSchema = z.object({
 });
 
 export const peopleResponseSchema = z.object({
-  cast: z.array(castSchema),
+  cast: z.array(castSchema).optional(),
   crew: z.record(
     crewPositions,
     z.array(crewSchema),
-  ),
+  ).optional(),
 });

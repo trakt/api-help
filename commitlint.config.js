@@ -52,6 +52,7 @@ module.exports = {
         'out-now',
         'profile',
         'pr_gate',
+        'pwa',
         'recommendations',
         'search',
         'show',

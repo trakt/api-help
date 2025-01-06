@@ -18,6 +18,6 @@ jobs:
         uses: wagoid/commitlint-github-action@v3
 
       - name: Exterminating the Fixup Fiends
-        uses: matijs/no-fixups-action@v1.0.2
+        uses: vladjerca/no-fixups-action@main
         with:
           skip-checkout: true

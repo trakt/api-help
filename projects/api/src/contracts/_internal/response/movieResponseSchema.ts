@@ -3,6 +3,7 @@ import { genreResponseSchema } from './genreResponseSchema.ts';
 import { imagesResponseSchema } from './imagesResponseSchema.ts';
 import { movieCertificationResponseSchema } from './movieCertificationResponseSchema.ts';
 import { movieIdsResponseSchema } from './movieIdsResponseSchema.ts';
+import { statusResponseSchema } from './statusResponseSchema.ts';
 
 export const movieResponseSchema = z.object({
   title: z.string(),
@@ -36,7 +37,7 @@ export const movieResponseSchema = z.object({
   /***
    * Available if requesting extended `full`.
    */
-  status: z.string().optional(),
+  status: statusResponseSchema.optional(),
   /***
    * Available if requesting extended `full`.
    */

@@ -3,6 +3,7 @@ import { genreResponseSchema } from './genreResponseSchema.ts';
 import { imagesResponseSchema } from './imagesResponseSchema.ts';
 import { showCertificationResponseSchema } from './showCertificationResponseSchema.ts';
 import { showIdsResponseSchema } from './showIdsResponseSchema.ts';
+import { statusResponseSchema } from './statusResponseSchema.ts';
 
 export const showResponseSchema = z.object({
   title: z.string(),
@@ -55,7 +56,7 @@ export const showResponseSchema = z.object({
   /**
    * Available if requesting extended `full`.
    */
-  status: z.string().optional(),
+  status: statusResponseSchema.optional(),
   /**
    * Available if requesting extended `full`.
    */

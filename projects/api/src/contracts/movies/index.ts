@@ -16,6 +16,7 @@ import {
   peopleResponseSchema,
 } from '../_internal/response/peopleResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
+import { statusResponseSchema } from '../_internal/response/statusResponseSchema.ts';
 import { studiosResponseSchema } from '../_internal/response/studiosResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
@@ -143,6 +144,7 @@ export type MovieIdParams = z.infer<typeof idParamsSchema>;
 export type MovieResponse = z.infer<typeof movieResponseSchema>;
 export type MovieRatingsResponse = z.infer<typeof ratingsResponseSchema>;
 export type Genre = z.infer<typeof genreResponseSchema>;
+export type StatusResponse = z.infer<typeof statusResponseSchema>;
 export type Job = z.infer<typeof jobResponseSchema>;
 export type StudiosResponse = z.infer<typeof studiosResponseSchema>;
 export type WatchNowResponse = z.infer<typeof watchNowResponseSchema>;

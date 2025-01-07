@@ -6,7 +6,7 @@ import { movieIdsResponseSchema } from './movieIdsResponseSchema.ts';
 
 export const movieResponseSchema = z.object({
   title: z.string(),
-  year: z.number(),
+  year: z.number().optional(),
   ids: movieIdsResponseSchema,
   /***
    * Available if requesting extended `cloud9`.

@@ -14,7 +14,7 @@ import { showAnticipatedResponseSchema } from '../_internal/response/showAnticip
 import type { showCertificationResponseSchema } from '../_internal/response/showCertificationResponseSchema.ts';
 import { showResponseSchema } from '../_internal/response/showResponseSchema.ts';
 import { showTrendingResponseSchema } from '../_internal/response/showTrendingResponseSchema.ts';
-import { studiosResponseSchema } from '../_internal/response/studiosResponseSchema.ts';
+import { studioResponseSchema } from '../_internal/response/studioResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import { watchNowResponseSchema } from '../_internal/response/watchNowResponseSchema.ts';
@@ -95,7 +95,7 @@ const ENTITY_LEVEL = builder.router({
     method: 'GET',
     pathParams: idParamsSchema,
     responses: {
-      200: studiosResponseSchema,
+      200: studioResponseSchema.array(),
     },
   },
   watchnow: {
@@ -199,7 +199,7 @@ const GLOBAL_LEVEL = builder.router({
     query: extendedQuerySchemaFactory<['full', 'cloud9']>()
       .merge(pageQuerySchema),
     responses: {
-      200: showTrendingResponseSchema,
+      200: showTrendingResponseSchema.array(),
     },
   },
   anticipated: {
@@ -208,7 +208,7 @@ const GLOBAL_LEVEL = builder.router({
     query: extendedQuerySchemaFactory<['full', 'cloud9']>()
       .merge(pageQuerySchema),
     responses: {
-      200: showAnticipatedResponseSchema,
+      200: showAnticipatedResponseSchema.array(),
     },
   },
   popular: {

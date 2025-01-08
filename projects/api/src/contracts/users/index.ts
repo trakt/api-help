@@ -65,7 +65,7 @@ export const users = builder.router({
         .merge(dateRangeParamsSchema)
         .merge(pageQuerySchema),
       responses: {
-        200: historyMoviesResponseSchema,
+        200: historyMoviesResponseSchema.array(),
       },
     },
     shows: {
@@ -75,7 +75,7 @@ export const users = builder.router({
         .merge(dateRangeParamsSchema)
         .merge(pageQuerySchema),
       responses: {
-        200: historyShowsResponseSchema,
+        200: historyShowsResponseSchema.array(),
       },
     },
   }, {
@@ -88,7 +88,7 @@ export const users = builder.router({
       method: 'GET',
       query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
       responses: {
-        200: watchlistedMoviesResponseSchema,
+        200: watchlistedMoviesResponseSchema.array(),
       },
     },
     shows: {
@@ -97,7 +97,7 @@ export const users = builder.router({
       method: 'GET',
       query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
       responses: {
-        200: watchlistedShowsResponseSchema,
+        200: watchlistedShowsResponseSchema.array(),
       },
     },
   }, {

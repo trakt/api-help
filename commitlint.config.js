@@ -59,6 +59,7 @@ module.exports = {
         'search',
         'show',
         'summary',
+        'swagger',
         'up-next',
         'upcoming',
         'user',

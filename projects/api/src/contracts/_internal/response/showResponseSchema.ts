@@ -76,7 +76,7 @@ export const showResponseSchema = z.object({
   /**
    * Available if requesting extended `full`.
    */
-  homepage: z.null().optional(),
+  homepage: z.string().nullable().optional(),
   /**
    * Available if requesting extended `full`.
    */

@@ -7,7 +7,7 @@ export const showProgressResponseSchema = progressResponseSchema.extend({
   seasons: z.array(
     z.object({
       number: z.number(),
-      title: z.string(),
+      title: z.string().nullable(),
       aired: z.number(),
       completed: z.number(),
       episodes: z.array(
@@ -15,8 +15,16 @@ export const showProgressResponseSchema = progressResponseSchema.extend({
           number: z.number(),
           completed: z.boolean(),
           last_watched_at: z.string().nullable(),
+          /***
+           * Available if requesting include_stats `true`.
+           */
+          stats: statsResponseSchema.optional(),
         }),
       ),
+      /***
+       * Available if requesting include_stats `true`.
+       */
+      stats: statsResponseSchema.optional(),
     }),
   ),
   hidden_seasons: z.array(

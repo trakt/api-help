@@ -7,12 +7,12 @@ import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import { episodeResponseSchema } from '../_internal/response/episodeResponseSchema.ts';
 import { episodeTranslationResponseSchema } from '../_internal/response/episodeTranslationResponseSchema.ts';
-import { mediaStatsResponseSchema } from '../_internal/response/mediaStatsResponseSchema.ts';
 import { peopleResponseSchema } from '../_internal/response/peopleResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import { showAnticipatedResponseSchema } from '../_internal/response/showAnticipatedResponseSchema.ts';
 import type { showCertificationResponseSchema } from '../_internal/response/showCertificationResponseSchema.ts';
 import { showResponseSchema } from '../_internal/response/showResponseSchema.ts';
+import { showStatsResponseSchema } from '../_internal/response/showStatsResponseSchema.ts';
 import { showTrendingResponseSchema } from '../_internal/response/showTrendingResponseSchema.ts';
 import { studioResponseSchema } from '../_internal/response/studioResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
@@ -49,7 +49,7 @@ const ENTITY_LEVEL = builder.router({
     method: 'GET',
     pathParams: idParamsSchema,
     responses: {
-      200: mediaStatsResponseSchema,
+      200: showStatsResponseSchema,
     },
   },
   progress: {
@@ -163,7 +163,7 @@ const ENTITY_LEVEL = builder.router({
         .merge(seasonParamsSchema)
         .merge(episodeParamsSchema),
       responses: {
-        200: mediaStatsResponseSchema,
+        200: showStatsResponseSchema,
       },
     },
     ratings: {
@@ -235,7 +235,7 @@ export type ShowResponse = z.infer<typeof showResponseSchema>;
 export type ShowProgressResponse = z.infer<typeof showProgressResponseSchema>;
 export type ShowQueryParams = z.infer<typeof showQueryParamsSchema>;
 export type ShowTrendingResponse = z.infer<typeof showTrendingResponseSchema>;
-export type ShowStatsResponse = z.infer<typeof mediaStatsResponseSchema>;
+export type ShowStatsResponse = z.infer<typeof showStatsResponseSchema>;
 export type ShowAnticipatedResponse = z.infer<
   typeof showAnticipatedResponseSchema
 >;

@@ -6,10 +6,10 @@ import { languageParamsSchema } from '../_internal/request/languageParamsSchema.
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import type { genreResponseSchema } from '../_internal/response/genreResponseSchema.ts';
 import type { jobResponseSchema } from '../_internal/response/jobResponseSchema.ts';
-import { mediaStatsResponseSchema } from '../_internal/response/mediaStatsResponseSchema.ts';
 import { movieAnticipatedResponseSchema } from '../_internal/response/movieAnticipatedResponseSchema.ts';
 import type { movieCertificationResponseSchema } from '../_internal/response/movieCertificationResponseSchema.ts';
 import { movieResponseSchema } from '../_internal/response/movieResponseSchema.ts';
+import { movieStatsResponseSchema } from '../_internal/response/movieStatsResponseSchema.ts';
 import { movieTrendingResponseSchema } from '../_internal/response/movieTrendingResponseSchema.ts';
 import {
   type crewSchema,
@@ -47,7 +47,7 @@ const ENTITY_LEVEL = builder.router({
     method: 'GET',
     pathParams: idParamsSchema,
     responses: {
-      200: mediaStatsResponseSchema,
+      200: movieStatsResponseSchema,
     },
   },
   translations: {
@@ -148,7 +148,7 @@ export type StatusResponse = z.infer<typeof statusResponseSchema>;
 export type Job = z.infer<typeof jobResponseSchema>;
 export type StudioResponse = z.infer<typeof studioResponseSchema>;
 export type WatchNowResponse = z.infer<typeof watchNowResponseSchema>;
-export type MovieStatsResponse = z.infer<typeof mediaStatsResponseSchema>;
+export type MovieStatsResponse = z.infer<typeof movieStatsResponseSchema>;
 export type PeopleResponse = z.infer<typeof peopleResponseSchema>;
 export type CrewResponse = z.infer<typeof crewSchema>;
 

@@ -6,7 +6,10 @@ export const profileResponseSchema = z.object({
   name: z.string(),
   vip: z.boolean(),
   vip_ep: z.boolean(),
-  ids: z.object({ slug: z.string() }),
+  ids: z.object({
+    slug: z.string(),
+    trakt: z.number(),
+  }),
   /***
    * Available if requesting extended `full`.
    */
@@ -26,7 +29,7 @@ export const profileResponseSchema = z.object({
   /***
    * Available if requesting extended `full`.
    */
-  age: z.number().or(z.null()),
+  age: z.number().or(z.null()).optional(),
   /***
    * Available if requesting extended `full`.
    */

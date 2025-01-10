@@ -5,5 +5,7 @@ export const studioResponseSchema = z.object({
   country: z.string().optional(),
   ids: z.object({
     slug: z.string(),
+    trakt: z.number(),
+    tmdb: z.number().optional(),
   }),
 });

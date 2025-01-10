@@ -14,6 +14,7 @@ const crewPositions = z.enum([
   'visual effects',
   'editing',
   'creator',
+  'created by',
 ]);
 
 const personSchema = z.object({
@@ -21,21 +22,23 @@ const personSchema = z.object({
   ids: z.object({
     trakt: z.number(),
     slug: z.string(),
-    imdb: z.string().optional(),
-    tmdb: z.number().optional(),
+    imdb: z.string().nullable(),
+    tmdb: z.number().nullable(),
   }),
 });
 
 const castSchema = z.object({
   character: z.string(),
   characters: z.array(z.string()),
+  episode_count: z.number().optional(),
   person: personSchema,
 });
 
 export const crewSchema = z.object({
-  job: jobResponseSchema,
+  job: z.string(),
   jobs: z.array(jobResponseSchema),
   person: personSchema,
+  episode_count: z.number().optional(),
 });
 
 export const peopleResponseSchema = z.object({

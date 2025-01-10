@@ -25,7 +25,7 @@ export const genreResponseSchema = z.enum([
   'none',
   'reality',
   'romance',
-  'science fiction',
+  'science-fiction',
   'short',
   'soap',
   'special interest',

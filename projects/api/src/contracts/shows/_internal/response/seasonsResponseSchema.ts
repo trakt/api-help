@@ -29,7 +29,7 @@ export const seasonsResponseSchema = z.array(
     /**
      * Available if requesting extended `full`.
      */
-    overview: z.string().optional(),
+    overview: z.string().nullable().optional(),
     /**
      * Available if requesting extended `full`.
      */

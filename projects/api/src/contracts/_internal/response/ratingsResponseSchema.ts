@@ -28,7 +28,7 @@ export const ratingsResponseSchema = z.object({
   /***
    * Available if requesting extended `all`.
    */
-  metascore: z.object({ rating: z.number() }).optional(),
+  metascore: z.object({ rating: z.number().nullable() }).optional(),
   /***
    * Available if requesting extended `all`.
    */

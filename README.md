@@ -31,6 +31,36 @@ properly:
 - **`TRAKT_CLIENT_SECRET`:** The client secret for the Trakt API.
   - Required for the `playground` project.
 
+### External Contribution - Unleash Your Inner Code Wizard!
+
+Want to contribute to Trakt ? Here's how to set up your development environment:
+
+1. **Create a Trakt Application:** Navigate to
+   [Trakt Settings](https://trakt.tv/oauth/applications) and create a new
+   application.
+1. Once your Trakt application is created, use the provided Client ID and Client
+   Secret in your development environment.
+1. Make use of the `playground` project to test out your changes by running
+   `playground:dev`.
+
+**A Word of Caution, Fellow Traveler:**
+
+Please note that while using public applications is possible, they may have
+certain API limitations:
+
+- **Limited "Up Next" Access:** The "Up Next" endpoint might be unavailable or
+  return incomplete data.
+
+These restrictions are implemented as part of Trakt's API security measures to
+prevent abuse from automated scrapers and unauthorized access.
+
+For the best development experience, we recommend using your own application
+credentials.
+fall into the wrong hands, would we?
+
+Now go forth and code with the fury of a thousand suns! The future of Trakt Lite
+awaits your brilliance. ✨
+
 ## Getting Started
 
 This is a Deno project, so you need to have Deno installed on your machine

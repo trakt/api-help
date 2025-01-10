@@ -160,7 +160,7 @@ export function traktApiFactory({
 }
 
 export function traktApi({
-  environment = Environment.production_private,
+  environment = Environment.production,
   apiKey,
   fetch,
   cancellable,

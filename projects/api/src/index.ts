@@ -114,7 +114,7 @@ export function traktApiFactory({
       cancellationId = cancellationId ?? path.split('?').at(0) ?? '';
 
       const handler = createCancellationHandler(
-        !!cancellable,
+        Boolean(cancellable),
         cancellationId,
       );
       handler.abort();

@@ -55,9 +55,9 @@ export class AbortError extends Error {
 function createCancellationHandler(cancellable: boolean, id: string) {
   if (!cancellable) {
     return {
-      signal: () => void 0,
-      abort: () => void 0,
-      finalize: () => void 0,
+      signal: () => undefined,
+      abort: () => undefined,
+      finalize: () => undefined,
     };
   }
 

@@ -9,6 +9,9 @@ on:
     branches:
       - master
 
+permissions:
+  contents: read
+
 jobs:
   files-changed:
     if: github.event.pull_request.draft == false

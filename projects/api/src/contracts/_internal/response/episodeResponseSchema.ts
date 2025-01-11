@@ -39,13 +39,13 @@ export const episodeResponseSchema = z.object({
    */
   episode_type: z
     .enum([
-      `standard`,
-      `series_premiere`,
-      `season_premiere`,
-      `mid_season_finale`,
-      `mid_season_premiere`,
-      `season_finale`,
-      `series_finale`,
+      "standard",
+      "series_premiere",
+      "season_premiere",
+      "mid_season_finale",
+      "mid_season_premiere",
+      "season_finale",
+      "series_finale",
     ])
     .optional(),
   ids: episodeIdsResponseSchema,

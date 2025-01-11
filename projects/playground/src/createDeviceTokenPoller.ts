@@ -20,8 +20,8 @@ export function createDeviceTokenPoller(api: TraktApi) {
     }
 
     logger.statement(
-      `The digital gods demand a sacrifice!`,
-      `No, not your firstborn, just a quick visit to this unholy URL:`,
+      "The digital gods demand a sacrifice!",
+      "No, not your firstborn, just a quick visit to this unholy URL:",
     );
 
     logger.output(
@@ -60,8 +60,8 @@ export function createDeviceTokenPoller(api: TraktApi) {
 
           if (tokenResponse.status === 200) {
             logger.statement(
-              `The digital gods have spoken!`,
-              `A code has been issued!`,
+              "The digital gods have spoken!",
+              "A code has been issued!",
             );
             resolve(tokenResponse.body);
             clearInterval(tokenInterval);

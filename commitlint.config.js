@@ -11,7 +11,7 @@ module.exports = {
   parserPreset: 'conventional-changelog-conventionalcommits',
   rules: {
     'body-leading-blank': [RuleConfigSeverity.Warning, 'always'],
-    'body-max-line-length': [RuleConfigSeverity.Error, 'always', 100],
+    'body-max-line-length': [RuleConfigSeverity.Error, 'always', 250],
     'footer-leading-blank': [RuleConfigSeverity.Warning, 'always'],
     'footer-max-line-length': [
       RuleConfigSeverity.Error,

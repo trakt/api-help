@@ -16,12 +16,12 @@ export function createDeviceTokenPoller(api: TraktApi) {
     });
 
     if (codeResponse.status !== 200) {
-      return Promise.reject(codeResponse.body);
+      return Promise.reject(new Error(JSON.stringify(codeResponse.body)));
     }
 
     logger.statement(
-      "The digital gods demand a sacrifice!",
-      "No, not your firstborn, just a quick visit to this unholy URL:",
+      'The digital gods demand a sacrifice!',
+      'No, not your firstborn, just a quick visit to this unholy URL:',
     );
 
     logger.output(
@@ -36,7 +36,12 @@ export function createDeviceTokenPoller(api: TraktApi) {
         const tokenInterval = setInterval(async () => {
           if (Date.now() > codeExpiresAt) {
             clearInterval(tokenInterval);
-            reject();
+            const error = new Error([
+              'The code, a delicate snowflake, melted under the harsh glare of scrutiny',
+              ', its potential extinguished before it could blossom into a token of authentication.',
+            ].join(''));
+
+            reject(error);
           }
 
           const tokenResponse = await api.oauth.device
@@ -60,8 +65,8 @@ export function createDeviceTokenPoller(api: TraktApi) {
 
           if (tokenResponse.status === 200) {
             logger.statement(
-              "The digital gods have spoken!",
-              "A code has been issued!",
+              'The digital gods have spoken!',
+              'A code has been issued!',
             );
             resolve(tokenResponse.body);
             clearInterval(tokenInterval);

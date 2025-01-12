@@ -4,6 +4,7 @@ import { codeRequestSchema } from './_internal/request/codeRequestSchema.ts';
 import {
   deviceTokenRequestSchema,
 } from './_internal/request/deviceTokenRequestSchema.ts';
+import { tokenRefreshSchema } from './_internal/request/tokenRefreshSchema.ts';
 import { tokenRequestSchema } from './_internal/request/tokenRequestSchema.ts';
 import { codeResponseSchema } from './_internal/response/codeResponseSchema.ts';
 import { tokenResponseSchema } from './_internal/response/tokenResponseSchema.ts';
@@ -35,6 +36,7 @@ export type OAuthDeviceCodeResponse = z.infer<typeof codeResponseSchema>;
 export type OAuthDeviceTokenRequest = z.infer<typeof deviceTokenRequestSchema>;
 
 export type OAuthTokenRequest = z.infer<typeof tokenRequestSchema>;
+export type OAuthTokenRefresh = z.infer<typeof tokenRefreshSchema>;
 export type OAuthTokenResponse = z.infer<typeof tokenResponseSchema>;
 
 export const oauth = builder
@@ -43,7 +45,10 @@ export const oauth = builder
     token: {
       path: '/token',
       method: 'POST',
-      body: tokenRequestSchema,
+      body: z.union([
+        tokenRequestSchema,
+        tokenRefreshSchema,
+      ]),
       responses: {
         200: tokenResponseSchema,
         400: z.undefined(),

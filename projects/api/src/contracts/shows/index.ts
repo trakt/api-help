@@ -109,6 +109,7 @@ const ENTITY_LEVEL = builder.router({
   people: {
     path: '/people',
     method: 'GET',
+    query: extendedQuerySchemaFactory<['cloud9']>(),
     pathParams: idParamsSchema,
     responses: {
       200: peopleResponseSchema,

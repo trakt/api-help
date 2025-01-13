@@ -12,6 +12,7 @@ import { movieResponseSchema } from '../_internal/response/movieResponseSchema.t
 import { movieStatsResponseSchema } from '../_internal/response/movieStatsResponseSchema.ts';
 import { movieTrendingResponseSchema } from '../_internal/response/movieTrendingResponseSchema.ts';
 import {
+  castSchema,
   type crewSchema,
   peopleResponseSchema,
 } from '../_internal/response/peopleResponseSchema.ts';
@@ -94,6 +95,7 @@ const ENTITY_LEVEL = builder.router({
   people: {
     path: '/people',
     method: 'GET',
+    query: extendedQuerySchemaFactory<['cloud9']>(),
     pathParams: idParamsSchema,
     responses: {
       200: peopleResponseSchema,
@@ -151,6 +153,7 @@ export type WatchNowResponse = z.infer<typeof watchNowResponseSchema>;
 export type MovieStatsResponse = z.infer<typeof movieStatsResponseSchema>;
 export type PeopleResponse = z.infer<typeof peopleResponseSchema>;
 export type CrewResponse = z.infer<typeof crewSchema>;
+export type CastResponse = z.infer<typeof castSchema>;
 
 export type MovieTranslationResponse = z.infer<
   typeof translationResponseSchema

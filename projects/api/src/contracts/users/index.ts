@@ -10,6 +10,7 @@ import {
   type sortEnumSchema,
   sortParamsSchema,
 } from './_internal/request/sortParamsSchema.ts';
+import { historyEpisodesResponseSchema } from './_internal/response/historyEpisodesResponseSchema.ts';
 import { historyMoviesResponseSchema } from './_internal/response/historyMoviesResponseSchema.ts';
 import { historyShowsResponseSchema } from './_internal/response/historyShowsResponseSchema.ts';
 import { settingsResponseSchema } from './_internal/response/settingsResponseSchema.ts';
@@ -78,6 +79,16 @@ export const users = builder.router({
         200: historyShowsResponseSchema.array(),
       },
     },
+    episodes: {
+      path: '/episodes',
+      method: 'GET',
+      query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+        .merge(dateRangeParamsSchema)
+        .merge(pageQuerySchema),
+      responses: {
+        200: historyEpisodesResponseSchema.array(),
+      },
+    },
   }, {
     pathPrefix: '/:id/history',
   }),
@@ -120,6 +131,9 @@ export type WatchedShowsResponse = z.infer<typeof watchedShowsResponseSchema>;
 
 export type HistoryMoviesResponse = z.infer<typeof historyMoviesResponseSchema>;
 export type HistoryShowsResponse = z.infer<typeof historyShowsResponseSchema>;
+export type HistoryEpisodesResponse = z.infer<
+  typeof historyEpisodesResponseSchema
+>;
 
 export type WatchlistedMoviesResponse = z.infer<
   typeof watchlistedMoviesResponseSchema

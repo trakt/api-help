@@ -31,6 +31,7 @@ module.exports = {
       'always',
       [
         'api',
+        'anticipated',
         'auth',
         'button',
         'card',

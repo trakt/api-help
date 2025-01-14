@@ -3,6 +3,7 @@ import { calendars } from './calendars/index.ts';
 import { checkin } from './checkin/index.ts';
 import { movies } from './movies/index.ts';
 import { oauth } from './oauth/index.ts';
+import { people } from './people/index.ts';
 import { recommendations } from './recommendations/index.ts';
 import { search } from './search/index.ts';
 import { shows } from './shows/index.ts';
@@ -20,4 +21,5 @@ export const traktContract = builder
     movies,
     shows,
     search,
+    people,
   });

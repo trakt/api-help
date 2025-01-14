@@ -5,6 +5,7 @@ import { Environment } from './Environment.ts';
 export type * from './contracts/calendars/index.ts';
 export type * from './contracts/movies/index.ts';
 export type * from './contracts/oauth/index.ts';
+export type * from './contracts/people/index.ts';
 export type * from './contracts/recommendations/index.ts';
 export type * from './contracts/search/index.ts';
 export type * from './contracts/shows/index.ts';

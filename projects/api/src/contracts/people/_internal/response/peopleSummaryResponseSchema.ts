@@ -1,0 +1,60 @@
+import { z } from '../../../_internal/z.ts';
+
+export const peopleSummaryResponseSchema = z.object({
+  name: z.string(),
+  ids: z.object({
+    slug: z.string(),
+    trakt: z.number(),
+    tvdb: z.number().optional(),
+    imdb: z.string().optional(),
+    tmdb: z.number().optional(),
+  }),
+  /***
+   * Available if requesting extended `full`.
+   */
+  social_ids: z.object({
+    twitter: z.string().nullable(),
+    facebook: z.string().nullable(),
+    instagram: z.string().nullable(),
+    wikipedia: z.string().nullable(),
+  }).optional(),
+  /***
+   * Available if requesting extended `full`.
+   */
+  biography: z.string().optional(),
+  /***
+   * Available if requesting extended `full`.
+   */
+  birthday: z.string().optional(),
+  /***
+   * Available if requesting extended `full`.
+   */
+  death: z.string().nullable().optional(),
+  /***
+   * Available if requesting extended `full`.
+   */
+  birthplace: z.string().optional(),
+  /***
+   * Available if requesting extended `full`.
+   */
+  homepage: z.string().nullable().optional(),
+  /***
+   * Available if requesting extended `full`.
+   */
+  gender: z.enum(['male', 'female', 'non_binary']).nullable().optional(),
+  /***
+   * Available if requesting extended `full`.
+   */
+  known_for_department: z.string().optional(),
+  /***
+   * Available if requesting extended `full`.
+   */
+  updated_at: z.string().optional(),
+  /***
+   * Available if requesting extended `cloud9`.
+   */
+  images: z.object({
+    headshot: z.array(z.string()),
+    fanart: z.array(z.string()),
+  }).optional(),
+});

@@ -1,4 +1,5 @@
 import { z } from '../z.ts';
+import { characterResponseSchema } from './characterResponseSchema.ts';
 import { jobResponseSchema } from './jobResponseSchema.ts';
 
 const crewPositions = z.enum([
@@ -38,15 +39,13 @@ const personSchema = z.object({
 });
 
 export const castSchema = z.object({
-  character: z.string(),
-  characters: z.array(z.string()),
   episode_count: z.number().optional(),
   person: personSchema,
   /***
    * Available if requesting extended `cloud9`.
    */
   images: headshotSchema.optional(),
-});
+}).merge(characterResponseSchema);
 
 export const crewSchema = z.object({
   job: z.string(),

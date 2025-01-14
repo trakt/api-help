@@ -60,6 +60,7 @@ module.exports = {
         'show',
         'summary',
         'swagger',
+        'trending',
         'up-next',
         'upcoming',
         'user',

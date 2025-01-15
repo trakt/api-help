@@ -3,8 +3,10 @@ import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySc
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { sortQuerySchema } from '../_internal/request/sortQuerySchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
+import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
 import { historyRequestSchema } from './_internal/request/historyRequestSchema.ts';
+import { ratingsParamSchema } from './_internal/request/ratingsParamSchema.ts';
 import { watchlistRequestSchema } from './_internal/request/watchlistRequestSchema.ts';
 import { historyRemoveResponseSchema } from './_internal/response/historyRemoveResponseSchema.ts';
 import { historyResponseSchema } from './_internal/response/historyResponseSchema.ts';
@@ -67,10 +69,24 @@ const watchlist = builder.router({
   pathPrefix: '/watchlist',
 });
 
+const ratings = builder.router({
+  add: {
+    method: 'POST',
+    path: '',
+    body: ratingsParamSchema,
+    responses: {
+      201: ratingsResponseSchema,
+    },
+  },
+}, {
+  pathPrefix: '/ratings',
+});
+
 export const sync = builder.router({
   history,
   progress,
   watchlist,
+  ratings,
 }, { pathPrefix: '/sync' });
 
 export type UpNextResponse = z.infer<typeof upNextResponseSchema>;
@@ -80,3 +96,5 @@ export type HistoryResponse = z.infer<typeof historyResponseSchema>;
 
 export type WatchlistRequest = z.infer<typeof watchlistRequestSchema>;
 export type WatchlistResponse = z.infer<typeof watchlistResponseSchema>;
+
+export type RatingsResponse = z.infer<typeof ratingsResponseSchema>;

@@ -13,6 +13,8 @@ import {
 import { historyEpisodesResponseSchema } from './_internal/response/historyEpisodesResponseSchema.ts';
 import { historyMoviesResponseSchema } from './_internal/response/historyMoviesResponseSchema.ts';
 import { historyShowsResponseSchema } from './_internal/response/historyShowsResponseSchema.ts';
+import { ratedEpisodesResponseSchema } from './_internal/response/ratedEpisodesResponseSchema.ts';
+import { ratedMoviesResponseSchema } from './_internal/response/ratedMoviesResponseSchema.ts';
 import { settingsResponseSchema } from './_internal/response/settingsResponseSchema.ts';
 import type { watchActionSchema } from './_internal/response/watchActionSchema.ts';
 import { watchedMoviesResponseSchema } from './_internal/response/watchedMoviesResponseSchema.ts';
@@ -114,6 +116,28 @@ export const users = builder.router({
   }, {
     pathPrefix: '/:id/watchlist',
   }),
+  ratings: builder.router({
+    movies: {
+      path: '/movies',
+      pathParams: profileParamsSchema,
+      method: 'GET',
+      query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+      responses: {
+        200: ratedMoviesResponseSchema.array(),
+      },
+    },
+    episodes: {
+      path: '/episodes',
+      pathParams: profileParamsSchema,
+      method: 'GET',
+      query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+      responses: {
+        200: ratedEpisodesResponseSchema.array(),
+      },
+    },
+  }, {
+    pathPrefix: '/:id/ratings',
+  }),
 }, {
   pathPrefix: '/users',
 });
@@ -141,3 +165,6 @@ export type WatchlistedMoviesResponse = z.infer<
 export type WatchlistedShowsResponse = z.infer<
   typeof watchlistedShowsResponseSchema
 >;
+
+export type RatedMoviesResponse = z.infer<typeof ratedMoviesResponseSchema>;
+export type RatedEpisodesResponse = z.infer<typeof ratedEpisodesResponseSchema>;

@@ -5,9 +5,11 @@ import { sortQuerySchema } from '../_internal/request/sortQuerySchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
+import { favoriteParamSchema } from './_internal/request/favoritesParamSchema.ts';
 import { historyRequestSchema } from './_internal/request/historyRequestSchema.ts';
 import { ratingsParamSchema } from './_internal/request/ratingsParamSchema.ts';
 import { watchlistRequestSchema } from './_internal/request/watchlistRequestSchema.ts';
+import { favoritesResponseSchema } from './_internal/response/favoritesResponseSchema.ts';
 import { historyRemoveResponseSchema } from './_internal/response/historyRemoveResponseSchema.ts';
 import { historyResponseSchema } from './_internal/response/historyResponseSchema.ts';
 import { upNextResponseSchema } from './_internal/response/upNextResponseSchema.ts';
@@ -82,11 +84,25 @@ const ratings = builder.router({
   pathPrefix: '/ratings',
 });
 
+const favorites = builder.router({
+  add: {
+    method: 'POST',
+    path: '',
+    body: favoriteParamSchema,
+    responses: {
+      201: favoritesResponseSchema,
+    },
+  },
+}, {
+  pathPrefix: '/ratings',
+});
+
 export const sync = builder.router({
   history,
   progress,
   watchlist,
   ratings,
+  favorites,
 }, { pathPrefix: '/sync' });
 
 export type UpNextResponse = z.infer<typeof upNextResponseSchema>;
@@ -98,3 +114,4 @@ export type WatchlistRequest = z.infer<typeof watchlistRequestSchema>;
 export type WatchlistResponse = z.infer<typeof watchlistResponseSchema>;
 
 export type RatingsResponse = z.infer<typeof ratingsResponseSchema>;
+export type FavoritesResponse = z.infer<typeof favoritesResponseSchema>;

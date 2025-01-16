@@ -10,6 +10,8 @@ import {
   type sortEnumSchema,
   sortParamsSchema,
 } from './_internal/request/sortParamsSchema.ts';
+import { favoritedMoviesResponseSchema } from './_internal/response/favoritedMoviesResponseSchema.ts';
+import { favoritedShowsResponseSchema } from './_internal/response/favoritedShowsResponseSchema.ts';
 import { historyEpisodesResponseSchema } from './_internal/response/historyEpisodesResponseSchema.ts';
 import { historyMoviesResponseSchema } from './_internal/response/historyMoviesResponseSchema.ts';
 import { historyShowsResponseSchema } from './_internal/response/historyShowsResponseSchema.ts';
@@ -138,6 +140,28 @@ export const users = builder.router({
   }, {
     pathPrefix: '/:id/ratings',
   }),
+  favorites: builder.router({
+    movies: {
+      path: '/movies/:sort',
+      pathParams: profileParamsSchema.merge(sortParamsSchema),
+      method: 'GET',
+      query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+      responses: {
+        200: favoritedMoviesResponseSchema.array(),
+      },
+    },
+    shows: {
+      path: '/shows/:sort',
+      pathParams: profileParamsSchema.merge(sortParamsSchema),
+      method: 'GET',
+      query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+      responses: {
+        200: favoritedShowsResponseSchema.array(),
+      },
+    },
+  }, {
+    pathPrefix: '/:id/favorites',
+  }),
 }, {
   pathPrefix: '/users',
 });
@@ -168,3 +192,10 @@ export type WatchlistedShowsResponse = z.infer<
 
 export type RatedMoviesResponse = z.infer<typeof ratedMoviesResponseSchema>;
 export type RatedEpisodesResponse = z.infer<typeof ratedEpisodesResponseSchema>;
+
+export type FavoritedMoviesResponse = z.infer<
+  typeof favoritedMoviesResponseSchema
+>;
+export type FavoritedShowsResponse = z.infer<
+  typeof favoritedShowsResponseSchema
+>;

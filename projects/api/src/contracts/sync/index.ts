@@ -93,8 +93,16 @@ const favorites = builder.router({
       201: favoritesResponseSchema,
     },
   },
+  remove: {
+    method: 'POST',
+    path: '/remove',
+    body: favoriteParamSchema,
+    responses: {
+      201: favoritesResponseSchema,
+    },
+  },
 }, {
-  pathPrefix: '/ratings',
+  pathPrefix: '/favorites',
 });
 
 export const sync = builder.router({
@@ -113,5 +121,8 @@ export type HistoryResponse = z.infer<typeof historyResponseSchema>;
 export type WatchlistRequest = z.infer<typeof watchlistRequestSchema>;
 export type WatchlistResponse = z.infer<typeof watchlistResponseSchema>;
 
+export type RatingsRequest = z.infer<typeof ratingsParamSchema>;
 export type RatingsResponse = z.infer<typeof ratingsResponseSchema>;
+
+export type FavoritesRequest = z.infer<typeof favoriteParamSchema>;
 export type FavoritesResponse = z.infer<typeof favoritesResponseSchema>;

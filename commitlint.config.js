@@ -54,6 +54,7 @@ module.exports = {
         'out-now',
         'profile',
         'pr_gate',
+        'popular',
         'pwa',
         'readme',
         'recommendations',

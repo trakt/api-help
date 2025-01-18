@@ -57,7 +57,7 @@ module.exports = {
         'popular',
         'pwa',
         'readme',
-        'recommendations',
+        'recommended',
         'search',
         'show',
         'summary',

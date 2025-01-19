@@ -251,3 +251,4 @@ export type ShowCertificationResponse = z.infer<
 >;
 export type SeasonsResponse = z.infer<typeof seasonsResponseSchema>;
 export type SeasonResponse = z.infer<typeof episodeResponseSchema>[];
+export type EpisodeResponse = z.infer<typeof episodeResponseSchema>;

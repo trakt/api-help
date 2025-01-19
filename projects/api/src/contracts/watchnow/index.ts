@@ -18,5 +18,8 @@ export const watchnow = builder.router({
 });
 
 export type WatchNowSourcesResponse = z.infer<
+  typeof watchNowSourcesResponseSchema
+>;
+export type WatchNowSourceResponse = z.infer<
   typeof watchNowSourceResponseSchema
 >;

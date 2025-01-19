@@ -12,12 +12,12 @@ import { movieResponseSchema } from '../_internal/response/movieResponseSchema.t
 import { movieStatsResponseSchema } from '../_internal/response/movieStatsResponseSchema.ts';
 import { movieTrendingResponseSchema } from '../_internal/response/movieTrendingResponseSchema.ts';
 import {
-  castSchema,
+  type castSchema,
   type crewSchema,
   peopleResponseSchema,
 } from '../_internal/response/peopleResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
-import { statusResponseSchema } from '../_internal/response/statusResponseSchema.ts';
+import type { statusResponseSchema } from '../_internal/response/statusResponseSchema.ts';
 import { studioResponseSchema } from '../_internal/response/studioResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';

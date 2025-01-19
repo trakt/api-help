@@ -68,6 +68,7 @@ module.exports = {
         'user',
         'watchlist',
         'watched',
+        'watchnow',
         'tags',
         'requests',
       ],

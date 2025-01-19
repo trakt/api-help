@@ -1,6 +1,6 @@
 import { z } from '../z.ts';
 
-const sourceSchema = z.object({
+export const watchNowServiceResponseSchema = z.object({
   source: z.string(),
   link: z.string(),
   uhd: z.boolean(),
@@ -17,7 +17,7 @@ export const watchNowResponseSchema = z.record(
     cable: z.array(z.unknown()),
     free: z.array(z.unknown()),
     cinema: z.array(z.unknown()),
-    subscription: z.array(sourceSchema),
-    purchase: z.array(sourceSchema),
+    subscription: z.array(watchNowServiceResponseSchema),
+    purchase: z.array(watchNowServiceResponseSchema),
   }),
 );

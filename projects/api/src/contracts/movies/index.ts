@@ -1,9 +1,9 @@
 import { builder } from '../_internal/builder.ts';
-import { countryParamsSchema } from '../_internal/request/countryParamsSchema.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
+import { watchNowParamsSchema } from '../_internal/request/watchNowParamsSchema.ts';
 import type { genreResponseSchema } from '../_internal/response/genreResponseSchema.ts';
 import type { jobResponseSchema } from '../_internal/response/jobResponseSchema.ts';
 import { movieAnticipatedResponseSchema } from '../_internal/response/movieAnticipatedResponseSchema.ts';
@@ -21,8 +21,11 @@ import type { statusResponseSchema } from '../_internal/response/statusResponseS
 import { studioResponseSchema } from '../_internal/response/studioResponseSchema.ts';
 import { translationResponseSchema } from '../_internal/response/translationResponseSchema.ts';
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
-import { watchNowResponseSchema } from '../_internal/response/watchNowResponseSchema.ts';
-import type { z } from '../_internal/z.ts';
+import {
+  watchNowResponseSchema,
+  watchNowServiceResponseSchema,
+} from '../_internal/response/watchNowResponseSchema.ts';
+import { z } from '../_internal/z.ts';
 
 const ENTITY_LEVEL = builder.router({
   summary: {
@@ -87,7 +90,7 @@ const ENTITY_LEVEL = builder.router({
   watchnow: {
     path: '/watchnow/:country',
     method: 'GET',
-    pathParams: idParamsSchema.merge(countryParamsSchema),
+    pathParams: watchNowParamsSchema,
     responses: {
       200: watchNowResponseSchema,
     },
@@ -150,6 +153,9 @@ export type StatusResponse = z.infer<typeof statusResponseSchema>;
 export type Job = z.infer<typeof jobResponseSchema>;
 export type StudioResponse = z.infer<typeof studioResponseSchema>;
 export type WatchNowResponse = z.infer<typeof watchNowResponseSchema>;
+export type WatchNowServiceResponse = z.infer<
+  typeof watchNowServiceResponseSchema
+>;
 export type MovieStatsResponse = z.infer<typeof movieStatsResponseSchema>;
 export type PeopleResponse = z.infer<typeof peopleResponseSchema>;
 export type CrewResponse = z.infer<typeof crewSchema>;

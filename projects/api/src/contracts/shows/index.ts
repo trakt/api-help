@@ -1,10 +1,10 @@
 import { builder } from '../_internal/builder.ts';
-import { countryParamsSchema } from '../_internal/request/countryParamsSchema.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
+import { watchNowParamsSchema } from '../_internal/request/watchNowParamsSchema.ts';
 import { episodeResponseSchema } from '../_internal/response/episodeResponseSchema.ts';
 import { episodeTranslationResponseSchema } from '../_internal/response/episodeTranslationResponseSchema.ts';
 import { peopleResponseSchema } from '../_internal/response/peopleResponseSchema.ts';
@@ -101,7 +101,7 @@ const ENTITY_LEVEL = builder.router({
   watchnow: {
     path: '/watchnow/:country',
     method: 'GET',
-    pathParams: idParamsSchema.merge(countryParamsSchema),
+    pathParams: watchNowParamsSchema,
     responses: {
       200: watchNowResponseSchema,
     },

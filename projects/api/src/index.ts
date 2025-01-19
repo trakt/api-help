@@ -11,6 +11,7 @@ export type * from './contracts/search/index.ts';
 export type * from './contracts/shows/index.ts';
 export type * from './contracts/sync/index.ts';
 export type * from './contracts/users/index.ts';
+export type * from './contracts/watchnow/index.ts';
 
 export { Environment, traktContract };
 

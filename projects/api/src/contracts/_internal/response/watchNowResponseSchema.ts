@@ -6,8 +6,8 @@ const sourceSchema = z.object({
   uhd: z.boolean(),
   currency: z.string(),
   prices: z.object({
-    rent: z.string().optional(),
-    purchase: z.string().optional(),
+    rent: z.string().nullable().optional(),
+    purchase: z.string().nullable().optional(),
   }),
 });
 

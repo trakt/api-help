@@ -9,6 +9,7 @@ import { search } from './search/index.ts';
 import { shows } from './shows/index.ts';
 import { sync } from './sync/index.ts';
 import { users } from './users/index.ts';
+import { watchnow } from './watchnow/index.ts';
 
 export const traktContract = builder
   .router({
@@ -22,4 +23,5 @@ export const traktContract = builder
     shows,
     search,
     people,
+    watchnow,
   });

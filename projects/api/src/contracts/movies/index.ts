@@ -23,9 +23,9 @@ import { translationResponseSchema } from '../_internal/response/translationResp
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import {
   watchNowResponseSchema,
-  watchNowServiceResponseSchema,
+  type watchNowServiceResponseSchema,
 } from '../_internal/response/watchNowResponseSchema.ts';
-import { z } from '../_internal/z.ts';
+import type { z } from '../_internal/z.ts';
 
 const ENTITY_LEVEL = builder.router({
   summary: {

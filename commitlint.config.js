@@ -56,6 +56,7 @@ module.exports = {
         'pr_gate',
         'popular',
         'pwa',
+        'query',
         'readme',
         'recommended',
         'search',

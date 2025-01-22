@@ -41,6 +41,7 @@ module.exports = {
         'ds',
         'dropdown',
         'episode',
+        'favorite',
         'footer',
         'guards',
         'i18n',

@@ -122,7 +122,7 @@ export const settingsResponseSchema = z.object({
     date_format: z.string(),
     time_24hr: z.boolean(),
     cover_image: z.string().nullable(),
-    token: z.string().nullable().optional(),
+    token: z.string().nullish(),
     display_ads: z.boolean().optional(),
   }),
   connections: z.object({

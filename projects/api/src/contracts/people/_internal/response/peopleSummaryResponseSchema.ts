@@ -29,7 +29,7 @@ export const peopleSummaryResponseSchema = z.object({
   /***
    * Available if requesting extended `full`.
    */
-  death: z.string().nullable().optional(),
+  death: z.string().nullish(),
   /***
    * Available if requesting extended `full`.
    */
@@ -37,11 +37,11 @@ export const peopleSummaryResponseSchema = z.object({
   /***
    * Available if requesting extended `full`.
    */
-  homepage: z.string().nullable().optional(),
+  homepage: z.string().nullish(),
   /***
    * Available if requesting extended `full`.
    */
-  gender: z.enum(['male', 'female', 'non_binary']).nullable().optional(),
+  gender: z.enum(['male', 'female', 'non_binary']).nullish(),
   /***
    * Available if requesting extended `full`.
    */

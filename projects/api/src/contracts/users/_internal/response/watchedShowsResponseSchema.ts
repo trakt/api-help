@@ -5,7 +5,7 @@ export const watchedShowsResponseSchema = z.array(z.object({
   plays: z.number(),
   last_watched_at: z.string(),
   last_updated_at: z.string(),
-  reset_at: z.string().nullable().optional(),
+  reset_at: z.string().nullish(),
   show: z.object({
     aired_episodes: z.number(),
     title: z.string(),

@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { sortDirectionSchema } from '../../../_internal/response/sortDirectionSchema.ts';
+import { upNextSortBySchema } from '../../../_internal/response/upNextSortBySchema.ts';
 import { watchActionSchema } from './watchActionSchema.ts';
 
 export const settingsResponseSchema = z.object({
@@ -54,7 +55,7 @@ export const settingsResponseSchema = z.object({
     }),
     progress: z.object({
       on_deck: z.object({
-        sort: z.string(),
+        sort: upNextSortBySchema,
         sort_how: sortDirectionSchema,
         refresh: z.boolean(),
         simple_progress: z.boolean(),

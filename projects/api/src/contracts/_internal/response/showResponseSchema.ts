@@ -10,7 +10,7 @@ export const showResponseSchema = z.object({
   year: z.number().optional(),
   ids: showIdsResponseSchema,
   /***
-   * Available if requesting extended `cloud9`.
+   * Available if requesting extended `images`.
    */
   images: imagesResponseSchema.optional(),
   /**

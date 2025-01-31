@@ -51,7 +51,7 @@ export const peopleSummaryResponseSchema = z.object({
    */
   updated_at: z.string().optional(),
   /***
-   * Available if requesting extended `cloud9`.
+   * Available if requesting extended `images`.
    */
   images: z.object({
     headshot: z.array(z.string()),

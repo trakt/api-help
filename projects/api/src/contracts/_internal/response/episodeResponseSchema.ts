@@ -50,7 +50,7 @@ export const episodeResponseSchema = z.object({
     .optional(),
   ids: episodeIdsResponseSchema,
   /***
-   * Available if requesting extended `cloud9`.
+   * Available if requesting extended `images`.
    */
   images: z
     .object({ screenshot: z.array(z.string()) })

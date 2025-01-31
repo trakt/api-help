@@ -66,7 +66,7 @@ export const users = builder.router({
       path: '/movies',
       method: 'GET',
       pathParams: profileParamsSchema,
-      query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+      query: extendedQuerySchemaFactory<['full', 'images']>()
         .merge(dateRangeParamsSchema)
         .merge(pageQuerySchema),
       responses: {
@@ -76,7 +76,7 @@ export const users = builder.router({
     shows: {
       path: '/shows',
       method: 'GET',
-      query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+      query: extendedQuerySchemaFactory<['full', 'images']>()
         .merge(dateRangeParamsSchema)
         .merge(pageQuerySchema),
       responses: {
@@ -86,7 +86,7 @@ export const users = builder.router({
     episodes: {
       path: '/episodes',
       method: 'GET',
-      query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+      query: extendedQuerySchemaFactory<['full', 'images']>()
         .merge(dateRangeParamsSchema)
         .merge(pageQuerySchema),
       responses: {
@@ -101,7 +101,7 @@ export const users = builder.router({
       path: '/movies/:sort',
       pathParams: profileParamsSchema.merge(sortParamsSchema),
       method: 'GET',
-      query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+      query: extendedQuerySchemaFactory<['full', 'images']>()
         .merge(pageQuerySchema),
       responses: {
         200: watchlistedMoviesResponseSchema.array(),
@@ -111,7 +111,7 @@ export const users = builder.router({
       path: '/shows/:sort',
       pathParams: profileParamsSchema.merge(sortParamsSchema),
       method: 'GET',
-      query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+      query: extendedQuerySchemaFactory<['full', 'images']>()
         .merge(pageQuerySchema),
       responses: {
         200: watchlistedShowsResponseSchema.array(),
@@ -125,7 +125,7 @@ export const users = builder.router({
       path: '/movies',
       pathParams: profileParamsSchema,
       method: 'GET',
-      query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+      query: extendedQuerySchemaFactory<['full', 'images']>(),
       responses: {
         200: ratedMoviesResponseSchema.array(),
       },
@@ -134,7 +134,7 @@ export const users = builder.router({
       path: '/episodes',
       pathParams: profileParamsSchema,
       method: 'GET',
-      query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+      query: extendedQuerySchemaFactory<['full', 'images']>(),
       responses: {
         200: ratedEpisodesResponseSchema.array(),
       },
@@ -147,7 +147,7 @@ export const users = builder.router({
       path: '/movies/:sort',
       pathParams: profileParamsSchema.merge(sortParamsSchema),
       method: 'GET',
-      query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+      query: extendedQuerySchemaFactory<['full', 'images']>(),
       responses: {
         200: favoritedMoviesResponseSchema.array(),
       },
@@ -156,7 +156,7 @@ export const users = builder.router({
       path: '/shows/:sort',
       pathParams: profileParamsSchema.merge(sortParamsSchema),
       method: 'GET',
-      query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+      query: extendedQuerySchemaFactory<['full', 'images']>(),
       responses: {
         200: favoritedShowsResponseSchema.array(),
       },

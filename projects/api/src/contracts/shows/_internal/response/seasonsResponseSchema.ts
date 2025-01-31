@@ -44,7 +44,7 @@ export const seasonsResponseSchema = z.array(
      */
     network: z.string().optional(),
     /**
-     * Available if requesting extended `cloud9`.
+     * Available if requesting extended `images`.
      */
     images: z.object({
       poster: z.array(z.string()),

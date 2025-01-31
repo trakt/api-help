@@ -17,7 +17,7 @@ export const search = builder.router({
       ['movie', 'show']
     >(),
     query: searchQuerySchema.merge(
-      extendedQuerySchemaFactory<['full,cloud9']>(),
+      extendedQuerySchemaFactory<['full,images']>(),
     ),
     responses: {
       200: searchResultResponseSchema,

@@ -10,7 +10,7 @@ export const people = builder.router({
   summary: {
     path: '/',
     pathParams: idParamsSchema,
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     method: 'GET',
     responses: {
       200: peopleSummaryResponseSchema,
@@ -19,7 +19,7 @@ export const people = builder.router({
   movies: {
     path: '/movies',
     pathParams: idParamsSchema,
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     method: 'GET',
     responses: {
       200: peopleMovieCreditsResponseSchema,
@@ -28,7 +28,7 @@ export const people = builder.router({
   shows: {
     path: '/shows',
     pathParams: idParamsSchema,
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     method: 'GET',
     responses: {
       200: peopleShowCreditsResponseSchema,

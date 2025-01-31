@@ -9,7 +9,7 @@ export const calendars = builder.router({
   shows: {
     method: 'GET',
     path: '/:target/shows/:start_date/:days',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     pathParams: calendarRequestParamsSchema,
     responses: {
       200: calendarShowListResponseSchema,
@@ -18,7 +18,7 @@ export const calendars = builder.router({
   newShows: {
     method: 'GET',
     path: '/:target/shows/new/:start_date/:days',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     pathParams: calendarRequestParamsSchema,
     responses: {
       200: calendarShowListResponseSchema,
@@ -27,7 +27,7 @@ export const calendars = builder.router({
   seasonPremieres: {
     method: 'GET',
     path: '/:target/shows/premieres/:start_date/:days',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     pathParams: calendarRequestParamsSchema,
     responses: {
       200: calendarShowListResponseSchema,
@@ -36,7 +36,7 @@ export const calendars = builder.router({
   finales: {
     method: 'GET',
     path: '/:target/shows/finales/:start_date/:days',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     pathParams: calendarRequestParamsSchema,
     responses: {
       200: calendarShowListResponseSchema,
@@ -45,7 +45,7 @@ export const calendars = builder.router({
   movies: {
     method: 'GET',
     path: '/:target/movies/:start_date/:days',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     pathParams: calendarRequestParamsSchema,
     responses: {
       200: movieResponseSchema.array(),
@@ -54,7 +54,7 @@ export const calendars = builder.router({
   dvdReleases: {
     method: 'GET',
     path: '/:target/dvd/:start_date/:days',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     pathParams: calendarRequestParamsSchema,
     responses: {
       200: movieResponseSchema.array(),

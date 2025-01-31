@@ -19,7 +19,7 @@ const progress = builder.router({
   upNext: {
     method: 'GET',
     path: '/up_next',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+    query: extendedQuerySchemaFactory<['full', 'images']>()
       .merge(pageQuerySchema)
       .merge(sortQuerySchema)
       .merge(statsQuerySchema),

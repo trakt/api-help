@@ -31,7 +31,7 @@ const ENTITY_LEVEL = builder.router({
   summary: {
     path: '',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     pathParams: idParamsSchema,
     responses: {
       200: movieResponseSchema,
@@ -65,7 +65,7 @@ const ENTITY_LEVEL = builder.router({
   related: {
     path: '/related',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     pathParams: idParamsSchema,
     responses: {
       200: movieResponseSchema.array(),
@@ -98,7 +98,7 @@ const ENTITY_LEVEL = builder.router({
   people: {
     path: '/people',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['cloud9']>(),
+    query: extendedQuerySchemaFactory<['images']>(),
     pathParams: idParamsSchema,
     responses: {
       200: peopleResponseSchema,
@@ -112,7 +112,7 @@ const GLOBAL_LEVEL = builder.router({
   trending: {
     path: '/trending',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+    query: extendedQuerySchemaFactory<['full', 'images']>()
       .merge(pageQuerySchema),
     responses: {
       200: movieTrendingResponseSchema.array(),
@@ -121,7 +121,7 @@ const GLOBAL_LEVEL = builder.router({
   anticipated: {
     path: '/anticipated',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+    query: extendedQuerySchemaFactory<['full', 'images']>()
       .merge(pageQuerySchema),
     responses: {
       200: movieAnticipatedResponseSchema.array(),
@@ -130,7 +130,7 @@ const GLOBAL_LEVEL = builder.router({
   popular: {
     path: '/popular',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+    query: extendedQuerySchemaFactory<['full', 'images']>()
       .merge(pageQuerySchema),
     responses: {
       200: movieResponseSchema.array(),

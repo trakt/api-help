@@ -31,7 +31,7 @@ const personSchema = z.object({
     tmdb: z.number().nullable(),
   }),
   /***
-   * Available if requesting extended `cloud9`.
+   * Available if requesting extended `images`.
    */
   images: headshotSchema.extend({
     fanart: z.array(z.string()),
@@ -42,7 +42,7 @@ export const castSchema = z.object({
   episode_count: z.number().optional(),
   person: personSchema,
   /***
-   * Available if requesting extended `cloud9`.
+   * Available if requesting extended `images`.
    */
   images: headshotSchema.optional(),
 }).merge(characterResponseSchema);
@@ -53,7 +53,7 @@ export const crewSchema = z.object({
   person: personSchema,
   episode_count: z.number().optional(),
   /***
-   * Available if requesting extended `cloud9`.
+   * Available if requesting extended `images`.
    */
   images: headshotSchema.optional(),
 });

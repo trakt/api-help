@@ -29,7 +29,7 @@ const ENTITY_LEVEL = builder.router({
   summary: {
     path: '',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     pathParams: idParamsSchema,
     responses: {
       200: showResponseSchema,
@@ -57,7 +57,7 @@ const ENTITY_LEVEL = builder.router({
       path: '/progress/watched',
       method: 'GET',
       pathParams: idParamsSchema,
-      query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+      query: extendedQuerySchemaFactory<['full', 'images']>()
         .merge(showQueryParamsSchema)
         .merge(statsQuerySchema),
       responses: {
@@ -77,7 +77,7 @@ const ENTITY_LEVEL = builder.router({
     path: '/related',
     method: 'GET',
     pathParams: idParamsSchema,
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     responses: {
       200: showResponseSchema.array(),
     },
@@ -109,7 +109,7 @@ const ENTITY_LEVEL = builder.router({
   people: {
     path: '/people',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['cloud9']>(),
+    query: extendedQuerySchemaFactory<['images']>(),
     pathParams: idParamsSchema,
     responses: {
       200: peopleResponseSchema,
@@ -118,7 +118,7 @@ const ENTITY_LEVEL = builder.router({
   seasons: {
     path: '/seasons',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     pathParams: idParamsSchema,
     responses: {
       200: seasonsResponseSchema,
@@ -127,7 +127,7 @@ const ENTITY_LEVEL = builder.router({
   episodes: {
     path: '/seasons/:season',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
     pathParams: idParamsSchema
       .merge(seasonParamsSchema),
     responses: {
@@ -138,7 +138,7 @@ const ENTITY_LEVEL = builder.router({
     summary: {
       path: '/seasons/:season/episodes/:episode',
       method: 'GET',
-      query: extendedQuerySchemaFactory<['full', 'cloud9']>(),
+      query: extendedQuerySchemaFactory<['full', 'images']>(),
       pathParams: idParamsSchema
         .merge(seasonParamsSchema)
         .merge(episodeParamsSchema),
@@ -197,7 +197,7 @@ const GLOBAL_LEVEL = builder.router({
   trending: {
     path: '/trending',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+    query: extendedQuerySchemaFactory<['full', 'images']>()
       .merge(pageQuerySchema),
     responses: {
       200: showTrendingResponseSchema.array(),
@@ -206,7 +206,7 @@ const GLOBAL_LEVEL = builder.router({
   anticipated: {
     path: '/anticipated',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+    query: extendedQuerySchemaFactory<['full', 'images']>()
       .merge(pageQuerySchema),
     responses: {
       200: showAnticipatedResponseSchema.array(),
@@ -215,7 +215,7 @@ const GLOBAL_LEVEL = builder.router({
   popular: {
     path: '/popular',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['full', 'cloud9']>()
+    query: extendedQuerySchemaFactory<['full', 'images']>()
       .merge(pageQuerySchema),
     responses: {
       200: showResponseSchema.array(),

@@ -6,6 +6,7 @@ export const episodeResponseSchema = z.object({
   number: z.number(),
   title: z.string(),
   first_aired: z.string(),
+  number_abs: z.number().nullable(),
   /***
    * Available if requesting extended `full`.
    */
@@ -33,7 +34,7 @@ export const episodeResponseSchema = z.object({
   /***
    * Available if requesting extended `full`.
    */
-  overview: z.string(),
+  overview: z.string().nullable(),
   /***
    * Available if requesting extended `full`.
    */

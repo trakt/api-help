@@ -6,6 +6,8 @@ export const peopleShowCreditsResponseSchema = z.object({
   cast: z.array(
     z.object({
       show: showResponseSchema,
+      episode_count: z.number(),
+      series_regular: z.boolean(),
     }).merge(characterResponseSchema),
   ).optional(),
 });

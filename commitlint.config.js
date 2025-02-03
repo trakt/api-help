@@ -40,6 +40,7 @@ module.exports = {
         'contrib',
         'ds',
         'dropdown',
+        'e2e',
         'episode',
         'favorite',
         'footer',

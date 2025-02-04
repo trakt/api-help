@@ -1,9 +1,11 @@
 import { builder } from '../_internal/builder.ts';
+import { commentsSortParamsSchema } from '../_internal/request/commentsSortParamsSchema.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { watchNowParamsSchema } from '../_internal/request/watchNowParamsSchema.ts';
+import { commentReponseSchema } from '../_internal/response/commentResponseSchema.ts';
 import type { genreResponseSchema } from '../_internal/response/genreResponseSchema.ts';
 import type { jobResponseSchema } from '../_internal/response/jobResponseSchema.ts';
 import { listResponseSchema } from '../_internal/response/listResponseSchema.ts';
@@ -119,6 +121,15 @@ const ENTITY_LEVEL = builder.router({
       200: listResponseSchema.array(),
     },
   },
+  comments: {
+    path: '/comments/:sort',
+    method: 'GET',
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
+    pathParams: idParamsSchema.merge(commentsSortParamsSchema),
+    responses: {
+      200: commentReponseSchema.array(),
+    },
+  },
 }, {
   pathPrefix: '/:id',
 });
@@ -176,6 +187,7 @@ export type PeopleResponse = z.infer<typeof peopleResponseSchema>;
 export type CrewResponse = z.infer<typeof crewSchema>;
 export type CastResponse = z.infer<typeof castSchema>;
 export type ListResponse = z.infer<typeof listResponseSchema>;
+export type CommentResponse = z.infer<typeof commentReponseSchema>;
 
 export type MovieTranslationResponse = z.infer<
   typeof translationResponseSchema

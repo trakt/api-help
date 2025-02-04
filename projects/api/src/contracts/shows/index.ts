@@ -1,10 +1,12 @@
 import { builder } from '../_internal/builder.ts';
+import { commentsSortParamsSchema } from '../_internal/request/commentsSortParamsSchema.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import { watchNowParamsSchema } from '../_internal/request/watchNowParamsSchema.ts';
+import { commentReponseSchema } from '../_internal/response/commentResponseSchema.ts';
 import { episodeResponseSchema } from '../_internal/response/episodeResponseSchema.ts';
 import { episodeStatsResponseSchema } from '../_internal/response/episodeStatsResponseSchema.ts';
 import { episodeTranslationResponseSchema } from '../_internal/response/episodeTranslationResponseSchema.ts';
@@ -203,6 +205,15 @@ const ENTITY_LEVEL = builder.router({
       .merge(listTypeSchema),
     responses: {
       200: listResponseSchema.array(),
+    },
+  },
+  comments: {
+    path: '/comments/:sort',
+    method: 'GET',
+    pathParams: idParamsSchema.merge(commentsSortParamsSchema),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
+    responses: {
+      200: commentReponseSchema.array(),
     },
   },
 }, {

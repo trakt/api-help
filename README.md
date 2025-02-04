@@ -54,13 +54,6 @@ certain API limitations:
 These restrictions are implemented as part of Trakt's API security measures to
 prevent abuse from automated scrapers and unauthorized access.
 
-For the best development experience, we recommend using your own application
-credentials.
-fall into the wrong hands, would we?
-
-Now go forth and code with the fury of a thousand suns! The future of Trakt Lite
-awaits your brilliance. ✨
-
 ## Getting Started
 
 This is a Deno project, so you need to have Deno installed on your machine

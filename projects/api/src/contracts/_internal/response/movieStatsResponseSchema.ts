@@ -1,12 +1,7 @@
 import { z } from '../z.ts';
+import { episodeStatsResponseSchema } from './episodeStatsResponseSchema.ts';
 
-export const movieStatsResponseSchema = z.object({
-  watchers: z.number(),
-  plays: z.number(),
-  collectors: z.number(),
-  comments: z.number(),
-  lists: z.number(),
-  votes: z.number(),
+export const movieStatsResponseSchema = episodeStatsResponseSchema.extend({
   favorited: z.number(),
   recommended: z.number(),
 });

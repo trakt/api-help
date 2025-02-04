@@ -6,6 +6,7 @@ import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import { watchNowParamsSchema } from '../_internal/request/watchNowParamsSchema.ts';
 import { episodeResponseSchema } from '../_internal/response/episodeResponseSchema.ts';
+import { episodeStatsResponseSchema } from '../_internal/response/episodeStatsResponseSchema.ts';
 import { episodeTranslationResponseSchema } from '../_internal/response/episodeTranslationResponseSchema.ts';
 import { peopleResponseSchema } from '../_internal/response/peopleResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
@@ -164,7 +165,7 @@ const ENTITY_LEVEL = builder.router({
         .merge(seasonParamsSchema)
         .merge(episodeParamsSchema),
       responses: {
-        200: showStatsResponseSchema,
+        200: episodeStatsResponseSchema,
       },
     },
     ratings: {
@@ -252,3 +253,4 @@ export type ShowCertificationResponse = z.infer<
 export type SeasonsResponse = z.infer<typeof seasonsResponseSchema>;
 export type SeasonResponse = z.infer<typeof episodeResponseSchema>[];
 export type EpisodeResponse = z.infer<typeof episodeResponseSchema>;
+export type EpisodeStatsResponse = z.infer<typeof episodeStatsResponseSchema>;

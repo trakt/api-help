@@ -32,6 +32,7 @@ module.exports = {
       [
         'api',
         'anticipated',
+        'analytics',
         'auth',
         'button',
         'card',

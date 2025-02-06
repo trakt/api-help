@@ -17,14 +17,24 @@ import { watchlistResponseSchema } from './_internal/response/watchlistResponseS
 
 const progress = builder.router({
   upNext: {
-    method: 'GET',
-    path: '/up_next',
-    query: extendedQuerySchemaFactory<['full', 'images']>()
-      .merge(pageQuerySchema)
-      .merge(sortQuerySchema)
-      .merge(statsQuerySchema),
-    responses: {
-      200: upNextResponseSchema,
+    standard: {
+      method: 'GET',
+      path: '/up_next',
+      query: extendedQuerySchemaFactory<['full', 'images']>()
+        .merge(pageQuerySchema)
+        .merge(sortQuerySchema)
+        .merge(statsQuerySchema),
+      responses: {
+        200: upNextResponseSchema,
+      },
+    },
+    nitro: {
+      method: 'GET',
+      path: '/up_next_nitro',
+      query: pageQuerySchema,
+      responses: {
+        200: upNextResponseSchema,
+      },
     },
   },
 }, { pathPrefix: '/progress' });

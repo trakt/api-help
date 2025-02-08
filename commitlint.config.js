@@ -58,6 +58,7 @@ module.exports = {
         'profile',
         'pr_gate',
         'popular',
+        'popup',
         'pwa',
         'query',
         'rating',

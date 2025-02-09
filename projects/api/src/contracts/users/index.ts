@@ -1,6 +1,8 @@
 import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
+import { listedMovieResponseSchema } from '../_internal/response/listedMovieResponseShema.ts';
+import { listedShowResponseSchema } from '../_internal/response/listedShowResponseSchema.ts';
 import type { sortDirectionSchema } from '../_internal/response/sortDirectionSchema.ts';
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
@@ -21,8 +23,6 @@ import { settingsResponseSchema } from './_internal/response/settingsResponseSch
 import type { watchActionSchema } from './_internal/response/watchActionSchema.ts';
 import { watchedMoviesResponseSchema } from './_internal/response/watchedMoviesResponseSchema.ts';
 import { watchedShowsResponseSchema } from './_internal/response/watchedShowsResponseSchema.ts';
-import { watchlistedMoviesResponseSchema } from './_internal/response/watchlistedMoviesResponseSchema.ts';
-import { watchlistedShowsResponseSchema } from './_internal/response/watchlistedShowsResponseSchema.ts';
 
 export const users = builder.router({
   profile: {
@@ -104,7 +104,7 @@ export const users = builder.router({
       query: extendedQuerySchemaFactory<['full', 'images']>()
         .merge(pageQuerySchema),
       responses: {
-        200: watchlistedMoviesResponseSchema.array(),
+        200: listedMovieResponseSchema.array(),
       },
     },
     shows: {
@@ -114,7 +114,7 @@ export const users = builder.router({
       query: extendedQuerySchemaFactory<['full', 'images']>()
         .merge(pageQuerySchema),
       responses: {
-        200: watchlistedShowsResponseSchema.array(),
+        200: listedShowResponseSchema.array(),
       },
     },
   }, {
@@ -185,11 +185,11 @@ export type HistoryEpisodesResponse = z.infer<
   typeof historyEpisodesResponseSchema
 >;
 
-export type WatchlistedMoviesResponse = z.infer<
-  typeof watchlistedMoviesResponseSchema
+export type ListedMovieResponse = z.infer<
+  typeof listedMovieResponseSchema
 >;
-export type WatchlistedShowsResponse = z.infer<
-  typeof watchlistedShowsResponseSchema
+export type ListedShowResponse = z.infer<
+  typeof listedShowResponseSchema
 >;
 
 export type RatedMoviesResponse = z.infer<typeof ratedMoviesResponseSchema>;

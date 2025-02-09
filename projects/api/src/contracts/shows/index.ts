@@ -8,6 +8,9 @@ import { watchNowParamsSchema } from '../_internal/request/watchNowParamsSchema.
 import { episodeResponseSchema } from '../_internal/response/episodeResponseSchema.ts';
 import { episodeStatsResponseSchema } from '../_internal/response/episodeStatsResponseSchema.ts';
 import { episodeTranslationResponseSchema } from '../_internal/response/episodeTranslationResponseSchema.ts';
+import { listResponseSchema } from '../_internal/response/listResponseSchema.ts';
+import { listSortSchema } from '../_internal/response/listSortSchema.ts';
+import { listTypeSchema } from '../_internal/response/listTypeSchema.ts';
 import { peopleResponseSchema } from '../_internal/response/peopleResponseSchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import { showAnticipatedResponseSchema } from '../_internal/response/showAnticipatedResponseSchema.ts';
@@ -190,6 +193,18 @@ const ENTITY_LEVEL = builder.router({
       },
     },
   }),
+  lists: {
+    path: '/lists/:type/:sort',
+    method: 'GET',
+    query: extendedQuerySchemaFactory<['images']>()
+      .merge(pageQuerySchema),
+    pathParams: idParamsSchema
+      .merge(listSortSchema)
+      .merge(listTypeSchema),
+    responses: {
+      200: listResponseSchema.array(),
+    },
+  },
 }, {
   pathPrefix: '/:id',
 });

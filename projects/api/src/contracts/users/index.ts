@@ -194,10 +194,3 @@ export type WatchlistedShowsResponse = z.infer<
 
 export type RatedMoviesResponse = z.infer<typeof ratedMoviesResponseSchema>;
 export type RatedEpisodesResponse = z.infer<typeof ratedEpisodesResponseSchema>;
-
-export type FavoritedMoviesResponse = z.infer<
-  typeof favoritedMoviesResponseSchema
->;
-export type FavoritedShowsResponse = z.infer<
-  typeof favoritedShowsResponseSchema
->;

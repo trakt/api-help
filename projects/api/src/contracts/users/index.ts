@@ -8,6 +8,7 @@ import { profileResponseSchema } from '../_internal/response/userProfileResponse
 import type { z } from '../_internal/z.ts';
 import { dateRangeParamsSchema } from './_internal/request/dateRangeParamsSchema.ts';
 import { profileParamsSchema } from './_internal/request/profileParamsSchema.ts';
+import { socialActivityParamsSchema } from './_internal/request/socialActivityParamsSchema.ts';
 import {
   type sortEnumSchema,
   sortParamsSchema,
@@ -20,6 +21,7 @@ import { historyShowsResponseSchema } from './_internal/response/historyShowsRes
 import { ratedEpisodesResponseSchema } from './_internal/response/ratedEpisodesResponseSchema.ts';
 import { ratedMoviesResponseSchema } from './_internal/response/ratedMoviesResponseSchema.ts';
 import { settingsResponseSchema } from './_internal/response/settingsResponseSchema.ts';
+import { socialActivityResponseSchema } from './_internal/response/socialActivityResponseSchema.ts';
 import type { watchActionSchema } from './_internal/response/watchActionSchema.ts';
 import { watchedMoviesResponseSchema } from './_internal/response/watchedMoviesResponseSchema.ts';
 import { watchedShowsResponseSchema } from './_internal/response/watchedShowsResponseSchema.ts';
@@ -31,6 +33,16 @@ export const users = builder.router({
     pathParams: profileParamsSchema,
     responses: {
       200: profileResponseSchema,
+    },
+  },
+  activities: {
+    path: '/:id/:type/activities',
+    method: 'GET',
+    pathParams: profileParamsSchema.merge(socialActivityParamsSchema),
+    query: extendedQuerySchemaFactory<['full', 'images']>()
+      .merge(pageQuerySchema),
+    responses: {
+      200: socialActivityResponseSchema.array(),
     },
   },
   settings: {
@@ -194,3 +206,7 @@ export type ListedShowResponse = z.infer<
 
 export type RatedMoviesResponse = z.infer<typeof ratedMoviesResponseSchema>;
 export type RatedEpisodesResponse = z.infer<typeof ratedEpisodesResponseSchema>;
+
+export type SocialActivityResponse = z.infer<
+  typeof socialActivityResponseSchema
+>;

@@ -52,21 +52,23 @@ jobs:
         with:
           deno-version: v2.x
 
-      - name: Gathering the Sacred Artifacts aka Install Dependencies
+      - name: The Sacred Assembly aka Install Dependencies
         run: 'deno task install'
 
-      - name: The Prophecy's Validation aka Validate OpenAPI
+      - name: The Scroll's Scrutiny aka Validate OpenAPI
         if: ${{
           needs.files-changed.outputs.api_source == 'true' ||
           needs.files-changed.outputs.openapi == 'true'
           }}
         run: deno task openapi:validate
 
-      - name: Transcribing the Ancient Knowledge aka Generate OpenAPI
+      - name: The Sacred Transcription aka Generate OpenAPI
+        if: github.ref == 'refs/heads/main'
         run: deno task generate
         working-directory: projects/openapi
 
       - name: Preserving the Sacred Texts aka Upload Definition
+        if: github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v4
         with:
           name: openapi

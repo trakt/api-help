@@ -2,7 +2,8 @@
   "tasks": {
     "start": "deno serve main.ts",
     "dev": "deno serve --watch main.ts",
-    "validate": "deno run --allow-read validate.ts"
+    "validate": "deno run --allow-read validate.ts",
+    "generate": "deno run --allow-read --allow-write generate.ts"
   },
   "imports": {
     "@hono/swagger-ui": "npm:@hono/swagger-ui@^0.5.0",

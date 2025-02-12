@@ -92,6 +92,7 @@ const ENTITY_LEVEL = builder.router({
     path: '/watching',
     method: 'GET',
     pathParams: idParamsSchema,
+    query: extendedQuerySchemaFactory<['full']>(),
     responses: {
       200: profileResponseSchema.array(),
     },
@@ -190,6 +191,7 @@ const ENTITY_LEVEL = builder.router({
       pathParams: idParamsSchema
         .merge(seasonParamsSchema)
         .merge(episodeParamsSchema),
+      query: extendedQuerySchemaFactory<['full']>(),
       responses: {
         200: profileResponseSchema.array(),
       },

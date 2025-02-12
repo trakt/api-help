@@ -10,7 +10,8 @@
     "format": "deno fmt && deno lint --fix",
     "swagger": "cd projects/swagger && deno task start",
     "swagger:dev": "cd projects/swagger && deno task dev",
-    "playground:dev": "cd projects/playground && deno run dev"
+    "swagger:validate": "cd projects/swagger && deno task validate",
+    "playground:dev": "cd projects/playground && deno task dev",
   },
   "fmt": {
     "singleQuote": true,

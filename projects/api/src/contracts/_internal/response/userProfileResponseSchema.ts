@@ -3,6 +3,7 @@ import { z } from '../z.ts';
 export const profileResponseSchema = z.object({
   username: z.string(),
   private: z.boolean(),
+  deleted: z.boolean(),
   name: z.string(),
   vip: z.boolean(),
   vip_ep: z.boolean(),

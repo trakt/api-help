@@ -36,17 +36,42 @@ jobs:
             api_source:
               - 'projects/api/src/**'
               - 'projects/api/deno.json'
-            client_source:
-              - 'projects/client/src/**'
-              - 'projects/client/i18n/**'
-              - 'projects/client/static/**'
-              - 'projects/client/package.json'
-              - 'projects/client/deno.json'
-              - 'projects/client/svelte.config.js'
-              - 'projects/client/vite.config.ts'
-              - 'projects/client/wrangler.toml'
-            workflows:
-              - '.github/workflows/**'
+            openapi:
+              - 'projects/swagger/*'
+
+  openapi:
+    needs: files-changed
+    name: The Oracle of Documentation (OpenAPI)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Secure the Evidence aka Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Summon the Digital Oracle aka Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Gather the Tools aka Install Dependencies
+        run: 'deno task install'
+
+      - name: Validate OpenAPI Output
+        if: ${{
+          needs.files-changed.outputs.api_source == 'true' ||
+          needs.files-changed.outputs.openapi == 'true'
+          }}
+        run: deno task validate:openapi
+
+      - name: Generate OpenAPI JSON definition
+        run: deno task generate
+        working-directory: projects/openapi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: openapi
+          path: projects/swagger/openapi.json
+          if-no-files-found: error
+          retention-days: 30
 
   test:
     needs: files-changed

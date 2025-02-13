@@ -1,12 +1,16 @@
 import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
+import { sortQuerySchema } from '../_internal/request/sortQuerySchema.ts';
 import { listedMovieResponseSchema } from '../_internal/response/listedMovieResponseShema.ts';
 import { listedShowResponseSchema } from '../_internal/response/listedShowResponseSchema.ts';
+import { listResponseSchema } from '../_internal/response/listResponseSchema.ts';
 import type { sortDirectionSchema } from '../_internal/response/sortDirectionSchema.ts';
 import { profileResponseSchema } from '../_internal/response/userProfileResponseSchema.ts';
-import type { z } from '../_internal/z.ts';
+import { z } from '../_internal/z.ts';
+import { searchTypeParamFactory } from '../search/_internal/request/searchTypeParamFactory.ts';
 import { dateRangeParamsSchema } from './_internal/request/dateRangeParamsSchema.ts';
+import { listParamsSchema } from './_internal/request/listParamsSchema.ts';
 import { profileParamsSchema } from './_internal/request/profileParamsSchema.ts';
 import { socialActivityParamsSchema } from './_internal/request/socialActivityParamsSchema.ts';
 import {
@@ -175,6 +179,37 @@ export const users = builder.router({
     },
   }, {
     pathPrefix: '/:id/favorites',
+  }),
+  lists: builder.router({
+    summary: {
+      path: '',
+      method: 'GET',
+      pathParams: profileParamsSchema.merge(listParamsSchema),
+      query: extendedQuerySchemaFactory<['full', 'images']>(),
+      responses: {
+        200: listResponseSchema,
+      },
+    },
+    items: {
+      path: '/items/:type',
+      method: 'GET',
+      pathParams: profileParamsSchema
+        .merge(listParamsSchema)
+        .merge(
+          searchTypeParamFactory<
+            ['movie', 'show']
+          >(),
+        ),
+      query: extendedQuerySchemaFactory<['full', 'images']>()
+        .merge(pageQuerySchema)
+        .merge(sortQuerySchema),
+      responses: {
+        200: z.union([listedMovieResponseSchema, listedShowResponseSchema])
+          .array(),
+      },
+    },
+  }, {
+    pathPrefix: '/:id/lists/:list_id',
   }),
 }, {
   pathPrefix: '/users',

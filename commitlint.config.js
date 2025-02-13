@@ -67,6 +67,7 @@ module.exports = {
         'recommended',
         'search',
         'show',
+        'social',
         'spoiler',
         'summary',
         'trending',

@@ -1,22 +1,7 @@
 import { z } from '../z.ts';
 import { characterResponseSchema } from './characterResponseSchema.ts';
-import { jobResponseSchema } from './jobResponseSchema.ts';
-
-const crewPositions = z.enum([
-  'production',
-  'art',
-  'crew',
-  'costume & make-up',
-  'directing',
-  'writing',
-  'sound',
-  'camera',
-  'lighting',
-  'visual effects',
-  'editing',
-  'creator',
-  'created by',
-]);
+import { crewPositionResponseSchema } from './crewPositionResponseSchema.ts';
+import { jobsResponseSchema } from './jobsResponseSchema.ts';
 
 const headshotSchema = z.object({
   headshot: z.array(z.string()),
@@ -48,20 +33,18 @@ export const castSchema = z.object({
 }).merge(characterResponseSchema);
 
 export const crewSchema = z.object({
-  job: z.string(),
-  jobs: z.array(jobResponseSchema),
   person: personSchema,
   episode_count: z.number().optional(),
   /***
    * Available if requesting extended `images`.
    */
   images: headshotSchema.optional(),
-});
+}).merge(jobsResponseSchema);
 
 export const peopleResponseSchema = z.object({
   cast: z.array(castSchema).optional(),
   crew: z.record(
-    crewPositions,
+    crewPositionResponseSchema,
     z.array(crewSchema),
   ).optional(),
 });

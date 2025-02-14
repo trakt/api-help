@@ -1,3 +1,4 @@
+import { crewPositionResponseSchema } from '../../../_internal/response/crewPositionResponseSchema.ts';
 import { z } from '../../../_internal/z.ts';
 
 export const peopleSummaryResponseSchema = z.object({
@@ -45,7 +46,7 @@ export const peopleSummaryResponseSchema = z.object({
   /***
    * Available if requesting extended `full`.
    */
-  known_for_department: z.string().optional(),
+  known_for_department: crewPositionResponseSchema.optional(),
   /***
    * Available if requesting extended `full`.
    */

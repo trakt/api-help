@@ -181,8 +181,26 @@ export const users = builder.router({
     pathPrefix: '/:id/favorites',
   }),
   lists: builder.router({
-    summary: {
+    personal: {
       path: '',
+      method: 'GET',
+      pathParams: profileParamsSchema,
+      query: extendedQuerySchemaFactory<['full', 'images']>(),
+      responses: {
+        200: listResponseSchema.array(),
+      },
+    },
+    collaborations: {
+      path: '/collaborations',
+      method: 'GET',
+      pathParams: profileParamsSchema,
+      query: extendedQuerySchemaFactory<['full', 'images']>(),
+      responses: {
+        200: listResponseSchema.array(),
+      },
+    },
+    summary: {
+      path: '/:list_id',
       method: 'GET',
       pathParams: profileParamsSchema.merge(listParamsSchema),
       query: extendedQuerySchemaFactory<['full', 'images']>(),
@@ -191,7 +209,7 @@ export const users = builder.router({
       },
     },
     items: {
-      path: '/items/:type',
+      path: '/:list_id/items/:type',
       method: 'GET',
       pathParams: profileParamsSchema
         .merge(listParamsSchema)
@@ -209,7 +227,7 @@ export const users = builder.router({
       },
     },
   }, {
-    pathPrefix: '/:id/lists/:list_id',
+    pathPrefix: '/:id/lists',
   }),
 }, {
   pathPrefix: '/users',

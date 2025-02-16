@@ -5,13 +5,13 @@ export const sortEnumSchema = z.enum([
   'added',
   'title',
   'released',
-  'unreleased',
   'runtime',
   'popularity',
   'percentage',
   'votes',
 ]);
 
+// FIXME split up param & response schemas
 export const sortParamsSchema = z.object({
   sort: sortEnumSchema,
 });

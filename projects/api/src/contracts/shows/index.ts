@@ -31,6 +31,65 @@ import { showQueryParamsSchema } from './_internal/request/showQueryParamsSchema
 import { seasonsResponseSchema } from './_internal/response/seasonsResponseSchema.ts';
 import { showProgressResponseSchema } from './_internal/response/showProgressResponseSchema.ts';
 
+const EPISODE_LEVEL = builder.router({
+  summary: {
+    path: '',
+    method: 'GET',
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
+    pathParams: idParamsSchema
+      .merge(seasonParamsSchema)
+      .merge(episodeParamsSchema),
+    responses: {
+      200: episodeResponseSchema,
+    },
+  },
+  translations: {
+    path: '/translations/:language',
+    method: 'GET',
+    pathParams: idParamsSchema
+      .merge(seasonParamsSchema)
+      .merge(episodeParamsSchema)
+      .merge(languageParamsSchema),
+    responses: {
+      200: episodeTranslationResponseSchema,
+    },
+  },
+  stats: {
+    path: '/stats',
+    method: 'GET',
+    pathParams: idParamsSchema
+      .merge(seasonParamsSchema)
+      .merge(episodeParamsSchema),
+    responses: {
+      200: episodeStatsResponseSchema,
+    },
+  },
+  ratings: {
+    path: '/ratings',
+    method: 'GET',
+    query: extendedQuerySchemaFactory<['all']>(),
+    pathParams: idParamsSchema
+      .merge(seasonParamsSchema)
+      .merge(episodeParamsSchema),
+    responses: {
+      200: ratingsResponseSchema,
+    },
+  },
+  watching: {
+    path: '/watching',
+    method: 'GET',
+    pathParams: idParamsSchema
+      .merge(seasonParamsSchema)
+      .merge(episodeParamsSchema),
+    query: extendedQuerySchemaFactory<['full']>(),
+    responses: {
+      200: profileResponseSchema.array(),
+    },
+  },
+}, {
+  pathPrefix: '/seasons/:season/episodes/:episode',
+});
+
 const ENTITY_LEVEL = builder.router({
   summary: {
     path: '',
@@ -141,62 +200,6 @@ const ENTITY_LEVEL = builder.router({
       200: episodeResponseSchema.array(),
     },
   },
-  episode: builder.router({
-    summary: {
-      path: '/seasons/:season/episodes/:episode',
-      method: 'GET',
-      query: extendedQuerySchemaFactory<['full', 'images']>(),
-      pathParams: idParamsSchema
-        .merge(seasonParamsSchema)
-        .merge(episodeParamsSchema),
-      responses: {
-        200: episodeResponseSchema,
-      },
-    },
-    translations: {
-      path: '/seasons/:season/episodes/:episode/translations/:language',
-      method: 'GET',
-      pathParams: idParamsSchema
-        .merge(seasonParamsSchema)
-        .merge(episodeParamsSchema)
-        .merge(languageParamsSchema),
-      responses: {
-        200: episodeTranslationResponseSchema,
-      },
-    },
-    stats: {
-      path: '/seasons/:season/episodes/:episode/stats',
-      method: 'GET',
-      pathParams: idParamsSchema
-        .merge(seasonParamsSchema)
-        .merge(episodeParamsSchema),
-      responses: {
-        200: episodeStatsResponseSchema,
-      },
-    },
-    ratings: {
-      path: '/seasons/:season/episodes/:episode/ratings',
-      method: 'GET',
-      query: extendedQuerySchemaFactory<['all']>(),
-      pathParams: idParamsSchema
-        .merge(seasonParamsSchema)
-        .merge(episodeParamsSchema),
-      responses: {
-        200: ratingsResponseSchema,
-      },
-    },
-    watching: {
-      path: '/seasons/:season/episodes/:episode/watching',
-      method: 'GET',
-      pathParams: idParamsSchema
-        .merge(seasonParamsSchema)
-        .merge(episodeParamsSchema),
-      query: extendedQuerySchemaFactory<['full']>(),
-      responses: {
-        200: profileResponseSchema.array(),
-      },
-    },
-  }),
   lists: {
     path: '/lists/:type/:sort',
     method: 'GET',
@@ -218,6 +221,7 @@ const ENTITY_LEVEL = builder.router({
       200: commentReponseSchema.array(),
     },
   },
+  episode: EPISODE_LEVEL,
 }, {
   pathPrefix: '/:id',
 });

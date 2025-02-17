@@ -22,9 +22,7 @@ import { favoritedShowsResponseSchema } from './_internal/response/favoritedShow
 import { historyEpisodesResponseSchema } from './_internal/response/historyEpisodesResponseSchema.ts';
 import { historyMoviesResponseSchema } from './_internal/response/historyMoviesResponseSchema.ts';
 import { historyShowsResponseSchema } from './_internal/response/historyShowsResponseSchema.ts';
-import { ratedEpisodesResponseSchema } from './_internal/response/ratedEpisodesResponseSchema.ts';
-import { ratedMoviesResponseSchema } from './_internal/response/ratedMoviesResponseSchema.ts';
-import { ratedShowsResponseSchema } from './_internal/response/ratedShowsResponseSchema.ts';
+import { RatedItemResponseSchema } from './_internal/response/ratedItemResponseSchema.ts';
 import { settingsResponseSchema } from './_internal/response/settingsResponseSchema.ts';
 import { socialActivityResponseSchema } from './_internal/response/socialActivityResponseSchema.ts';
 import type { watchActionSchema } from './_internal/response/watchActionSchema.ts';
@@ -144,7 +142,7 @@ export const users = builder.router({
       method: 'GET',
       query: extendedQuerySchemaFactory<['full', 'images']>(),
       responses: {
-        200: ratedMoviesResponseSchema.array(),
+        200: RatedItemResponseSchema.array(),
       },
     },
     shows: {
@@ -153,7 +151,7 @@ export const users = builder.router({
       method: 'GET',
       query: extendedQuerySchemaFactory<['full', 'images']>(),
       responses: {
-        200: ratedShowsResponseSchema.array(),
+        200: RatedItemResponseSchema.array(),
       },
     },
     episodes: {
@@ -162,7 +160,7 @@ export const users = builder.router({
       method: 'GET',
       query: extendedQuerySchemaFactory<['full', 'images']>(),
       responses: {
-        200: ratedEpisodesResponseSchema.array(),
+        200: RatedItemResponseSchema.array(),
       },
     },
   }, {
@@ -267,9 +265,7 @@ export type ListedShowResponse = z.infer<
   typeof listedShowResponseSchema
 >;
 
-export type RatedMoviesResponse = z.infer<typeof ratedMoviesResponseSchema>;
-export type RatedShowsResponse = z.infer<typeof ratedShowsResponseSchema>;
-export type RatedEpisodesResponse = z.infer<typeof ratedEpisodesResponseSchema>;
+export type RatedItemResponse = z.infer<typeof RatedItemResponseSchema>;
 
 export type SocialActivityResponse = z.infer<
   typeof socialActivityResponseSchema

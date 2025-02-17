@@ -86,6 +86,18 @@ const EPISODE_LEVEL = builder.router({
       200: profileResponseSchema.array(),
     },
   },
+  comments: {
+    path: '/comments/:sort',
+    method: 'GET',
+    pathParams: idParamsSchema
+      .merge(seasonParamsSchema)
+      .merge(episodeParamsSchema)
+      .merge(commentsSortParamsSchema),
+    query: extendedQuerySchemaFactory<['full', 'images']>(),
+    responses: {
+      200: commentReponseSchema.array(),
+    },
+  },
 }, {
   pathPrefix: '/seasons/:season/episodes/:episode',
 });

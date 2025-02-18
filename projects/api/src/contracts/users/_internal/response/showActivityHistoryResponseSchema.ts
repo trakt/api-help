@@ -3,7 +3,7 @@ import { showResponseSchema } from '../../../_internal/response/showResponseSche
 import { z } from '../../../_internal/z.ts';
 import { historyActionSchema } from './historyActionSchema.ts';
 
-export const historyEpisodesResponseSchema = z.object({
+export const showActivityHistoryResponseSchema = z.object({
   id: z.number(),
   watched_at: z.string(),
   action: historyActionSchema,

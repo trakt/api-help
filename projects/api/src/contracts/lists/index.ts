@@ -2,7 +2,7 @@ import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
-import { listedMovieResponseSchema } from '../_internal/response/listedMovieResponseShema.ts';
+import { listedMovieResponseSchema } from '../_internal/response/listedMovieResponseSchema.ts';
 import { listedShowResponseSchema } from '../_internal/response/listedShowResponseSchema.ts';
 
 export const lists = builder.router({

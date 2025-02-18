@@ -2,7 +2,7 @@ import { builder } from '../_internal/builder.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { sortQuerySchema } from '../_internal/request/sortQuerySchema.ts';
-import { listedMovieResponseSchema } from '../_internal/response/listedMovieResponseShema.ts';
+import { listedMovieResponseSchema } from '../_internal/response/listedMovieResponseSchema.ts';
 import { listedShowResponseSchema } from '../_internal/response/listedShowResponseSchema.ts';
 import { listResponseSchema } from '../_internal/response/listResponseSchema.ts';
 import type { sortDirectionSchema } from '../_internal/response/sortDirectionSchema.ts';
@@ -17,13 +17,14 @@ import {
   type sortEnumSchema,
   sortParamsSchema,
 } from './_internal/request/sortParamsSchema.ts';
+import { activityHistoryResponseSchema } from './_internal/response/activityHistoryResponseSchema.ts';
+import { episodeActivityHistoryResponseSchema } from './_internal/response/episodeActivityHistoryResponseSchema.ts';
 import { favoritedMoviesResponseSchema } from './_internal/response/favoritedMoviesResponseSchema.ts';
 import { favoritedShowsResponseSchema } from './_internal/response/favoritedShowsResponseSchema.ts';
-import { historyEpisodesResponseSchema } from './_internal/response/historyEpisodesResponseSchema.ts';
-import { historyMoviesResponseSchema } from './_internal/response/historyMoviesResponseSchema.ts';
-import { historyShowsResponseSchema } from './_internal/response/historyShowsResponseSchema.ts';
+import { movieActivityHistoryResponseSchema } from './_internal/response/movieActivityHistoryResponseSchema.ts';
 import { RatedItemResponseSchema } from './_internal/response/ratedItemResponseSchema.ts';
 import { settingsResponseSchema } from './_internal/response/settingsResponseSchema.ts';
+import { showActivityHistoryResponseSchema } from './_internal/response/showActivityHistoryResponseSchema.ts';
 import { socialActivityResponseSchema } from './_internal/response/socialActivityResponseSchema.ts';
 import type { watchActionSchema } from './_internal/response/watchActionSchema.ts';
 import { watchedMoviesResponseSchema } from './_internal/response/watchedMoviesResponseSchema.ts';
@@ -77,6 +78,17 @@ export const users = builder.router({
     pathPrefix: '/:id/watched',
   }),
   history: builder.router({
+    all: {
+      path: '/',
+      method: 'GET',
+      pathParams: profileParamsSchema,
+      query: extendedQuerySchemaFactory<['full', 'images']>()
+        .merge(dateRangeParamsSchema)
+        .merge(pageQuerySchema),
+      responses: {
+        200: activityHistoryResponseSchema.array(),
+      },
+    },
     movies: {
       path: '/movies',
       method: 'GET',
@@ -85,7 +97,7 @@ export const users = builder.router({
         .merge(dateRangeParamsSchema)
         .merge(pageQuerySchema),
       responses: {
-        200: historyMoviesResponseSchema.array(),
+        200: movieActivityHistoryResponseSchema.array(),
       },
     },
     shows: {
@@ -95,7 +107,7 @@ export const users = builder.router({
         .merge(dateRangeParamsSchema)
         .merge(pageQuerySchema),
       responses: {
-        200: historyShowsResponseSchema.array(),
+        200: showActivityHistoryResponseSchema.array(),
       },
     },
     episodes: {
@@ -105,7 +117,7 @@ export const users = builder.router({
         .merge(dateRangeParamsSchema)
         .merge(pageQuerySchema),
       responses: {
-        200: historyEpisodesResponseSchema.array(),
+        200: episodeActivityHistoryResponseSchema.array(),
       },
     },
   }, {
@@ -252,10 +264,17 @@ export type SettingsResponse = z.infer<typeof settingsResponseSchema>;
 export type WatchedMoviesResponse = z.infer<typeof watchedMoviesResponseSchema>;
 export type WatchedShowsResponse = z.infer<typeof watchedShowsResponseSchema>;
 
-export type HistoryMoviesResponse = z.infer<typeof historyMoviesResponseSchema>;
-export type HistoryShowsResponse = z.infer<typeof historyShowsResponseSchema>;
-export type HistoryEpisodesResponse = z.infer<
-  typeof historyEpisodesResponseSchema
+export type MovieActivityHistoryResponse = z.infer<
+  typeof movieActivityHistoryResponseSchema
+>;
+export type ShowActivityHistoryResponse = z.infer<
+  typeof showActivityHistoryResponseSchema
+>;
+export type ActivityHistoryResponse = z.infer<
+  typeof activityHistoryResponseSchema
+>;
+export type EpisodeActivityHistoryResponse = z.infer<
+  typeof episodeActivityHistoryResponseSchema
 >;
 
 export type ListedMovieResponse = z.infer<

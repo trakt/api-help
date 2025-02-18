@@ -2,7 +2,7 @@ import { movieResponseSchema } from '../../../_internal/response/movieResponseSc
 import { z } from '../../../_internal/z.ts';
 import { historyActionSchema } from './historyActionSchema.ts';
 
-export const historyMoviesResponseSchema = z.object({
+export const movieActivityHistoryResponseSchema = z.object({
   id: z.number(),
   watched_at: z.string(),
   movie: movieResponseSchema,

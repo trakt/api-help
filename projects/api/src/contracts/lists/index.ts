@@ -4,30 +4,26 @@ import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { listedMovieResponseSchema } from '../_internal/response/listedMovieResponseSchema.ts';
 import { listedShowResponseSchema } from '../_internal/response/listedShowResponseSchema.ts';
+import { z } from '../_internal/z.ts';
+import { searchTypeParamFactory } from '../search/_internal/request/searchTypeParamFactory.ts';
 
 export const lists = builder.router({
-  items: builder.router({
-    movies: {
-      path: '/items/movies',
-      method: 'GET',
-      pathParams: idParamsSchema,
-      query: extendedQuerySchemaFactory<['full', 'images']>()
-        .merge(pageQuerySchema),
-      responses: {
-        200: listedMovieResponseSchema.array(),
-      },
+  items: {
+    path: '/items/:type',
+    method: 'GET',
+    pathParams: idParamsSchema
+      .merge(
+        searchTypeParamFactory<
+          ['movie', 'show']
+        >(),
+      ),
+    query: extendedQuerySchemaFactory<['full', 'images']>()
+      .merge(pageQuerySchema),
+    responses: {
+      200: z.union([listedMovieResponseSchema, listedShowResponseSchema])
+        .array(),
     },
-    shows: {
-      path: '/items/shows',
-      method: 'GET',
-      pathParams: idParamsSchema,
-      query: extendedQuerySchemaFactory<['full', 'images']>()
-        .merge(pageQuerySchema),
-      responses: {
-        200: listedShowResponseSchema.array(),
-      },
-    },
-  }),
+  },
 }, {
   pathPrefix: '/lists/:id',
 });

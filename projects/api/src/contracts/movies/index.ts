@@ -2,6 +2,7 @@ import { builder } from '../_internal/builder.ts';
 import { commentsSortParamsSchema } from '../_internal/request/commentsSortParamsSchema.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
+import { ignoreQuerySchema } from '../_internal/request/ignoreQuerySchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { watchNowParamsSchema } from '../_internal/request/watchNowParamsSchema.ts';
@@ -140,7 +141,8 @@ const GLOBAL_LEVEL = builder.router({
     path: '/trending',
     method: 'GET',
     query: extendedQuerySchemaFactory<['full', 'images']>()
-      .merge(pageQuerySchema),
+      .merge(pageQuerySchema)
+      .merge(ignoreQuerySchema),
     responses: {
       200: movieTrendingResponseSchema.array(),
     },
@@ -149,7 +151,8 @@ const GLOBAL_LEVEL = builder.router({
     path: '/anticipated',
     method: 'GET',
     query: extendedQuerySchemaFactory<['full', 'images']>()
-      .merge(pageQuerySchema),
+      .merge(pageQuerySchema)
+      .merge(ignoreQuerySchema),
     responses: {
       200: movieAnticipatedResponseSchema.array(),
     },
@@ -158,7 +161,8 @@ const GLOBAL_LEVEL = builder.router({
     path: '/popular',
     method: 'GET',
     query: extendedQuerySchemaFactory<['full', 'images']>()
-      .merge(pageQuerySchema),
+      .merge(pageQuerySchema)
+      .merge(ignoreQuerySchema),
     responses: {
       200: movieResponseSchema.array(),
     },

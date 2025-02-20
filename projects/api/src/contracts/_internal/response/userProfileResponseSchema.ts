@@ -1,14 +1,15 @@
 import { z } from '../z.ts';
 
+// FIXME: split up in user profile, and official user
 export const profileResponseSchema = z.object({
   username: z.string(),
   private: z.boolean(),
   deleted: z.boolean(),
-  name: z.string(),
+  name: z.string().nullable(),
   vip: z.boolean(),
   vip_ep: z.boolean(),
   ids: z.object({
-    slug: z.string(),
+    slug: z.string().nullable(),
     trakt: z.number(),
   }),
   /***

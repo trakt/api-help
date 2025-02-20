@@ -34,6 +34,7 @@ module.exports = {
         'anticipated',
         'analytics',
         'auth',
+        'badge',
         'button',
         'card',
         'coming-soon',

@@ -1,7 +1,7 @@
 import { z } from '../z.ts';
 import { profileResponseSchema } from './userProfileResponseSchema.ts';
 
-export const commentReponseSchema = z.object({
+export const commentResponseSchema = z.object({
   id: z.number(),
   parent_id: z.number(),
   created_at: z.string(),

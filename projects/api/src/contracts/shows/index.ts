@@ -7,7 +7,7 @@ import { languageParamsSchema } from '../_internal/request/languageParamsSchema.
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import { watchNowParamsSchema } from '../_internal/request/watchNowParamsSchema.ts';
-import { commentReponseSchema } from '../_internal/response/commentResponseSchema.ts';
+import { commentResponseSchema } from '../_internal/response/commentResponseSchema.ts';
 import { episodeResponseSchema } from '../_internal/response/episodeResponseSchema.ts';
 import { episodeStatsResponseSchema } from '../_internal/response/episodeStatsResponseSchema.ts';
 import { episodeTranslationResponseSchema } from '../_internal/response/episodeTranslationResponseSchema.ts';
@@ -96,7 +96,7 @@ const EPISODE_LEVEL = builder.router({
       .merge(commentsSortParamsSchema),
     query: extendedQuerySchemaFactory<['full', 'images']>(),
     responses: {
-      200: commentReponseSchema.array(),
+      200: commentResponseSchema.array(),
     },
   },
 }, {
@@ -231,7 +231,7 @@ const ENTITY_LEVEL = builder.router({
     pathParams: idParamsSchema.merge(commentsSortParamsSchema),
     query: extendedQuerySchemaFactory<['full', 'images']>(),
     responses: {
-      200: commentReponseSchema.array(),
+      200: commentResponseSchema.array(),
     },
   },
   episode: EPISODE_LEVEL,

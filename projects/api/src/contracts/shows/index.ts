@@ -6,7 +6,6 @@ import { ignoreQuerySchema } from '../_internal/request/ignoreQuerySchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
-import { watchNowParamsSchema } from '../_internal/request/watchNowParamsSchema.ts';
 import { commentResponseSchema } from '../_internal/response/commentResponseSchema.ts';
 import { episodeResponseSchema } from '../_internal/response/episodeResponseSchema.ts';
 import { episodeStatsResponseSchema } from '../_internal/response/episodeStatsResponseSchema.ts';
@@ -110,6 +109,16 @@ const EPISODE_LEVEL = builder.router({
       200: peopleResponseSchema,
     },
   },
+  watchnow: {
+    path: '/watchnow/:country',
+    method: 'GET',
+    pathParams: idParamsSchema
+      .merge(seasonParamsSchema)
+      .merge(episodeParamsSchema),
+    responses: {
+      200: watchNowResponseSchema,
+    },
+  },
 }, {
   pathPrefix: '/seasons/:season/episodes/:episode',
 });
@@ -191,7 +200,7 @@ const ENTITY_LEVEL = builder.router({
   watchnow: {
     path: '/watchnow/:country',
     method: 'GET',
-    pathParams: watchNowParamsSchema,
+    pathParams: idParamsSchema,
     responses: {
       200: watchNowResponseSchema,
     },

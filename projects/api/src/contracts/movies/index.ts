@@ -5,7 +5,6 @@ import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { ignoreQuerySchema } from '../_internal/request/ignoreQuerySchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
-import { watchNowParamsSchema } from '../_internal/request/watchNowParamsSchema.ts';
 import { commentResponseSchema } from '../_internal/response/commentResponseSchema.ts';
 import type { genreResponseSchema } from '../_internal/response/genreResponseSchema.ts';
 import type { jobResponseSchema } from '../_internal/response/jobResponseSchema.ts';
@@ -97,7 +96,7 @@ const ENTITY_LEVEL = builder.router({
   watchnow: {
     path: '/watchnow/:country',
     method: 'GET',
-    pathParams: watchNowParamsSchema,
+    pathParams: idParamsSchema,
     responses: {
       200: watchNowResponseSchema,
     },

@@ -1,5 +1,10 @@
 import { z } from '../z.ts';
 
+const externalRatingsResponseSchema = z.object({
+  rating: z.number().nullable(),
+  link: z.string().nullable(),
+});
+
 export const ratingsResponseSchema = z.object({
   trakt: z.object({
     rating: z.number(),
@@ -20,18 +25,23 @@ export const ratingsResponseSchema = z.object({
   /***
    * Available if requesting extended `all`.
    */
-  tmdb: z.object({ rating: z.number(), votes: z.number() }).optional(),
+  tmdb: externalRatingsResponseSchema.extend({
+    votes: z.number().nullable(),
+  }).optional(),
   /***
    * Available if requesting extended `all`.
    */
-  imdb: z.object({ rating: z.number(), votes: z.number() }).optional(),
+  imdb: externalRatingsResponseSchema.extend({
+    votes: z.number().nullable(),
+  }).optional(),
   /***
    * Available if requesting extended `all`.
    */
-  metascore: z.object({ rating: z.number().nullable() }).optional(),
+  metascore: externalRatingsResponseSchema.optional(),
   /***
    * Available if requesting extended `all`.
    */
-  rotten_tomatoes: z.object({ rating: z.number(), user_rating: z.number() })
-    .optional(),
+  rotten_tomatoes: externalRatingsResponseSchema.extend({
+    user_rating: z.number().nullable(),
+  }).optional(),
 });

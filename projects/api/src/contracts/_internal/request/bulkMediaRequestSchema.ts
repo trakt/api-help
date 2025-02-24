@@ -1,10 +1,10 @@
+import { z } from '../z.ts';
 import {
   episodeIdsRequestSchema,
   movieIdsRequestSchema,
   seasonIdsRequestSchema,
   showIdsRequestSchema,
-} from '../../../_internal/request/idsRequestSchema.ts';
-import { z } from '../../../_internal/z.ts';
+} from './idsRequestSchema.ts';
 
 const watchedAtSchema = z.object({
   watched_at: z.string().optional(),
@@ -62,7 +62,7 @@ const addEpisodeToHistorySchema = z
     ids: episodeIdsRequestSchema,
   }).merge(watchedAtSchema);
 
-export const historyRequestSchema = z.object({
+export const bulkMediaRequestSchema = z.object({
   movies: z.array(addMovieToHistorySchema).optional(),
   shows: z.array(addShowToHistorySchema).optional(),
   seasons: z.array(addSeasonToHistorySchema).optional(),

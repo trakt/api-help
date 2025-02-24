@@ -1,4 +1,5 @@
 import { builder } from '../_internal/builder.ts';
+import { bulkMediaRequestSchema } from '../_internal/request/bulkMediaRequestSchema.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { sortQuerySchema } from '../_internal/request/sortQuerySchema.ts';
@@ -6,7 +7,6 @@ import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import { ratingsResponseSchema } from '../_internal/response/ratingsResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
 import { favoriteParamSchema } from './_internal/request/favoritesParamSchema.ts';
-import { historyRequestSchema } from './_internal/request/historyRequestSchema.ts';
 import { ratingsParamSchema } from './_internal/request/ratingsParamSchema.ts';
 import { watchlistRequestSchema } from './_internal/request/watchlistRequestSchema.ts';
 import { favoritesResponseSchema } from './_internal/response/favoritesResponseSchema.ts';
@@ -43,7 +43,7 @@ const history = builder.router({
   add: {
     method: 'POST',
     path: '',
-    body: historyRequestSchema,
+    body: bulkMediaRequestSchema,
     responses: {
       200: historyResponseSchema,
     },
@@ -51,7 +51,7 @@ const history = builder.router({
   remove: {
     method: 'POST',
     path: '/remove',
-    body: historyRequestSchema,
+    body: bulkMediaRequestSchema,
     responses: {
       200: historyRemoveResponseSchema,
     },
@@ -125,7 +125,7 @@ export const sync = builder.router({
 
 export type UpNextResponse = z.infer<typeof upNextResponseSchema>;
 
-export type HistoryRequest = z.infer<typeof historyRequestSchema>;
+export type HistoryRequest = z.infer<typeof bulkMediaRequestSchema>;
 export type HistoryResponse = z.infer<typeof historyResponseSchema>;
 
 export type WatchlistRequest = z.infer<typeof watchlistRequestSchema>;

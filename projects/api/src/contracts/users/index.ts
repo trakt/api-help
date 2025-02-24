@@ -1,4 +1,5 @@
 import { builder } from '../_internal/builder.ts';
+import { bulkMediaRequestSchema } from '../_internal/request/bulkMediaRequestSchema.ts';
 import { extendedQuerySchemaFactory } from '../_internal/request/extendedQuerySchemaFactory.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
 import { sortQuerySchema } from '../_internal/request/sortQuerySchema.ts';
@@ -10,6 +11,7 @@ import { profileResponseSchema } from '../_internal/response/userProfileResponse
 import { z } from '../_internal/z.ts';
 import { searchTypeParamFactory } from '../search/_internal/request/searchTypeParamFactory.ts';
 import { dateRangeParamsSchema } from './_internal/request/dateRangeParamsSchema.ts';
+import { hiddenParamsSchema } from './_internal/request/hiddenParamsSchema.ts';
 import { listParamsSchema } from './_internal/request/listParamsSchema.ts';
 import { profileParamsSchema } from './_internal/request/profileParamsSchema.ts';
 import { socialActivityParamsSchema } from './_internal/request/socialActivityParamsSchema.ts';
@@ -21,6 +23,9 @@ import { activityHistoryResponseSchema } from './_internal/response/activityHist
 import { episodeActivityHistoryResponseSchema } from './_internal/response/episodeActivityHistoryResponseSchema.ts';
 import { favoritedMoviesResponseSchema } from './_internal/response/favoritedMoviesResponseSchema.ts';
 import { favoritedShowsResponseSchema } from './_internal/response/favoritedShowsResponseSchema.ts';
+import { hiddenAddResponseSchema } from './_internal/response/hiddenAddResponseSchema.ts';
+import { hiddenRemoveResponseSchema } from './_internal/response/hiddenRemoveResponseSchema.ts';
+import { hiddenShowResponseSchema } from './_internal/response/hiddenShowResponseSchema.ts';
 import { movieActivityHistoryResponseSchema } from './_internal/response/movieActivityHistoryResponseSchema.ts';
 import { RatedItemResponseSchema } from './_internal/response/ratedItemResponseSchema.ts';
 import { settingsResponseSchema } from './_internal/response/settingsResponseSchema.ts';
@@ -249,6 +254,46 @@ export const users = builder.router({
   }, {
     pathPrefix: '/:id/lists',
   }),
+  hidden: builder.router({
+    add: {
+      path: '/hidden/:section',
+      pathParams: hiddenParamsSchema,
+      method: 'POST',
+      body: bulkMediaRequestSchema,
+      responses: {
+        200: hiddenAddResponseSchema,
+      },
+    },
+    get: {
+      shows: {
+        path: '/hidden/progress_watched?type=show',
+        method: 'GET',
+        query: extendedQuerySchemaFactory<['full', 'images']>()
+          .merge(pageQuerySchema),
+        responses: {
+          200: hiddenShowResponseSchema.array(),
+        },
+      },
+    },
+    remove: {
+      progress: {
+        path: '/hidden/progress_watched',
+        method: 'POST',
+        body: bulkMediaRequestSchema,
+        responses: {
+          200: hiddenRemoveResponseSchema,
+        },
+      },
+      calendar: {
+        path: '/hidden/calendar',
+        method: 'POST',
+        body: bulkMediaRequestSchema,
+        responses: {
+          200: hiddenRemoveResponseSchema,
+        },
+      },
+    },
+  }),
 }, {
   pathPrefix: '/users',
 });
@@ -289,3 +334,9 @@ export type RatedItemResponse = z.infer<typeof RatedItemResponseSchema>;
 export type SocialActivityResponse = z.infer<
   typeof socialActivityResponseSchema
 >;
+
+export type HiddenShowItemResponse = z.infer<
+  typeof hiddenShowResponseSchema
+>;
+
+export type HiddenAddRequest = z.infer<typeof bulkMediaRequestSchema>;

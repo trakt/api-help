@@ -68,6 +68,7 @@ export const jobResponseSchema = z.enum([
   'Makeup Designer',
   'Colorist',
   'Creator',
+  'Stunts',
 
   //Directing jobs
   'Action Director',

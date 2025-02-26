@@ -277,7 +277,7 @@ export const users = builder.router({
     },
     remove: {
       progress: {
-        path: '/hidden/progress_watched',
+        path: '/hidden/progress_watched/remove',
         method: 'POST',
         body: bulkMediaRequestSchema,
         responses: {
@@ -285,7 +285,7 @@ export const users = builder.router({
         },
       },
       calendar: {
-        path: '/hidden/calendar',
+        path: '/hidden/calendar/remove',
         method: 'POST',
         body: bulkMediaRequestSchema,
         responses: {

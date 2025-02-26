@@ -339,4 +339,4 @@ export type HiddenShowItemResponse = z.infer<
   typeof hiddenShowResponseSchema
 >;
 
-export type HiddenAddRequest = z.infer<typeof bulkMediaRequestSchema>;
+export type HiddenMediaRequest = z.infer<typeof bulkMediaRequestSchema>;

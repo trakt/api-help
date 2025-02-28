@@ -70,7 +70,8 @@ const ENTITY_LEVEL = builder.router({
   related: {
     path: '/related',
     method: 'GET',
-    query: extendedQuerySchemaFactory<['full', 'images']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>()
+      .merge(pageQuerySchema),
     pathParams: idParamsSchema,
     responses: {
       200: movieResponseSchema.array(),

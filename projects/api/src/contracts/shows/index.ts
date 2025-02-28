@@ -175,7 +175,8 @@ const ENTITY_LEVEL = builder.router({
     path: '/related',
     method: 'GET',
     pathParams: idParamsSchema,
-    query: extendedQuerySchemaFactory<['full', 'images']>(),
+    query: extendedQuerySchemaFactory<['full', 'images']>()
+      .merge(pageQuerySchema),
     responses: {
       200: showResponseSchema.array(),
     },

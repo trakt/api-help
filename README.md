@@ -1,8 +1,11 @@
 # trakt-api
 
-[![CI](https://github.com/trakt/trakt-lite/actions/workflows/ci.yml/badge.svg)](https://github.com/trakt/trakt-lite/actions/workflows/ci.yml)
+[![CI](https://github.com/trakt/api-help/actions/workflows/ci.yml/badge.svg)](https://github.com/trakt/api-help/actions/workflows/ci.yml)
 
-[![CD](https://github.com/trakt/trakt-lite/actions/workflows/cd.yml/badge.svg)](https://github.com/trakt/trakt-lite/actions/workflows/cd.yml)
+At Trakt, we collect lots of interesting information about what tv shows and
+movies everyone is watching. Part of the fun with such data is making it
+available for anyone to mash up and use on their own apps. The **Trakt API** was
+made just for this purpose. Let us know what you create!
 
 ## Project Structure
 
@@ -69,3 +72,43 @@ please refer to the
 - OpenAPI:
   - Serve: `deno task openapi`
   - Development: `deno task openapi:dev`
+
+## Questions & Bugs
+
+Have questions or ideas? Share them in our
+[**GitHub Discussions**](https://github.com/trakt/api-help/discussions).
+
+Found a bug? Please report it in our
+[**GitHub Issues**](https://github.com/trakt/api-help/issues).
+
+## Stay Connected
+
+Make sure to follow our [**API Blog**](https://apiblog.trakt.tv) and
+[**@traktapi on Twitter**](https://twitter.com/traktapi) for real time updates.
+
+## Third Party Libraries
+
+All of the libraries listed below are user contributed. If you find a bug or
+missing feature, please contact the developer directly. These might help give
+your project a head start, but we can't provide direct support for any of these
+libraries. Please help us keep this list up to date.
+
+| Language     | Name           | Repository                                     |
+| ------------ | -------------- | ---------------------------------------------- |
+| C#           | Trakt.NET      | https://github.com/henrikfroehling/Trakt.NET   |
+|              | TraktSharp     | https://github.com/wwarby/TraktSharp           |
+| C++          | libtraqt       | https://github.com/RobertMe/libtraqt           |
+| Clojure      | clj-trakt      | https://github.com/niamu/clj-trakt             |
+| Java         | trakt-java     | https://github.com/UweTrottmann/trakt-java     |
+| Kotlin       | trakt-api      | https://github.com/MoviebaseApp/trakt-api      |
+| Node.js      | Trakt.tv       | https://github.com/vankasteelj/trakt.tv        |
+|              | TraktApi2      | https://github.com/PatrickE94/traktapi2        |
+| Python       | trakt.py       | https://github.com/fuzeman/trakt.py            |
+|              | pyTrakt        | https://github.com/moogar0880/PyTrakt          |
+| R            | tRakt          | https://github.com/jemus42/tRakt               |
+| React Native | nodeless-trakt | https://github.com/kdemoya/nodeless-trakt      |
+| Ruby         | omniauth-trakt | https://github.com/wafcio/omniauth-trakt       |
+|              | omniauth-trakt | https://github.com/alextakitani/omniauth-trakt |
+| Swift        | TraktKit       | https://github.com/MaxHasADHD/TraktKit         |
+|              | AKTrakt        | https://github.com/arsonik/AKTrakt             |
+| TypeScript   | trakt-api      | https://github.com/trakt/trakt-api             |

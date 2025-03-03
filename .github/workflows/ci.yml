@@ -53,7 +53,7 @@ jobs:
           deno-version: v2.x
 
       - name: The Sacred Assembly aka Install Dependencies
-        run: 'deno task install'
+        run: "deno task install"
 
       - name: The Scroll's Scrutiny aka Validate OpenAPI
         if: ${{
@@ -63,9 +63,8 @@ jobs:
         run: deno task openapi:validate
 
       - name: The Sacred Transcription aka Generate OpenAPI
-        if: github.ref == 'refs/heads/main'
-        run: deno task generate
-        working-directory: projects/openapi
+        if: github.ref == 'refs/heads/master'
+        run: deno task openapi:generate
 
       - name: Preserving the Sacred Texts aka Upload Definition
         if: github.ref == 'refs/heads/master'

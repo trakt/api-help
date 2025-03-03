@@ -10,6 +10,7 @@
     "format": "deno fmt && deno lint --fix",
     "openapi": "cd projects/openapi && deno task start",
     "openapi:dev": "cd projects/openapi && deno task dev",
+    "openapi:generate": "cd projects/openapi && deno task generate",
     "openapi:validate": "cd projects/openapi && deno task validate",
     "playground:dev": "cd projects/playground && deno task dev"
   },

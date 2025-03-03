@@ -1,4 +1,5 @@
-# trakt-api
+![GitHub-Mark-Light](./logo_dark.svg#gh-dark-mode-only)
+![GitHub-Mark-Dark](./logo_light.svg#gh-light-mode-only)
 
 [![CI](https://github.com/trakt/api-help/actions/workflows/ci.yml/badge.svg)](https://github.com/trakt/api-help/actions/workflows/ci.yml)
 

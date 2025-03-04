@@ -5,6 +5,7 @@ import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { ignoreQuerySchema } from '../_internal/request/ignoreQuerySchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
+import { periodParamsSchema } from '../_internal/request/periodParamsSchema.ts';
 import { statsQuerySchema } from '../_internal/request/statsQuerySchema.ts';
 import { commentResponseSchema } from '../_internal/response/commentResponseSchema.ts';
 import { episodeResponseSchema } from '../_internal/response/episodeResponseSchema.ts';
@@ -30,6 +31,7 @@ import { seasonParamsSchema } from './_internal/request/seasonParamsSchema.ts';
 import { showQueryParamsSchema } from './_internal/request/showQueryParamsSchema.ts';
 import { seasonsResponseSchema } from './_internal/response/seasonsResponseSchema.ts';
 import { showProgressResponseSchema } from './_internal/response/showProgressResponseSchema.ts';
+import { showWatchedResponseSchema } from './_internal/response/showWatchedResponseSchema.ts';
 
 const EPISODE_LEVEL = builder.router({
   summary: {
@@ -271,6 +273,17 @@ const GLOBAL_LEVEL = builder.router({
       200: showTrendingResponseSchema.array(),
     },
   },
+  watched: {
+    path: '/watched/:period',
+    method: 'GET',
+    query: extendedQuerySchemaFactory<['full', 'images']>()
+      .merge(pageQuerySchema)
+      .merge(ignoreQuerySchema),
+    pathParams: periodParamsSchema,
+    responses: {
+      200: showWatchedResponseSchema.array(),
+    },
+  },
   anticipated: {
     path: '/anticipated',
     method: 'GET',
@@ -306,6 +319,7 @@ export type ShowResponse = z.infer<typeof showResponseSchema>;
 export type ShowProgressResponse = z.infer<typeof showProgressResponseSchema>;
 export type ShowQueryParams = z.infer<typeof showQueryParamsSchema>;
 export type ShowTrendingResponse = z.infer<typeof showTrendingResponseSchema>;
+export type ShowWatchedResponse = z.infer<typeof showWatchedResponseSchema>;
 export type ShowStatsResponse = z.infer<typeof showStatsResponseSchema>;
 export type ShowAnticipatedResponse = z.infer<
   typeof showAnticipatedResponseSchema

@@ -5,6 +5,7 @@ import { idParamsSchema } from '../_internal/request/idParamsSchema.ts';
 import { ignoreQuerySchema } from '../_internal/request/ignoreQuerySchema.ts';
 import { languageParamsSchema } from '../_internal/request/languageParamsSchema.ts';
 import { pageQuerySchema } from '../_internal/request/pageQuerySchema.ts';
+import { periodParamsSchema } from '../_internal/request/periodParamsSchema.ts';
 import { commentResponseSchema } from '../_internal/response/commentResponseSchema.ts';
 import type { genreResponseSchema } from '../_internal/response/genreResponseSchema.ts';
 import type { jobResponseSchema } from '../_internal/response/jobResponseSchema.ts';
@@ -31,6 +32,7 @@ import {
   type watchNowServiceResponseSchema,
 } from '../_internal/response/watchNowResponseSchema.ts';
 import type { z } from '../_internal/z.ts';
+import { movieWatchedResponseSchema } from './_internal/response/movieWatchedResponseSchema.ts';
 
 const ENTITY_LEVEL = builder.router({
   summary: {
@@ -147,6 +149,17 @@ const GLOBAL_LEVEL = builder.router({
       200: movieTrendingResponseSchema.array(),
     },
   },
+  watched: {
+    path: '/watched/:period',
+    method: 'GET',
+    query: extendedQuerySchemaFactory<['full', 'images']>()
+      .merge(pageQuerySchema)
+      .merge(ignoreQuerySchema),
+    pathParams: periodParamsSchema,
+    responses: {
+      200: movieWatchedResponseSchema.array(),
+    },
+  },
   anticipated: {
     path: '/anticipated',
     method: 'GET',
@@ -199,6 +212,9 @@ export type MovieTranslationResponse = z.infer<
 >;
 export type MovieTrendingResponse = z.infer<
   typeof movieTrendingResponseSchema
+>;
+export type MovieWatchedResponse = z.infer<
+  typeof movieWatchedResponseSchema
 >;
 export type MovieAnticipatedResponse = z.infer<
   typeof movieAnticipatedResponseSchema

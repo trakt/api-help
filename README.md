@@ -1,7 +1,7 @@
 ![GitHub-Mark-Light](./logo_dark.svg#gh-dark-mode-only)
 ![GitHub-Mark-Dark](./logo_light.svg#gh-light-mode-only)
 
-[![CI](https://github.com/trakt/api-help/actions/workflows/ci.yml/badge.svg)](https://github.com/trakt/api-help/actions/workflows/ci.yml)
+[![CI](https://github.com/trakt/trakt-api/actions/workflows/ci.yml/badge.svg)](https://github.com/trakt/trakt-api/actions/workflows/ci.yml)
 
 At Trakt, we collect lots of interesting information about what tv shows and
 movies everyone is watching. Part of the fun with such data is making it
@@ -77,10 +77,10 @@ please refer to the
 ## Questions & Bugs
 
 Have questions or ideas? Share them in our
-[**GitHub Discussions**](https://github.com/trakt/api-help/discussions).
+[**GitHub Discussions**](https://github.com/trakt/trakt-api/discussions).
 
 Found a bug? Please report it in our
-[**GitHub Issues**](https://github.com/trakt/api-help/issues).
+[**GitHub Issues**](https://github.com/trakt/trakt-api/issues).
 
 ## Stay Connected
 
